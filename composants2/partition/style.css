@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* ✅ centre verticalement aussi */
+    min-height: 100vh;
+    /* occupe toute la hauteur de la fenêtre */
+    margin: 0;
+    background: #f0f0f0;
+}
+
+.partition {
+    width: 90%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    /* ✅ centre le svg dans le conteneur */
+}
+
+svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* ✅ enlève l’espace blanc inline */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+}

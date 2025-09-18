@@ -1,0 +1,13 @@
+.clef {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    height: 160px;
+    /* hauteur de la portée */
+}
+
+.clef svg {
+    height: 100%;
+    width: auto;
+}
