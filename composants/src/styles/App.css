@@ -1,0 +1,7 @@
+/* Layout général de l'application */
+body {
+  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
