@@ -1,4 +1,17 @@
 import React, { useRef, useEffect } from "react";
+import { Note } from "./Note";
+
+export interface NoteData {
+    x: number;
+    y: number;
+    label: string;
+    iconType: "blanche" | "clef";
+    onClick: () => void;
+}
+
+interface PartitionNoteProps {
+    notes: NoteData[];
+}
 
 class Staff {
     svgGroup: SVGGElement;
@@ -30,7 +43,7 @@ class Staff {
     }
 }
 
-const Partition: React.FC = () => {
+const PartitionNote: React.FC<PartitionNoteProps> = ({ notes }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const svgRef = useRef<SVGSVGElement | null>(null);
     const staffRef = useRef<SVGGElement | null>(null);
@@ -57,10 +70,13 @@ const Partition: React.FC = () => {
     return (
         <div ref={containerRef} style={{ width: "100%", minHeight: "80px", border: "1px solid #999" }}>
             <svg ref={svgRef} style={{ width: "100%", height: "100%", display: "block" }}>
-                <g ref={staffRef}></g>
+                <g ref={staffRef}></g> {/* Portée */}
+                {notes.map((note, idx) => (
+                    <Note key={idx} {...note} />  /* Notes au-dessus */
+            ))}
             </svg>
         </div>
     );
 };
 
-export default Partition;
+export default PartitionNote;

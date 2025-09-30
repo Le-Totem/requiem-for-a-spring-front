@@ -1,31 +1,34 @@
 import Partition from "./components/Partition";
+import PartitionNote, { type NoteData } from "./components/PartitionNote";
 import PartitionClefSol from "./components/PartitionClefSol";
 import { Note } from "./components/Note";
-import "./styles/App.css"; // layout global
 
 function App() {
-  return (
-    <div className="app-container" style={{ padding: "10px" }}>
+  // Notes à placer sur la partition
+  const notesOnPartition: NoteData[] = [
+    { x: 50, y: 20, label: "Créer", iconType: "blanche", onClick: () => console.log("Créer") },
+    { x: 200, y: 30, label: "Mettre à jour", iconType: "blanche", onClick: () => console.log("Mettre à jour") },
+    { x: 400, y: 25, label: "Valider", iconType: "blanche", onClick: () => console.log("Valider") },
+  ];
 
+  return (
+    <div style={{ padding: "10px" }}>
       <h2>Portée simple</h2>
       <Partition />
 
       <h2>Portée avec Notes</h2>
-      <div style={{ position: "relative", width: "600px", height: "100px" }}>
-        {/* Portée en arrière-plan */}
-        <Partition />
+      <PartitionNote notes={notesOnPartition} />
 
-        {/* Notes superposées */}
-        <svg style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
-          <Note x={50} y={20} label="Créer" iconType="blanche" onClick={() => console.log("Créer")} />
-          <Note x={200} y={30} label="Mettre à jour" iconType="blanche" onClick={() => console.log("Mettre à jour")} />
-          <Note x={400} y={25} label="Valider" iconType="blanche" onClick={() => console.log("Valider")} />
+      <h2>Notes libres</h2>
+      <div style={{ width: "600px", height: "100px", border: "1px solid gray" }}>
+        <svg width="100%" height="100%">
+          <Note x={50} y={50} label="noteSansPartition1" iconType="blanche" onClick={() => console.log("noteSansPartition1")} />
+          <Note x={300} y={50} label="noteSansPartition2" iconType="blanche" onClick={() => console.log("noteSansPartition2")} />
         </svg>
       </div>
 
       <h2>Portée avec clef de sol</h2>
       <PartitionClefSol />
-
     </div>
   );
 }
