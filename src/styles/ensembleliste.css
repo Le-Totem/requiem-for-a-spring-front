@@ -1,0 +1,25 @@
+/* Conteneur principal du composant Ensembleliste */
+.ensemble-container {
+    padding: 20px;
+}
+
+/* Conteneur pour la portée clef de sol */
+.clef-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* si tu veux superposer du texte dessus plus tard */
+}
+
+/* Liste des partitions */
+.partitions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Wrapper pour chaque partition (utile si tu veux mettre des labels) */
+.partition-wrapper {
+    position: relative;
+}
