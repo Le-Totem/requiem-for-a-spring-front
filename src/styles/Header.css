@@ -1,0 +1,32 @@
+header {
+    text-align: center;
+    /* centre tout le contenu du header */
+    padding: 20px 0;
+    /* espace autour du header */
+}
+
+header h1 {
+    color: #75541C;
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+header p {
+    color: #75541C;
+    margin: 5px 0 15px 0;
+    font-size: 16px;
+}
+
+header nav a {
+    color: #75541C;
+    text-decoration: none;
+    /* enlève le souligné par défaut */
+    margin: 0 10px;
+    font-weight: 500;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+    /* petit effet au survol */
+}
