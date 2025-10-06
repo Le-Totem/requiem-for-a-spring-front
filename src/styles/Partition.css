@@ -1,8 +1,12 @@
-.partition {
-    width: 100%;
+/* Partition */
+.partition-box {
+    width: 400px;
     height: 80px;
-    /* même hauteur que le SVG interne */
-    background: white;
-    /* pour bien voir la portée */
-    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+}
+
+.clef-box {
+    width: 400px;
+    height: 100px;
+    background-color: #e0f7fa;
 }

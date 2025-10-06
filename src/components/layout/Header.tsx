@@ -6,7 +6,7 @@ export default function Header() {
         <header>
             <div>
                 <h1>Requiem for a spring</h1>
-                <p>Apps pensée et conçue par Le Totem</p>
+                <p>by Le Totem</p>
             </div>
             <div>
                 <nav>

@@ -1,8 +1,0 @@
-.partition {
-    width: 100%;
-    height: 80px;
-    /* même hauteur que le SVG interne */
-    background: white;
-    /* pour bien voir la portée */
-    border: 1px solid #ccc;
-}

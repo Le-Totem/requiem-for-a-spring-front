@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import { Note } from "./Note";
 
+import "../styles/PartitionNote.css";
+
 export interface NoteData {
     x: number;
     y: number;
@@ -36,7 +38,7 @@ class Staff {
             line.setAttribute("x2", (width - paddingX).toString());
             line.setAttribute("y1", y.toString());
             line.setAttribute("y2", y.toString());
-            line.setAttribute("stroke", "black");
+            line.setAttribute("stroke", "#75541C");
             line.setAttribute("stroke-width", "2");
             this.svgGroup.appendChild(line);
         }
@@ -55,9 +57,15 @@ const PartitionNote: React.FC<PartitionNoteProps> = ({ notes }) => {
 
         const handleResize = () => {
             const width = container.clientWidth;
+
+            // Calcul de la hauteur du container pour contenir toutes les lignes + padding
             const containerHeight = 12 + (5 - 1) * 12 + 12;
             container.style.height = `${containerHeight}px`;
+
+            // Dessiner la portée
             staff.draw(width);
+
+            // Mettre à jour viewBox pour que le SVG s’adapte
             svg.setAttribute("viewBox", `0 0 ${width} ${containerHeight}`);
             svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
         };
@@ -68,12 +76,27 @@ const PartitionNote: React.FC<PartitionNoteProps> = ({ notes }) => {
     }, []);
 
     return (
-        <div ref={containerRef} style={{ width: "100%", minHeight: "80px", border: "1px solid #999" }}>
-            <svg ref={svgRef} style={{ width: "100%", height: "100%", display: "block" }}>
-                <g ref={staffRef}></g> {/* Portée */}
+        <div
+            ref={containerRef}
+            style={{
+                width: "100%",
+                minHeight: "80px"
+            }}
+        >
+            <svg ref={svgRef}
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "block"
+                }}
+            >
+                {/* Partition */}
+                <g ref={staffRef}></g>
+
+                {/* Notes  */}
                 {notes.map((note, idx) => (
                     <Note key={idx} {...note} />  /* Notes au-dessus */
-            ))}
+                ))}
             </svg>
         </div>
     );

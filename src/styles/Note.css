@@ -1,35 +1,16 @@
-.partition {
-    width: 90%;
-    max-width: 900px;
+/* Texte ou annotations sur partitions */
+.clef-text {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: darkblue;
 }
 
-svg {
-    width: 100%;
-    height: auto;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: #fff;
-}
-
-/* Styles communs aux notes */
-.note .head {
-    fill: white;
-    stroke: black;
-    stroke-width: 1.5;
-}
-
-.note .stem {
-    stroke: black;
-    stroke-width: 1.5;
-}
-
-.note text {
-    font-family: "Copperplate Gothic Bold", sans-serif;
-    font-size: 14px;
-    dominant-baseline: middle;
-    fill: black;
-}
-
-.note.active .head {
-    fill: black;
+.partition-label {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: green;
 }

@@ -1,33 +1,11 @@
-/* Layout général de l'application */
+/* Styles globaux */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  /* reset margin */
   padding: 0;
-  /* enlever padding global */
-  min-height: 100vh;
-  /* prend toute la hauteur de la fenêtre */
-  font-family: sans-serif;
+  background-color: #fff;
 }
 
-/* Centrer l'app dans la page */
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Centrer le titre de Bienvenue*/
-
-.h2Bienvenue {
-  text-align: center;
-  /* centre le texte */
-  margin: 20px 0;
-  /* optionnel : espace vertical */
-  color: #75541C;
-  /* couleur du texte */
-  font-size: 24px;
-  /* taille du texte */
-  font-weight: bold;
-  /* gras */
-
+main {
+  padding: 20px;
 }

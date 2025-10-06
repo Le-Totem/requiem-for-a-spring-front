@@ -4,14 +4,17 @@ import "../styles/ensembleliste.css";
 
 
 export default function Ensembleliste() {
+    const nomEnsemble = "Nom de l'ensemble"
+    
     return (
         <main className="ensemble-container">
 
             <div className="clef-container">
                 <PartitionClefSol />
+                <span className="clef-text">{nomEnsemble}</span>
             </div>
 
-            <div className="partition-list">
+            <div >
                 <div className="partition-wrapper"><Partition /></div>
                 <div className="partition-wrapper"><Partition /></div>
                 <div className="partition-wrapper"><Partition /></div>

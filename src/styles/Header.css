@@ -8,14 +8,15 @@ header {
 header h1 {
     color: #75541C;
     margin: 0;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 header p {
     color: #75541C;
     margin: 5px 0 15px 0;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 header nav a {
