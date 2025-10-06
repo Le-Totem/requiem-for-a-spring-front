@@ -1,12 +1,12 @@
 /* Texte ou annotations sur partitions */
-.clef-text {
+/* .clef-text {
     position: absolute;
     top: 10px;
     left: 20px;
     font-size: 18px;
     font-weight: bold;
     color: darkblue;
-}
+} */
 
 .partition-label {
     position: absolute;

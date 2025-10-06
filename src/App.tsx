@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 
@@ -12,41 +12,41 @@ import './styles/partition.css';
 import './styles/note.css';
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* Page d’accueil (connexion) */}
-        <Route
-          path="/homepage"
-          element={
-            <Layout hideHeader={true}>
-              <HomePage />
-            </Layout>
-          }
-        />
+    return (
+        <Router>
+            <Routes>
+                {/* Page d’accueil (connexion) */}
+                <Route
+                    path="/homepage"
+                    element={
+                        <Layout hideHeader={true}>
+                            <HomePage/>
+                        </Layout>
+                    }
+                />
 
-        {/* Page liste d’ensembles */}
-        <Route
-          path="/listeensembles"
-          element={
-            <Layout>
-              <Ensembleliste />
-            </Layout>
-          }
-        />
+                {/* Page liste d’ensembles */}
+                <Route
+                    path="/listeensembles"
+                    element={
+                        <Layout>
+                            <Ensembleliste/>
+                        </Layout>
+                    }
+                />
 
-        {/* Page composants */}
-        <Route
-          path="/composants"
-          element={
-            <Layout>
-              <Composants />
-            </Layout>
-          }
-        />
-      </Routes>
-    </Router>
-  );
+                {/* Page composants */}
+                <Route
+                    path="/composants"
+                    element={
+                        <Layout>
+                            <Composants/>
+                        </Layout>
+                    }
+                />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
