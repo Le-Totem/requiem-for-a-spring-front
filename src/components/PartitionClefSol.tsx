@@ -40,7 +40,7 @@ class Staff {
             line.setAttribute("x2", (width - paddingX).toString());
             line.setAttribute("y1", y.toString());
             line.setAttribute("y2", y.toString());
-            line.setAttribute("stroke", "#75541C");
+            line.setAttribute("stroke", "rgba(117, 84, 28, 0.7)");
             line.setAttribute("stroke-width", "2");
             this.svgGroup.appendChild(line);
         }
@@ -124,7 +124,7 @@ const Partition: React.FC<PartitionProps> = ({ notes = [] }) => {
                 ref={svgRef}
                 xmlns="http://www.w3.org/2000/svg"
                 preserveAspectRatio="xMinYMid meet"
-                style={{ display: "block" }}
+                style={{ display: "block", padding: "5px 0px" }}
             >
                 <rect width="100%" height="100%" fill="none" />
 
@@ -136,7 +136,7 @@ const Partition: React.FC<PartitionProps> = ({ notes = [] }) => {
 
                 {/* Notes */}
                 {notes.map((note, idx) => (
-                    <Note key={idx} {...note} />
+                    <Note key={idx} {...note} isOnStaff={true} />
                 ))}
             </svg>
         </div>

@@ -5,13 +5,13 @@ import "../styles/ensembleliste.css";
 
 export default function Ensembleliste() {
     const nomEnsemble = "Nom de l'ensemble"
-    
+
     return (
         <main className="ensemble-container">
 
             <div className="clef-container">
-                <PartitionClefSol />
                 <span className="clef-text">{nomEnsemble}</span>
+                <PartitionClefSol />
             </div>
 
             <div >
