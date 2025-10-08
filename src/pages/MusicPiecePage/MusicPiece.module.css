@@ -1,6 +1,13 @@
-.music-piece-container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.medias_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.medias_file {
+    width: auto;
+    height: 40px;
+    box-sizing: border-box;
 }

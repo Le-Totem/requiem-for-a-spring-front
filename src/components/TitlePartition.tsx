@@ -15,7 +15,7 @@ const Partition: React.FC<PartitionProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textMeasureRef = useRef<SVGTextElement>(null);
-  const [dimensions] = useState({ width: 300, height: 80 });
+  const [dimensions] = useState({ width: 250, height: 80 });
   const [textWidth, setTextWidth] = useState(0);
 
   const lineGap = 12;
@@ -79,7 +79,7 @@ const Partition: React.FC<PartitionProps> = ({
         {/* Texte */}
         {text && (
           <text
-            x={textX / 1.6}
+            x={textX / 1.8}
             y={textY}
             textAnchor="middle"
             dominantBaseline="middle"
