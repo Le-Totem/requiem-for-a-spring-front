@@ -55,7 +55,7 @@ export const Note = ({ x, y, label, iconType, isOnStaff = false, onClick }: Note
     // Dans le cas de notes seules (seulement les boutons) nous n'avons pas besoin de cette balise.
     // Merci de votre compréhension.
     if (!isOnStaff) {
-        return (<svg ref={refSVG} xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: "200px" }}>
+        return (<svg ref={refSVG} xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: "200px", maxHeight: "40px" }}>
             <g transform={`translate(${x}, ${y})`} ref={refG} onPointerDown={handleClick} style={{ cursor: "pointer" }}>
                 {icons[iconType].map((d, i) => (
                     <path key={i} d={d} fill={isActive ? "gray" : "black"} />
