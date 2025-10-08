@@ -38,7 +38,7 @@ class Staff {
             line.setAttribute("x2", (width - paddingX).toString());
             line.setAttribute("y1", y.toString());
             line.setAttribute("y2", y.toString());
-            line.setAttribute("stroke", "#75541C");
+            line.setAttribute("stroke", "rgba(117, 84, 28, 0.7)");
             line.setAttribute("stroke-width", "2");
             this.svgGroup.appendChild(line);
         }
@@ -81,8 +81,7 @@ const PartitionNote: React.FC<PartitionNoteProps> = ({ notes }) => {
             style={{
                 width: "100%",
                 minHeight: "80px"
-            }}
-        >
+            }}>
             <svg ref={svgRef}
                 style={{
                     width: "100%",
@@ -95,7 +94,7 @@ const PartitionNote: React.FC<PartitionNoteProps> = ({ notes }) => {
 
                 {/* Notes  */}
                 {notes.map((note, idx) => (
-                    <Note key={idx} {...note} />  /* Notes au-dessus */
+                    <Note key={idx} {...note} isOnStaff={true} />  /* Notes au-dessus */
                 ))}
             </svg>
         </div>
