@@ -17,9 +17,9 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -70%);
+  transform: translate(-50%, -95%);
   font-size: 1.2rem;
-  color: #75541C;
+  color: #553d15;
   font-weight: bold;
   white-space: nowrap;
 }

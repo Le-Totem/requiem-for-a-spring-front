@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 
@@ -10,6 +10,8 @@ import './styles/app.css';
 import './styles/layout.css';
 import './styles/partition.css';
 import './styles/note.css';
+import MusicPiecePage from "./pages/MusicPiecePage/MusicPiecePage";
+import MainMusicPiece from "./pages/MusicPiecePage/MainMusicPiece";
 
 function App() {
     return (
@@ -20,7 +22,7 @@ function App() {
                     path="/homepage"
                     element={
                         <Layout hideHeader={true}>
-                            <HomePage/>
+                            <HomePage />
                         </Layout>
                     }
                 />
@@ -30,7 +32,7 @@ function App() {
                     path="/listeensembles"
                     element={
                         <Layout>
-                            <Ensembleliste/>
+                            <Ensembleliste />
                         </Layout>
                     }
                 />
@@ -40,10 +42,15 @@ function App() {
                     path="/composants"
                     element={
                         <Layout>
-                            <Composants/>
+                            <Composants />
                         </Layout>
                     }
                 />
+
+                {/* Page Fiche Morceau */}
+                <Route path="/tracks" element={<Layout> <MainMusicPiece /> </Layout>}>
+                    <Route path="" element={<MusicPiecePage />} />
+                </Route>
             </Routes>
         </Router>
     );
