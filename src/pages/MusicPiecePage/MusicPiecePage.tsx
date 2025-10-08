@@ -1,6 +1,7 @@
 import type React from "react";
 import { useSearchParams } from "react-router";
 import PartitionClefSol from "../../components/PartitionClefSol";
+import PartitionTitle from "../../components/TitlePartition";
 import { useEffect, useState } from "react";
 import type { MusicPiece } from "../../types/MusicPiece";
 import { fetchAllMedias, fetchOneMusicPiece } from "../../api/MusicPieceApi";
@@ -47,31 +48,22 @@ const MusicPiecePage: React.FC = () => {
 
     return (
         <>
-            <div className="clef-container">
+            {/* <div className="clef-container">
                 <span className="clef-text">
                     {musicPiece?.title}
                 </span>
                 <PartitionClefSol />
-            </div>
+            </div> */}
+
+            <PartitionTitle text={musicPiece?.title} textSize={25} showClef={true} />
 
             {medias?.map((media) => (
                 <div key={media.id}>
-                    <p>
-                        {media.title}
-                    </p>
+                    <Note x={0} y={0} label={media.title} iconType="blanche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
                 </div>
             ))}
 
-            <div>
-                <Note x={0} y={0} label="noteSansPartition1" iconType="blanche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
-            </div>
-
-            <div className="clef-container">
-                <span className="clef-text">
-                    {/* {musicPiece?.title} */}
-                </span>
-                <PartitionClefSol />
-            </div>
+            <PartitionTitle text="Documents" textSize={25} showClef={true} />
 
             <div >
 

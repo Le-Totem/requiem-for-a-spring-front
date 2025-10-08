@@ -31,7 +31,7 @@ export async function fetchAllMusicPieces(): Promise<MusicPiece[]> {
 export async function fetchOneMusicPiece(id: number): Promise<MusicPiece> {
     try {
         // const token = localStorage.getItem("jwt");
-        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzU5OTA1NDYyLCJleHAiOjE3NTk5MDkwNjJ9.NJcOxC7Cb7mRZaAj7vKS3GTOaH8kyBsmn7_SoUxEDow";
+        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzU5OTA5MjczLCJleHAiOjE3NTk5MTI4NzN9.QfEQSqYbpmdR9N-ThRCSqDtKuFqRzvDs0_F6qPeCDlM";
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}`, {
             method: "GET",
             headers: {
@@ -101,7 +101,7 @@ export async function fetchAllGenres(id: number): Promise<MusicPiece[]> {
 export async function fetchAllMedias(id: number): Promise<Media[]> {
     try {
         // const token = localStorage.getItem("jwt");
-        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzU5OTA1NDYyLCJleHAiOjE3NTk5MDkwNjJ9.NJcOxC7Cb7mRZaAj7vKS3GTOaH8kyBsmn7_SoUxEDow";
+        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzU5OTA5MjczLCJleHAiOjE3NTk5MTI4NzN9.QfEQSqYbpmdR9N-ThRCSqDtKuFqRzvDs0_F6qPeCDlM";
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}/medias`, {
             method: "GET",
             headers: {
