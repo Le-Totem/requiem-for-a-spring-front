@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 
 import HomePage from "./pages/homepage";
-import Ensembleliste from "./pages/ensembleliste";
+import Ensembleliste from "./pages/EnsembleListePage/ensembleliste";
 import Composants from "./pages/composants";
 
 import './styles/app.css';

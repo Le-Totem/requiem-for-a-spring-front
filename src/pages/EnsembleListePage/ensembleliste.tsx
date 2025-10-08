@@ -1,9 +1,10 @@
-import PartitionClefSol, {type NoteData} from "../components/PartitionClefSol";
-import "../styles/ensembleliste.css";
-import PartitionNote from "../components/PartitionNote.tsx";
+import PartitionClefSol, {type NoteData} from "../../components/PartitionClefSol.tsx";
+import "../../styles/ensembleliste.css";
 import { useEffect, useState } from "react";
-import { groupService, type UserRoleDto } from "../api/GroupApi.tsx";
-import PartitionTitle from "../components/TitlePartition.tsx";
+import { groupService, type UserRoleDto } from "../../api/GroupApi.ts";
+import PartitionTitle from "../../components/TitlePartition.tsx";
+import styles from "./EnsembleListe.module.css"
+import { Note } from "../../components/Note.tsx";
 
 
 export default function Ensembleliste() {
@@ -53,13 +54,6 @@ export default function Ensembleliste() {
     onClick: () => console.log(`Participant - ${userRole.group.name}`),
   }));
   
-    
-
-    const notesOnPartition: NoteData[] = [
-            { x: 50, y: 20, label: "Créer", iconType: "blanche", onClick: () => console.log("Créer") },
-            { x: 200, y: 30, label: "Mettre à jour", iconType: "blanche", onClick: () => console.log("Mettre à jour") },
-            { x: 400, y: 25, label: "Valider", iconType: "blanche", onClick: () => console.log("Valider") },
-        ];
 
     return (
         <main className="ensemble-container">
@@ -88,10 +82,12 @@ export default function Ensembleliste() {
                 
               
             </div>
-            <div>
-                <div className="partition-wrapper-crud"><PartitionNote notes={notesOnPartition} />
+                <div className={styles.buttoncrud}> 
+                  <Note  x={0} y={0} label="create" iconType="double" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
+                  <Note  x={0} y={0} label="update" iconType="double" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
+                  <Note  x={0} y={0} label="delete" iconType="double" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
                 </div>
-            </div>
+            
 
 
         </main >
