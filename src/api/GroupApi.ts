@@ -1,3 +1,6 @@
+import type { Status } from "../enums/Status";
+import type { Role } from "../enums/Role";
+
 export interface GroupDto {
   id?: number;
   name: string;
@@ -10,11 +13,6 @@ export interface UserRoleDto {
   id_group: number;
   role: Role
   group: GroupDto;
-}
-export enum Role {
-  ADMIN = 'ADMIN',
-  MODERATEUR = 'MODERATEUR',
-  UTILISIATEUR = 'UTILISIATEUR',
 }
 
 export interface MusicPieceDto {
@@ -33,12 +31,6 @@ export interface InvitationDto {
   created_at: Date; 
   groupId: number;
 }
-export enum Status {
-  PENDING = 'PENDING',
-  ACCEPTED = 'ACCEPTED',
-  REJECTED = 'REJECTED',
-}
-
 
 // services/groupService.ts
 const API_BASE_URL = 'http://localhost:8000/api/groups';
@@ -46,7 +38,7 @@ const API_BASE_URL = 'http://localhost:8000/api/groups';
 // Fonction pour obtenir le token JWT 
 const getAuthHeaders = () => {
 //   const token = localStorage.getItem('token'); 
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NTk5MDY0NzcsImV4cCI6MTc1OTkxMDA3N30.7wvLZKX-6K_mH0ojIObCogOPfw11LkCneYi9gSdQINg";
+  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NTk5OTA4MjgsImV4cCI6MTc1OTk5NDQyOH0.o86o2C_3s2ZZPpLo28jvd5ZHsOwolYIfyxasJYAkDsg";
   return {
     'Content-Type': 'application/json',
     ...(token && { 'Authorization': `Bearer ${token}` })

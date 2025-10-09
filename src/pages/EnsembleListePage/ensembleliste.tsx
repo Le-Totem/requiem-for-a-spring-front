@@ -1,9 +1,10 @@
-import PartitionClefSol, {type NoteData} from "../components/PartitionClefSol";
-import "../styles/ensembleliste.css";
-import PartitionNote from "../components/PartitionNote.tsx";
+import PartitionClefSol, {type NoteData} from "../../components/PartitionClefSol.tsx";
+import "../../styles/ensembleliste.css";
 import { useEffect, useState } from "react";
-import { groupService, type UserRoleDto } from "../api/GroupApi.tsx";
-import PartitionTitle from "../components/TitlePartition.tsx";
+import { groupService, type UserRoleDto } from "../../api/GroupApi.ts";
+import PartitionTitle from "../../components/TitlePartition.tsx";
+import styles from "./EnsembleListe.module.css"
+import { Note } from "../../components/Note.tsx";
 
 
 export default function Ensembleliste() {
@@ -37,7 +38,7 @@ export default function Ensembleliste() {
 
   // Notes pour les ensembles administrés
   const notesAdmin: NoteData[] = ensemblesAdmin.map((userRole, index) => ({
-    x: 100 + index * 150,
+    x: 100 + index * 100,
     y: 20 + (index % 2) * 10,
     label: userRole.group.name,
     iconType: "blanche",
@@ -46,29 +47,24 @@ export default function Ensembleliste() {
 
   // Notes pour les ensembles où l’utilisateur participe
   const notesParticipant: NoteData[] = ensemblesParticipant.map((userRole, index) => ({
-    x: 100 + index * 150,
+    x: 100 + index * 100,
     y: 20 + (index % 2) * 10,
     label: userRole.group.name,
     iconType: "blanche",
     onClick: () => console.log(`Participant - ${userRole.group.name}`),
   }));
   
-    
-
-    const notesOnPartition: NoteData[] = [
-            { x: 50, y: 20, label: "Créer", iconType: "blanche", onClick: () => console.log("Créer") },
-            { x: 200, y: 30, label: "Mettre à jour", iconType: "blanche", onClick: () => console.log("Mettre à jour") },
-            { x: 400, y: 25, label: "Valider", iconType: "blanche", onClick: () => console.log("Valider") },
-        ];
 
     return (
         <main className="ensemble-container">
 
+        <div className={styles.title}>
           <PartitionTitle 
         text="Liste des ensembles" 
         textSize={25}
         showClef={true}
       />
+      </div>
 
 
             <div >
@@ -82,16 +78,18 @@ export default function Ensembleliste() {
             <div>
 
                 <h4 className="subtitle-ensemble">Ensemble administrateur</h4>
-                <div className="partition-wrapper"><PartitionClefSol notes={notesAdmin}/>
-                
+                <div className={styles.partitionensemble}><PartitionClefSol notes={notesAdmin}/>
                 </div>
+
                 
               
             </div>
-            <div>
-                <div className="partition-wrapper-crud"><PartitionNote notes={notesOnPartition} />
+                <div className={styles.buttoncrud}> 
+                  <Note  x={0} y={0} label="create" iconType="doubleNoire" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
+                  <Note  x={0} y={0} label="update" iconType="doubleNoire" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
+                  <Note  x={0} y={0} label="delete" iconType="doubleNoire" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
                 </div>
-            </div>
+            
 
 
         </main >
