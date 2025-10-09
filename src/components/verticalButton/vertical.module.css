@@ -1,25 +1,25 @@
 .verticalbutton {
-  width: auto;
+  width: 100px;
   display: flex;
-  justify-content: center; 
-  align-items: flex-end;
-  gap: 3rem; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 3rem;
   margin-top: 2rem;
   height: auto;
 }
 
-.verticalbutton svg{
-    transform: scale(1.7);
-    width: 100%;
-    
+.verticalbutton svg {
+  transform: scale(1.7);
+  width: 100%;
 }
 
 .verticalbutton text {
-  dominant-baseline: hanging; 
-  text-anchor: middle;        
-  transform: translateY(20px); 
+  dominant-baseline: hanging;
+  text-anchor:middle;
+  transform: translateY(20px);
 }
 
-.verticalbutton .title text{
-transform: translateX(-20px);
+.verticalbutton .title text {
+  transform: translateX(-20px);
 }

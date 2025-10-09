@@ -28,7 +28,7 @@ export interface InvitationDto {
   id?: number;
   email: string;
   status: Status;
-  created_at: Date; 
+  created_at: Date;
   groupId: number;
 }
 
@@ -37,9 +37,8 @@ const API_BASE_URL = 'http://localhost:8000/api/groups';
 
 // Fonction pour obtenir le token JWT 
 const getAuthHeaders = () => {
-//   const token = localStorage.getItem('token'); 
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NTk5OTQ2MDMsImV4cCI6MTc1OTk5ODIwM30.nkCnfc5cse1Afvb0uWZvFzm7jPK-JdvSy68ohS5INO0";
-  return {
+  //   const token = localStorage.getItem('token'); 
+  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzU5OTk5OTc3LCJleHAiOjE3NjAwMDM1Nzd9.UZiz0V6wAVG4tYABrM7RJkCVuzmBb8F5sHchNN43npA"; return {
     'Content-Type': 'application/json',
     ...(token && { 'Authorization': `Bearer ${token}` })
   };
@@ -56,15 +55,15 @@ export const groupService = {
     return response.json();
   },
 
-   //Récupérer les ensembles de l'utilisateur connecté
- getMyGroups: async (): Promise<UserRoleDto[]> => {
-  const response = await fetch(`${API_BASE_URL}/my-groups`, {
-    method: 'GET',
-    headers: getAuthHeaders(),
-  });
-  if (!response.ok) throw new Error('Erreur lors de la récupération de vos ensembles');
-  return response.json();
-},
+  //Récupérer les ensembles de l'utilisateur connecté
+  getMyGroups: async (): Promise<UserRoleDto[]> => {
+    const response = await fetch(`${API_BASE_URL}/my-groups`, {
+      method: 'GET',
+      headers: getAuthHeaders(),
+    });
+    if (!response.ok) throw new Error('Erreur lors de la récupération de vos ensembles');
+    return response.json();
+  },
 
 
   // Récupérer un ensemble par ID
