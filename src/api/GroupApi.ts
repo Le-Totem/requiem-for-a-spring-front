@@ -4,8 +4,8 @@ import type { Role } from "../enums/Role";
 export interface GroupDto {
   id?: number;
   name: string;
-  creationDate: Date;
-  isEveryoneAdmin: boolean
+  creation_date: string;
+  is_everyone_admin: boolean
 }
 
 export interface UserRoleDto {
@@ -38,7 +38,7 @@ const API_BASE_URL = 'http://localhost:8000/api/groups';
 // Fonction pour obtenir le token JWT 
 const getAuthHeaders = () => {
 //   const token = localStorage.getItem('token'); 
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NTk5OTQ2MDMsImV4cCI6MTc1OTk5ODIwM30.nkCnfc5cse1Afvb0uWZvFzm7jPK-JdvSy68ohS5INO0";
+  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NjAwMTEwMTIsImV4cCI6MTc2MDAxNDYxMn0.coHIFBYYYqWQ_ByKNMUDGp26sCP_hiZLGPq9a6Nko74";
   return {
     'Content-Type': 'application/json',
     ...(token && { 'Authorization': `Bearer ${token}` })
