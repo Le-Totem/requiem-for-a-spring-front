@@ -3,7 +3,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     gap: 25px;
-    margin: 10px 20px;
+    margin: 30px 20px;
     margin-bottom: 40px;
     text-align: center;
 }
@@ -12,4 +12,8 @@
     width: auto;
     height: 40px;
     box-sizing: border-box;
+}
+
+.musicpiece_crud {
+    height: 100px;
 }

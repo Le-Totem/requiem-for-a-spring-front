@@ -9,6 +9,7 @@ import type { Media } from "../../types/Media";
 import type { MusicPiece } from "../../types/MusicPiece";
 
 import styles from "./MusicPiece.module.css";
+import CrudButtons from "../../components/CrudNote";
 
 const MusicPiecePage: React.FC = () => {
     const [musicPiece, setMusicPiece] = useState<MusicPiece>();
@@ -51,6 +52,10 @@ const MusicPiecePage: React.FC = () => {
         <>
 
             <PartitionTitle text={musicPiece?.title} textSize={25} showClef={true} />
+
+            <div className={styles.musicpiece_crud}>
+                <CrudButtons />
+            </div>
 
             <div className={styles.medias_container}>
                 {medias?.map((media) =>
