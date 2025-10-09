@@ -53,17 +53,25 @@ const MusicPiecePage: React.FC = () => {
             <PartitionTitle text={musicPiece?.title} textSize={25} showClef={true} />
 
             <div className={styles.medias_container}>
-                {medias?.map((media) => (
-                    <div key={media.id} className={styles.medias_file}>
-                        <Note x={0} y={0} label={media.title} iconType="blanche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
-                    </div>
-                ))}
+                {medias?.map((media) =>
+                    media.type === 'PDF' ? (
+                        <div key={media.id} className={styles.medias_file}>
+                            <Note x={0} y={0} label={media.title} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
+                        </div>
+                    ) : null
+                )}
             </div>
 
             <PartitionTitle text="Documents" textSize={25} showClef={true} />
 
-            <div >
-
+            <div className={styles.medias_container}>
+                {medias?.map((media) =>
+                    media.type != 'PDF' ? (
+                        <div key={media.id} className={styles.medias_file}>
+                            <Note x={0} y={0} label={media.title} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
+                        </div>
+                    ) : null
+                )}
             </div>
         </>
     )
