@@ -2,8 +2,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-    gap: 15px;
+    gap: 25px;
+    margin: 10px 20px;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .medias_file {

@@ -1,19 +1,12 @@
 footer {
-    text-align: center;
-    /* centre tout le contenu du header */
-    padding: 20px 0;
-    /* espace autour du header */
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    text-align: end;
+    padding: 5px 15px;
 }
 
-footer nav a {
-    color: #75541C;
-    text-decoration: none;
-    /* enlève le souligné par défaut */
-    margin: 0 10px;
-    font-weight: bold;
-}
-
-footer nav a:hover {
-    text-decoration: underline;
-    /* petit effet au survol */
+.footer-notes {
+    box-sizing: border-box;
+    font-size: 13px;
 }
