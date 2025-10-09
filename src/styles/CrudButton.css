@@ -1,0 +1,25 @@
+.buttoncrud {
+  width: auto;
+  display: flex;
+  justify-content: center; 
+  align-items: flex-end;
+  gap: 3rem; 
+  margin-top: 2rem;
+  height: auto;
+}
+
+.buttoncrud svg{
+    transform: scale(1.7);
+    width: 100%;
+    
+}
+
+.buttoncrud text {
+  dominant-baseline: hanging; 
+  text-anchor: middle;        
+  transform: translateY(20px); 
+}
+
+.title text{
+transform: translateX(-20px);
+}
