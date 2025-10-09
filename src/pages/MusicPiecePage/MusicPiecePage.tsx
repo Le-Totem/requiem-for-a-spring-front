@@ -1,13 +1,14 @@
 import type React from "react";
-import { useSearchParams } from "react-router";
-import PartitionClefSol from "../../components/PartitionClefSol";
-import PartitionTitle from "../../components/TitlePartition";
 import { useEffect, useState } from "react";
-import type { MusicPiece } from "../../types/MusicPiece";
-import { fetchAllMedias, fetchOneMusicPiece } from "../../api/MusicPieceApi";
-import "./MusicPiece.module.css";
-import type { Media } from "../../types/Media";
+import { useSearchParams } from "react-router";
+
 import { Note } from "../../components/Note";
+import PartitionTitle from "../../components/TitlePartition";
+import { fetchAllMedias, fetchOneMusicPiece } from "../../api/MusicPieceApi";
+import type { Media } from "../../types/Media";
+import type { MusicPiece } from "../../types/MusicPiece";
+
+import styles from "./MusicPiece.module.css";
 
 const MusicPiecePage: React.FC = () => {
     const [musicPiece, setMusicPiece] = useState<MusicPiece>();
@@ -48,20 +49,16 @@ const MusicPiecePage: React.FC = () => {
 
     return (
         <>
-            {/* <div className="clef-container">
-                <span className="clef-text">
-                    {musicPiece?.title}
-                </span>
-                <PartitionClefSol />
-            </div> */}
 
             <PartitionTitle text={musicPiece?.title} textSize={25} showClef={true} />
 
-            {medias?.map((media) => (
-                <div key={media.id}>
-                    <Note x={0} y={0} label={media.title} iconType="blanche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
-                </div>
-            ))}
+            <div className={styles.medias_container}>
+                {medias?.map((media) => (
+                    <div key={media.id} className={styles.medias_file}>
+                        <Note x={0} y={0} label={media.title} iconType="blanche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
+                    </div>
+                ))}
+            </div>
 
             <PartitionTitle text="Documents" textSize={25} showClef={true} />
 

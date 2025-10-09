@@ -5,7 +5,7 @@ function MainMusicPiece() {
         <>
             {/* header */}
 
-            <main className="music-piece-container"><Outlet /></main>
+            <Outlet />
 
             {/* footer */}
         </>
