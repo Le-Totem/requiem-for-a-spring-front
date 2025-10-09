@@ -1,10 +1,10 @@
-import PartitionClefSol, {type NoteData} from "../../components/PartitionClefSol.tsx";
 import "../../styles/ensembleliste.css";
 import { useEffect, useState } from "react";
 import { groupService, type UserRoleDto } from "../../api/GroupApi.ts";
 import PartitionTitle from "../../components/TitlePartition.tsx";
 import styles from "./EnsembleListe.module.css"
 import { Note } from "../../components/Note.tsx";
+import VerticalButton  from "../../components/verticalButton/VerticalButton.tsx"
 
 
 export default function Ensembleliste() {
@@ -36,62 +36,65 @@ export default function Ensembleliste() {
   const ensemblesAdmin = ensembles.filter((e) => e.role === "ADMIN" || e.role === "MODERATEUR");
   const ensemblesParticipant = ensembles.filter((e) => e.role !== "ADMIN");
 
-  // Notes pour les ensembles administrés
-  const notesAdmin: NoteData[] = ensemblesAdmin.map((userRole, index) => ({
-    x: 100 + index * 100,
-    y: 20 + (index % 2) * 10,
-    label: userRole.group.name,
-    iconType: "blanche",
-    onClick: () => console.log(`Admin - ${userRole.group.name}`),
-  }));
-
-  // Notes pour les ensembles où l’utilisateur participe
-  const notesParticipant: NoteData[] = ensemblesParticipant.map((userRole, index) => ({
-    x: 100 + index * 100,
-    y: 20 + (index % 2) * 10,
-    label: userRole.group.name,
-    iconType: "blanche",
-    onClick: () => console.log(`Participant - ${userRole.group.name}`),
-  }));
-  
-
     return (
         <main className="ensemble-container">
 
-        <div className={styles.title}>
-          <PartitionTitle 
-        text="Liste des ensembles" 
-        textSize={25}
-        showClef={true}
-      />
+         <div className={styles.title}>
+        <PartitionTitle text="Liste des ensembles" textSize={25} showClef={true} />
       </div>
 
+      {/* --- Participant --- */}
+      <section>
+        <h4 className="subtitle-ensemble">Ensembles participant</h4>
+        <div className={styles.partitionensemble}>
+          {ensemblesParticipant.length === 0 ? (
+            <p>Aucun ensemble en tant que participant.</p>
+          ) : (
+            ensemblesParticipant.map((ens, index) => (
+              <div key={ens.id_group ?? index} className={styles.groupItem}>
+                <Note
+                  x={0}
+                  y={0}
+                  label=""
+                  iconType="blanche"
+                  isOnStaff={false}
+                  onClick={() => console.log("Groupe participant :", ens.group.name)}
+                />
+                <span className={styles.groupName}>{ens.group.name}</span>
+              </div>
+            ))
+          )}
+        </div>
+      </section>
 
-            <div >
-                <h4 className="subtitle-ensemble">Ensemble participant</h4>
-                <div className="partition-wrapper"><PartitionClefSol notes={notesParticipant} />
-                
-                </div>
+      {/* ---Admin --- */}
+      <section>
+        <h4 className="subtitle-ensemble">Ensembles administrateur</h4>
+        <div className={styles.partitionensemble}>
+          {ensemblesAdmin.length === 0 ? (
+            <p>Aucun ensemble administré.</p>
+          ) : (
+            ensemblesAdmin.map((ens, index) => (
+              <div key={ens.id_group ?? index} className={styles.groupItem}>
+                <Note
+                  x={0}
+                  y={0}
+                  label=""
+                  iconType="blanche"
+                  isOnStaff={false}
+                  onClick={() => console.log("Groupe admin :", ens.group.name)}
+                />
+                <span className={styles.groupName}>{ens.group.name}</span>
+              </div>
+            ))
+          )}
+        </div>
+      </section>
 
-            </div>
-
-            <div>
-
-                <h4 className="subtitle-ensemble">Ensemble administrateur</h4>
-                <div className={styles.partitionensemble}><PartitionClefSol notes={notesAdmin}/>
-                </div>
-
-                
-              
-            </div>
-                <div className={styles.buttoncrud}> 
-                  <Note  x={0} y={0} label="create" iconType="doubleNoire" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
-                  <Note  x={0} y={0} label="update" iconType="doubleNoire" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
-                  <Note  x={0} y={0} label="delete" iconType="doubleNoire" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
-                </div>
-            
-
-
+          <VerticalButton label="test"
+        iconType="doubleNoire"
+        />
+      
         </main >
     );
 }

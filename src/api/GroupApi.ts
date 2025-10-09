@@ -38,7 +38,7 @@ const API_BASE_URL = 'http://localhost:8000/api/groups';
 // Fonction pour obtenir le token JWT 
 const getAuthHeaders = () => {
 //   const token = localStorage.getItem('token'); 
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NTk5OTA4MjgsImV4cCI6MTc1OTk5NDQyOH0.o86o2C_3s2ZZPpLo28jvd5ZHsOwolYIfyxasJYAkDsg";
+  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NTk5OTQ2MDMsImV4cCI6MTc1OTk5ODIwM30.nkCnfc5cse1Afvb0uWZvFzm7jPK-JdvSy68ohS5INO0";
   return {
     'Content-Type': 'application/json',
     ...(token && { 'Authorization': `Bearer ${token}` })

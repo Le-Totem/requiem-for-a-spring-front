@@ -1,4 +1,4 @@
-.buttoncrud {
+.verticalbutton {
   width: auto;
   display: flex;
   justify-content: center; 
@@ -8,18 +8,18 @@
   height: auto;
 }
 
-.buttoncrud svg{
+.verticalbutton svg{
     transform: scale(1.7);
     width: 100%;
     
 }
 
-.buttoncrud text {
+.verticalbutton text {
   dominant-baseline: hanging; 
   text-anchor: middle;        
   transform: translateY(20px); 
 }
 
-.title text{
+.verticalbutton .title text{
 transform: translateX(-20px);
 }
