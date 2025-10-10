@@ -4,7 +4,7 @@ import type { Media } from "../types/Media";
 import type { MusicPiece } from "../types/MusicPiece";
 
 const MUSICPIECE_API_URL = "http://localhost:8000/api/tracks";
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMDA5MTI5LCJleHAiOjE3NjAwNzkxMjl9.ezcY1j8UtHoWYRhIYx0XZEdbNp4EmKKWcveeekxpIX8";
+const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMDc5ODQ4LCJleHAiOjE3NjAxNDk4NDh9.cjKnGQVpLqnA4vmp_UT1Bo-ZcGPo7FcWoz5U8uDYFI4";
 
 // fetch pour récupérer toutes les fiches morceaux
 export async function fetchAllMusicPieces(): Promise<MusicPiece[]> {
@@ -31,7 +31,7 @@ export async function fetchAllMusicPieces(): Promise<MusicPiece[]> {
 }
 
 // fetch pour récupérer une fiche morceau en fonction de son id
-export async function fetchOneMusicPiece(id: number): Promise<MusicPiece> {
+export async function fetchOneMusicPiece(id: number): Promise<MusicPiece | null> {
     try {
         // const token = getJwt();
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}`, {
@@ -77,7 +77,7 @@ export async function fetchAllByIdGroup(id: number): Promise<MusicPiece[]> {
 }
 
 // fetch pour récupérer tous les genres
-export async function fetchAllGenres(id: number): Promise<MusicPiece[]> {
+export async function fetchAllGenres(id: number): Promise<Genre[]> {
     try {
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}/all-genres`, {
             method: "GET",
@@ -190,7 +190,7 @@ export async function fetchAddGenreToMusicPiece(id: number, genres: Genre[]): Pr
 }
 
 // fetch pour modifier une fiche morceau
-export async function fetchUpdateMusicPiece(id: number, musicPiece: Omit<MusicPiece, "id">): Promise<MusicPiece> {
+export async function fetchUpdateMusicPiece(id: number, musicPiece: Partial<MusicPiece>): Promise<MusicPiece> {
     try {
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}`, {
             method: "PATCH",
@@ -228,7 +228,8 @@ export async function fetchDeleteMusicPiece(id: number): Promise<void> {
             throw new Error(`Erreur HTTP ${musicPieceData.status}: ${errorBody}`);
         };
 
-        return musicPieceData.json();
+        // return musicPieceData.json();
+        return;
     } catch (error) {
         throw new Error(`Une erreur est survenue sur fetchDeleteMusicPiece: ${error}`);
     }

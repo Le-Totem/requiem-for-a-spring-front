@@ -4,7 +4,7 @@ import { groupService, type UserRoleDto } from "../../api/GroupApi.ts";
 import PartitionTitle from "../../components/TitlePartition.tsx";
 import stylesEns from "./EnsembleListe.module.css"
 import { Note } from "../../components/Note.tsx";
-import VerticalButton  from "../../components/verticalButton/VerticalButton.tsx"
+import VerticalButton from "../../components/verticalButton/VerticalButton.tsx"
 import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble.tsx";
 import FormCreate from "../../components/modalCrudEnsemble/FormCreate.tsx";
 import FormUpdate from "../../components/modalCrudEnsemble/FormUpdtate.tsx";
@@ -14,10 +14,10 @@ import ConfirmDelete from "../../components/modalCrudEnsemble/ConfirmDelete.tsx"
 export default function Ensembleliste() {
 
   const [ensembles, setEnsembles] = useState<UserRoleDto[]>([]);
-  
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [openModal, setOpenModal] = useState(false);
   const [typeModal, setTypeModal] = useState<"create" | "update" | "delete">("create");
 
@@ -26,7 +26,7 @@ export default function Ensembleliste() {
     setOpenModal(true);
   };
 
-    const modalContent = {
+  const modalContent = {
     create: <FormCreate onClose={() => setOpenModal(false)} />,
     update: <FormUpdate />,
     delete: <ConfirmDelete />,
@@ -52,62 +52,62 @@ export default function Ensembleliste() {
   if (loading) return <p className="ensemble-loading">Chargement des ensembles...</p>;
   if (error) return <p className="ensemble-error">{error}</p>;
 
- // Séparation des ensembles selon le rôle
+  // Séparation des ensembles selon le rôle
   const ensemblesAdmin = ensembles.filter((e) => e.role === "ADMIN" || e.role === "MODERATEUR");
   const ensemblesParticipant = ensembles.filter((e) => e.role !== "ADMIN");
 
-    return (
-        <main className="ensemble-container">
+  return (
+    <main className="ensemble-container">
 
-         <div className={stylesEns.title}>
+      <div className={stylesEns.title}>
         <PartitionTitle text="Liste d'ensembles" textSize={25} showClef={true} />
       </div>
 
-     {/* --- Participant --- */}
-<section>
-  <h4 className="subtitle-ensemble">Ensembles participant</h4>
-  <div className={stylesEns.partitionensemble}>
-    {ensemblesParticipant.length === 0 ? (
-      <p>Aucun ensemble en tant que participant.</p>
-    ) : (
-      ensemblesParticipant.map((ens, index) => (
-        <div key={ens.id_group ?? index} className={stylesEns.groupItem}>
-          <Note
-            x={0}
-            y={0}
-            label={ens.group.name} 
-            iconType="blanche"
-            isOnStaff={false}
-            onClick={() => console.log("Groupe participant :", ens.group.name)}
-          />
+      {/* --- Participant --- */}
+      <section>
+        <h4 className="subtitle-ensemble">Ensembles participant</h4>
+        <div className={stylesEns.partitionensemble}>
+          {ensemblesParticipant.length === 0 ? (
+            <p>Aucun ensemble en tant que participant.</p>
+          ) : (
+            ensemblesParticipant.map((ens, index) => (
+              <div key={ens.id_group ?? index} className={stylesEns.groupItem}>
+                <Note
+                  x={0}
+                  y={0}
+                  label={ens.group.name}
+                  iconType="blanche"
+                  isOnStaff={false}
+                  onClick={() => console.log("Groupe participant :", ens.group.name)}
+                />
+              </div>
+            ))
+          )}
         </div>
-      ))
-    )}
-  </div>
-</section>
+      </section>
 
-{/* --- Admin --- */}
-<section>
-  <h4 className="subtitle-ensemble">Ensembles administrateur</h4>
-  <div className={stylesEns.partitionensemble}>
-    {ensemblesAdmin.length === 0 ? (
-      <p>Aucun ensemble administré.</p>
-    ) : (
-      ensemblesAdmin.map((ens, index) => (
-        <div key={ens.id_group ?? index} className={stylesEns.groupItem}>
-          <Note
-            x={0}
-            y={0}
-            label={ens.group.name}
-            iconType="blanche"
-            isOnStaff={false}
-            onClick={() => console.log("Groupe admin :", ens.group.name)}
-            />
+      {/* --- Admin --- */}
+      <section>
+        <h4 className="subtitle-ensemble">Ensembles administrateur</h4>
+        <div className={stylesEns.partitionensemble}>
+          {ensemblesAdmin.length === 0 ? (
+            <p>Aucun ensemble administré.</p>
+          ) : (
+            ensemblesAdmin.map((ens, index) => (
+              <div key={ens.id_group ?? index} className={stylesEns.groupItem}>
+                <Note
+                  x={0}
+                  y={0}
+                  label={ens.group.name}
+                  iconType="blanche"
+                  isOnStaff={false}
+                  onClick={() => console.log("Groupe admin :", ens.group.name)}
+                />
+              </div>
+            ))
+          )}
         </div>
-      ))
-    )}
-  </div>
-</section>
+      </section>
 
       <div className={stylesEns.crud}>
         <VerticalButton
@@ -127,14 +127,14 @@ export default function Ensembleliste() {
         />
       </div>
 
-     <ModalCrud
+      <ModalCrud
         typeModal={typeModal}
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
       >
         {modalContent[typeModal]}
       </ModalCrud>
-        </main >
-    );
+    </main >
+  );
 }
 
