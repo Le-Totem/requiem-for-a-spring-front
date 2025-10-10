@@ -15,6 +15,7 @@ interface NoteProps {
     x: number;
     y: number;
     label: string;
+    xtext: number;
     iconType: "blanche" | "clef" | "doubleNoire" | "fa" | "ut";
     isOnStaff: boolean;
     onClick?: () => void;
@@ -25,7 +26,7 @@ interface NoteProps {
  * Composant "note" permettant d'afficher un bouton avec un texte et une note
  * 
  */
-export const Note = ({ x, y, label, iconType, isOnStaff = false, onClick }: NoteProps) => {
+export const Note = ({ x, y, label, xtext, iconType, isOnStaff = false, onClick }: NoteProps) => {
     const [isActive, setIsActive] = useState(false);
 
     // référence vers la balise G pour permettre, par la suite, le redimensionnement la viewport de la balise "svg"
@@ -61,7 +62,7 @@ export const Note = ({ x, y, label, iconType, isOnStaff = false, onClick }: Note
                     <path key={i} d={d} fill={isActive ? "gray" : "black"} />
                 ))}
 
-                <text x={20} y={25}>{label}</text>
+                <text x={xtext} y={25}>{label}</text>
             </g>
         </svg>);
     } else {
