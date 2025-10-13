@@ -2,12 +2,22 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-    gap: 15px;
+    gap: 25px;
+    margin: 30px 20px;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .medias_file {
     width: auto;
     height: 40px;
     box-sizing: border-box;
+}
+
+.musicpiece_crud {
+    height: 100px;
+    width: 100vw;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
 }

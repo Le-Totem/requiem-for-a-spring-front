@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 
 import HomePage from "./pages/homepage";
-import Ensembleliste from "./pages/ensembleliste";
+import Ensembleliste from "./pages/EnsembleListePage/ensembleliste";
 import Composants from "./pages/composants";
 
-import './styles/app.css';
-import './styles/layout.css';
-import './styles/partition.css';
-import './styles/note.css';
+import './styles/App.css';
+import './styles/Layout.css';
+import './styles/Partition.css';
+import './styles/Note.css';
 import MusicPiecePage from "./pages/MusicPiecePage/MusicPiecePage";
 import MainMusicPiece from "./pages/MusicPiecePage/MainMusicPiece";
 
