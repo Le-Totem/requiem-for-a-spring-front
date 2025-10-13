@@ -1,0 +1,62 @@
+/* Conteneur principal de la page inscription */
+.inscription-container {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Position du texte du titre */
+.title-wrapper .container-title text {
+  transform: translate(-10px, 0px);
+}
+
+/* Partitions avec Labels*/
+.partition-wrapper {
+  position: relative;
+}
+
+.label {
+  position: absolute;
+  top: 15%;
+  left: 3%;
+  font-size: 1 rem;
+  color: #75541C;
+  font-weight: bold;
+  white-space: nowrap;
+
+}
+
+/* Boutons */
+.button {
+  bottom: 5px;
+  right: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 10;
+}
+
+.button svg {
+  width: 60px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* Input */
+
+.partition-input {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  width: 80%;
+  transform: translateY(-40%);
+  background: transparent;
+  border: none;
+  color: #75541c83;
+  font-size: 1rem;
+  text-align: left;
+  outline: none;
+}

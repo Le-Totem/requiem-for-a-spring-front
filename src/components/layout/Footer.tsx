@@ -8,6 +8,7 @@ export default function Footer() {
                 <nav>
                     <Link to="/homepage">Accueil</Link> |{" "}
                     <Link to="/listeensembles">Liste d'ensembles</Link> |{" "}
+                    <Link to="/inscription">Inscription</Link> |{" "}
                     <Link to="/composants">Composants React</Link>
                 </nav>
             </div>

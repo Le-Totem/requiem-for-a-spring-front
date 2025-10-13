@@ -60,7 +60,7 @@ const Partition: React.FC<PartitionProps> = ({
               x2={lineEnd}
               y1={y}
               y2={y}
-              stroke="#75541c8a"
+              stroke="#75541c44"
               strokeWidth="2"
             />
           );

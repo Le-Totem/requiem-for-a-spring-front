@@ -12,6 +12,7 @@ import './styles/partition.css';
 import './styles/note.css';
 import MusicPiecePage from "./pages/MusicPiecePage/MusicPiecePage";
 import MainMusicPiece from "./pages/MusicPiecePage/MainMusicPiece";
+import Inscription from "./pages/inscription";
 
 function App() {
     return (
@@ -23,6 +24,16 @@ function App() {
                     element={
                         <Layout hideHeader={true}>
                             <HomePage />
+                        </Layout>
+                    }
+                />
+
+                {/* Page inscription */}
+                <Route
+                    path="/inscription"
+                    element={
+                        <Layout>
+                            <Inscription />
                         </Layout>
                     }
                 />

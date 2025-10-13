@@ -36,21 +36,3 @@
 .partition-wrapper {
   position: relative;
 }
-
-
-/* 
-
-.ensemble-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.clef-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  position: relative;
-  width: fit-content;
-}
-*/
