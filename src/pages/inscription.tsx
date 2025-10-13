@@ -6,6 +6,7 @@ import "../styles/inscription.css";
 
 import { registerUser } from "../api/inscriptionRequest";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Inscription() {
@@ -18,13 +19,26 @@ export default function Inscription() {
         confirmPassword: ""
     });
 
+    // Fonction pour réinitialiser les champs
+    const resetForm = () => {
+        setFormData({
+            firstname: "",
+            lastname: "",
+            email: "",
+            password: "",
+            confirmPassword: ""
+        });
+    };
+
+    // Fonction pour renvoyer sur Liste ensemble une fois l'inscription validée
+    const navigate = useNavigate();
 
     return (
         <main className="inscription-container">
 
             <div className="title-wrapper">
                 <TitlePartition
-                    text ="Formulaire d'inscription"
+                    text="Formulaire d'inscription"
                 />
             </div>
 
@@ -69,6 +83,7 @@ export default function Inscription() {
                         value={formData.password}
                         onChange={e => setFormData(prev => ({ ...prev, password: e.target.value }))}
                         placeholder="Mot de passe"
+                        type="password"
                     />
                 </div>
                 <div className="partition-wrapper">
@@ -79,6 +94,7 @@ export default function Inscription() {
                         value={formData.confirmPassword}
                         onChange={e => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
                         placeholder="Confirmer mot de passe"
+                        type="password"
                     />
                 </div>
             </div>
@@ -93,13 +109,12 @@ export default function Inscription() {
                     isOnStaff={false}
                     onClick={async () => {
                         try {
-                            const newUser = await registerUser({   // ← utilise l'import correct
-                                email: "test@mail.com",
-                                password: "azerty",
-                                firstname: "Jean",
-                                lastname: "Dupont",
-                            });
+                            const newUser = await registerUser(
+                                formData
+                            );
                             console.log("Utilisateur créé :", newUser);
+                            resetForm();
+                            navigate("/listeensembles");
                         } catch (err) {
                             console.error("Erreur inscription :", err);
                         }
@@ -113,7 +128,7 @@ export default function Inscription() {
                     xtext={40}
                     iconType={"doubleNoire"}
                     isOnStaff={false}
-                    onClick={() => console.log("Cancel")} />
+                    onClick={resetForm} />
             </div>
 
         </main >

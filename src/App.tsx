@@ -20,7 +20,7 @@ function App() {
             <Routes>
                 {/* Page d’accueil (connexion) */}
                 <Route
-                    path="/homepage"
+                    path="/"
                     element={
                         <Layout hideHeader={true}>
                             <HomePage />
