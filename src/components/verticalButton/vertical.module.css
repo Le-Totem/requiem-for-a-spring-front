@@ -1,0 +1,24 @@
+.verticalbutton {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 3rem;
+  height: auto;
+}
+
+.verticalbutton svg {
+  transform: scale(1.7);
+  width: 100%;
+}
+
+.verticalbutton text {
+  dominant-baseline: hanging;
+  text-anchor: middle;
+  transform: translateY(20px);
+}
+
+.verticalbutton .title text {
+  transform: translateX(-20px);
+}

@@ -2,12 +2,36 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-    gap: 15px;
+    gap: 25px;
+    margin: 30px 20px;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .medias_file {
     width: auto;
     height: 40px;
     box-sizing: border-box;
+}
+
+.musicpiece_crud {
+    margin: 0 auto;
+    width: 370px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 80px 80px;
+    padding: 20px;
+    gap: 20px;
+    justify-items: center;
+}
+
+.genre_container {
+    margin: 0 auto;
+    width: 370px;
+    text-align: center;
+    background-color: #75541c35;
+    border-radius: 10px;
+    padding: 10px 10px;
+    display: flex;
+    gap: 15px;
 }

@@ -1,0 +1,40 @@
+.crud {
+  width: auto;
+  display: flex;
+  justify-content: center; 
+  align-items: flex-end;
+  gap: 5rem; 
+  margin-bottom: 2rem;
+  height: auto;
+}
+
+.crud svg {
+  display: block;
+  width: 100%;
+}
+
+.partitionensemble {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;      
+  justify-content: flex-start; 
+  gap: 2rem;    
+  margin-bottom: 3rem;        
+}
+
+.groupItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partitionensemble svg {
+  display: block;
+  width: 100%;
+}
+
+
+
+
+
+

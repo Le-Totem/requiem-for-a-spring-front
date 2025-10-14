@@ -1,13 +1,17 @@
+// import { getJwt } from "../utils/LocalStorageManager";
 import type { Genre } from "../types/Genre";
 import type { Media } from "../types/Media";
 import type { MusicPiece } from "../types/MusicPiece";
 
 const MUSICPIECE_API_URL = "http://localhost:8000/api/tracks";
+const GENRE_API_URL = "http://localhost:8000/api/genres";
+const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg";
 
 // fetch pour récupérer toutes les fiches morceaux
 export async function fetchAllMusicPieces(): Promise<MusicPiece[]> {
     try {
-        const token = localStorage.getItem("jwt");
+        // const token = getJwt();
+
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}`, {
             method: "GET",
             headers: {
@@ -28,10 +32,9 @@ export async function fetchAllMusicPieces(): Promise<MusicPiece[]> {
 }
 
 // fetch pour récupérer une fiche morceau en fonction de son id
-export async function fetchOneMusicPiece(id: number): Promise<MusicPiece> {
+export async function fetchOneMusicPiece(id: number): Promise<MusicPiece | null> {
     try {
-        // const token = localStorage.getItem("jwt");
-        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzU5OTI1ODYxLCJleHAiOjE3NTk5Mjk0NjF9.4ewy1M2FsgUTEiBJozuYC0ebEPDSy_dMSbSLL5EXg1I";
+        // const token = getJwt();
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}`, {
             method: "GET",
             headers: {
@@ -54,7 +57,7 @@ export async function fetchOneMusicPiece(id: number): Promise<MusicPiece> {
 // fetch pour récupérer les fiches morceaux en fonction de l'id de l'ensemble
 export async function fetchAllByIdGroup(id: number): Promise<MusicPiece[]> {
     try {
-        const token = localStorage.getItem("jwt");
+        // const token = getJwt();
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/group/${id}`, {
             method: "GET",
             headers: {
@@ -74,11 +77,32 @@ export async function fetchAllByIdGroup(id: number): Promise<MusicPiece[]> {
     }
 }
 
-// fetch pour récupérer tous les genres
-export async function fetchAllGenres(id: number): Promise<MusicPiece[]> {
+// fetch pour récupérer tous les genres d'une fiche morceau
+export async function fetchAllGenresByMusicPieceId(id: number): Promise<Genre[]> {
     try {
-        const token = localStorage.getItem("jwt");
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}/all-genres`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!musicPieceData.ok) {
+            const errorBody = await musicPieceData.text();
+            throw new Error(`Erreur HTTP ${musicPieceData.status}: ${errorBody}`);
+        };
+
+        return musicPieceData.json();
+    } catch (error) {
+        throw new Error(`Une erreur est survenue sur fetchAllGenresByMusicPieceId: ${error}`);
+    }
+}
+
+// fetch pour récupérer tous les genres de la BDD
+export async function fetchAllGenres(): Promise<Genre[]> {
+    try {
+        const musicPieceData = await fetch(`${GENRE_API_URL}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -100,8 +124,6 @@ export async function fetchAllGenres(id: number): Promise<MusicPiece[]> {
 // fetch pour récupérer les médias d'une fiche morceau
 export async function fetchAllMedias(id: number): Promise<Media[]> {
     try {
-        // const token = localStorage.getItem("jwt");
-        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzU5OTI1ODYxLCJleHAiOjE3NTk5Mjk0NjF9.4ewy1M2FsgUTEiBJozuYC0ebEPDSy_dMSbSLL5EXg1I";
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}/medias`, {
             method: "GET",
             headers: {
@@ -122,10 +144,9 @@ export async function fetchAllMedias(id: number): Promise<Media[]> {
 }
 
 // fetch pour créer une fiche morceau
-export async function fetchCreateMusicPiece(musicPiece: Omit<MusicPiece, "id">): Promise<MusicPiece[]> {
+export async function fetchCreateMusicPiece(idGroup: number, musicPiece: Omit<MusicPiece, "id" | "group">): Promise<MusicPiece[]> {
     try {
-        const token = localStorage.getItem("jwt");
-        const musicPieceData = await fetch(`${MUSICPIECE_API_URL}`, {
+        const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${idGroup}/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -146,16 +167,15 @@ export async function fetchCreateMusicPiece(musicPiece: Omit<MusicPiece, "id">):
 }
 
 // fetch pour créer un genre
-export async function fetchCreateGenre(genre: Omit<Genre, "id">): Promise<Genre> {
+export async function fetchCreateGenre(data: Partial<{ name: string }>): Promise<Genre> {
     try {
-        const token = localStorage.getItem("jwt");
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/add-genre`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + token
             },
-            body: JSON.stringify(genre)
+            body: JSON.stringify(data)
         });
 
         if (!musicPieceData.ok) {
@@ -172,7 +192,6 @@ export async function fetchCreateGenre(genre: Omit<Genre, "id">): Promise<Genre>
 // fetch pour ajouter un ou plusieurs genres à une fiche morceau
 export async function fetchAddGenreToMusicPiece(id: number, genres: Genre[]): Promise<Genre[]> {
     try {
-        const token = localStorage.getItem("jwt");
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}/add-genre`, {
             method: "POST",
             headers: {
@@ -194,9 +213,8 @@ export async function fetchAddGenreToMusicPiece(id: number, genres: Genre[]): Pr
 }
 
 // fetch pour modifier une fiche morceau
-export async function fetchUpdateMusicPiece(id: number, musicPiece: Omit<MusicPiece, "id">): Promise<MusicPiece> {
+export async function fetchUpdateMusicPiece(id: number, musicPiece: Partial<MusicPiece>): Promise<MusicPiece> {
     try {
-        const token = localStorage.getItem("jwt");
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}`, {
             method: "PATCH",
             headers: {
@@ -220,7 +238,6 @@ export async function fetchUpdateMusicPiece(id: number, musicPiece: Omit<MusicPi
 // fetch pour supprimer une fiche morceau
 export async function fetchDeleteMusicPiece(id: number): Promise<void> {
     try {
-        const token = localStorage.getItem("jwt");
         const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${id}`, {
             method: "DELETE",
             headers: {
@@ -234,7 +251,8 @@ export async function fetchDeleteMusicPiece(id: number): Promise<void> {
             throw new Error(`Erreur HTTP ${musicPieceData.status}: ${errorBody}`);
         };
 
-        return musicPieceData.json();
+        // return musicPieceData.json();
+        return;
     } catch (error) {
         throw new Error(`Une erreur est survenue sur fetchDeleteMusicPiece: ${error}`);
     }

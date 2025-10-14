@@ -1,4 +1,9 @@
 footer {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    text-align: end;
+    padding: 5px 15px;
     text-align: center;
     padding: 20px 0;
     background-color: #75541C;
@@ -11,7 +16,12 @@ footer nav a {
     font-weight: bold;
 }
 
-footer nav a:hover {
-    text-decoration: underline;
+.footer-notes {
+    display: flex;
+}
 
+.footer-note {
+    /* box-sizing: border-box; */
+    font-size: 13px;
+    width: 100%;
 }
