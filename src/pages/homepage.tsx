@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Partition from "../components/Partition";
 import PartitionClefSolFingerPrint from "../components/PartitionClefSolFingerPrint";
-import { loginUser } from "../api/authRequests";
+import { loginUser } from "../api/ConnectionApi";
 import "../styles/Homepage.css";
 
 export default function HomePage() {
@@ -11,7 +11,7 @@ export default function HomePage() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
 
@@ -23,9 +23,14 @@ export default function HomePage() {
 
             // 🔹 Redirection après connexion réussie
             navigate("/dashboard");
-        } catch (err) {
+        } catch (err: unknown) {
             console.error(err);
-            setError(err.message || "Erreur lors de la connexion");
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("Erreur lors de la connexion");
+            }
+
         }
     };
 
