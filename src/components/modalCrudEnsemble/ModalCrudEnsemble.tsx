@@ -20,13 +20,15 @@ const ModalCrud: React.FC<ModalCrudProps> = ({ typeModal, isOpen, onClose, child
             {typeModal === "update" && "Modifier un ensemble"}
             {typeModal === "delete" && "Supprimer un ensemble"}
 
-            {typeModal === "createMedia" && "Ajouter un média"}
-            {typeModal === "updateMedia" && "Modifier un média"}
             {typeModal === "updateMusicPiece" && "Modifier une fiche morceau"}
             {typeModal === "deleteMusicPiece" && "Supprimer une fiche morceau"}
 
             {typeModal === "addGenre" && "Ajouter un genre"}
             {typeModal === "deleteGenre" && "Supprimer un genre"}
+
+            {typeModal === "createMedia" && "Ajouter un média"}
+            {typeModal === "updateMedia" && "Modifier le média"}
+            {typeModal === "deleteMedia" && "Supprimer le média"}
           </h3>
           <button onClick={onClose} className={crud.closeBtn}>✕</button>
         </header>

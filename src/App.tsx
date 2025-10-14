@@ -12,6 +12,7 @@ import './styles/Partition.css';
 import './styles/Note.css';
 import MusicPiecePage from "./pages/MusicPiecePage/MusicPiecePage";
 import MainMusicPiece from "./pages/MusicPiecePage/MainMusicPiece";
+import MediaPage from "./pages/MediaPage/MediaPage";
 
 function App() {
     return (
@@ -50,6 +51,7 @@ function App() {
                 {/* Page Fiche Morceau */}
                 <Route path="/tracks" element={<Layout> <MainMusicPiece /> </Layout>}>
                     <Route path="" element={<MusicPiecePage />} />
+                    <Route path=":id/medias" element={<MediaPage />} />
                 </Route>
             </Routes>
         </Router>

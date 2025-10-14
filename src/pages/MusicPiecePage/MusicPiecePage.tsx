@@ -7,8 +7,12 @@ import PartitionTitle from "../../components/TitlePartition";
 import VerticalButton from "../../components/verticalButton/VerticalButton";
 
 import { fetchCurrentUser } from "../../api/UserApi";
-import { fetchAllGenres, fetchAllMedias, fetchDeleteMusicPiece, fetchOneMusicPiece, fetchUpdateMusicPiece } from "../../api/MusicPieceApi";
+import { fetchAddGenreToMusicPiece, fetchAllGenresByMusicPieceId, fetchAllMedias, fetchCreateGenre, fetchDeleteMusicPiece, fetchOneMusicPiece, fetchUpdateMusicPiece } from "../../api/MusicPieceApi";
 import { getUser, isAdmin, isModerator, setUser } from "../../utils/LocalStorageManager";
+
+import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble";
+import FormCreateGenre from "./modalesMusicPiece/FormCreateGenre";
+import FormUpdateMusicPiece from "./modalesMusicPiece/FormUpdateMusicPiece";
 import ConfirmDeleteMusicPiece from "./modalesMusicPiece/ConfirmDeleteMusicPiece";
 
 import type { Media } from "../../types/Media";
@@ -16,11 +20,6 @@ import type { Genre } from "../../types/Genre";
 import type { MusicPiece } from "../../types/MusicPiece";
 
 import styles from "./MusicPiece.module.css";
-import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble";
-import FormUpdateMusicPiece from "./modalesMusicPiece/FormUpdateMusicPiece";
-import FormCreateMedia from "./modalesMusicPiece/FormCreateMedia";
-import FormUpdateMedia from "./modalesMusicPiece/FormUpdateMedia";
-import FormCreateGenre from "./modalesMusicPiece/FormCreateGenre";
 // import type { UserGroup } from "../../utils/UserInfo";
 
 const MusicPiecePage: React.FC = () => {
@@ -34,7 +33,7 @@ const MusicPiecePage: React.FC = () => {
 
     // modales
     const [openModal, setOpenModal] = useState(false);
-    const [typeModal, setTypeModal] = useState<"createMedia" | "updateMedia" | "updateMusicPiece" | "deleteMusicPiece" | "addGenre">("createMedia");
+    const [typeModal, setTypeModal] = useState<"updateMusicPiece" | "deleteMusicPiece" | "addGenre">("updateMusicPiece");
 
     let [searchParams] = useSearchParams();
     let idMusicPiece: number = Number(searchParams.get("id"));
@@ -87,7 +86,7 @@ const MusicPiecePage: React.FC = () => {
             if (!idMusicPiece) {
                 setGenres(undefined)
             }
-            const musicPieceData = await fetchAllGenres(idMusicPiece);
+            const musicPieceData = await fetchAllGenresByMusicPieceId(idMusicPiece);
             setGenres(musicPieceData);
         } catch (error) {
             console.error("Erreur lors du chargement des genres de la fiche morceau :", error);
@@ -121,21 +120,50 @@ const MusicPiecePage: React.FC = () => {
         }
     }
 
-    const handleOpenModal = (type: "createMedia" | "updateMedia" | "updateMusicPiece" | "deleteMusicPiece" | "addGenre") => {
+    const addGenre = async (data: { id?: number; name: string }) => {
+        try {
+            if (!idMusicPiece) {
+                console.error("Ajout impossible, la fiche morceau n'existe pas");
+            }
+
+            // si le genre existe déjà en BDD
+            if (data.id) {
+                const updated = await fetchAddGenreToMusicPiece(idMusicPiece, [{ id: data.id } as Genre]);
+                setGenres((prev) => {
+                    const newGenre = updated.filter(u => !prev?.some(p => p.id === u.id));
+                    return [...(prev || []), ...newGenre];
+                });
+                setOpenModal(false);
+                return;
+            }
+
+            // si le genre n'existe pas en BDD
+            const createdGenre = await fetchCreateGenre({ name: data.name });
+            const linkGenreToMusicPiece = await fetchAddGenreToMusicPiece(idMusicPiece, [createdGenre]);
+            setGenres((prev) => {
+                const newGenre = linkGenreToMusicPiece.filter(u => !prev?.some(p => p.id === u.id));
+                return [...(prev || []), ...newGenre];
+            });
+            setOpenModal(false);
+            await loadGenres;
+        } catch (error) {
+            console.error("Erreur lors de l'ajout du genre :", error);
+        }
+    }
+
+    const handleOpenModal = (type: "updateMusicPiece" | "deleteMusicPiece" | "addGenre") => {
         setTypeModal(type);
         setOpenModal(true);
     };
 
     const modalContent = {
-        createMedia: <FormCreateMedia />,
-        updateMedia: <FormUpdateMedia />,
         updateMusicPiece: <FormUpdateMusicPiece defaultValues={{
             title: musicPiece?.title,
             author: musicPiece?.author,
             description: musicPiece?.description,
         }} onConfirm={updateMusicPiece} />,
         deleteMusicPiece: <ConfirmDeleteMusicPiece onConfirm={deleteMusicPiece} />,
-        addGenre: <FormCreateGenre />,
+        addGenre: <FormCreateGenre onConfirm={addGenre} existingGenres={genres || []} />
     };
 
     useEffect(() => {
@@ -163,8 +191,7 @@ const MusicPiecePage: React.FC = () => {
             {(isAdmin(1) || isModerator(1)) && (
                 <div className={styles.musicpiece_crud}>
                     <>
-                        <VerticalButton label="Ajouter un média" iconType="blanche" onClick={() => handleOpenModal("createMedia")} />
-                        <VerticalButton label="Modifier un média" iconType="blanche" onClick={() => handleOpenModal("updateMedia")} />
+                        <VerticalButton label="Gérer les médias" iconType="blanche" onClick={() => navigate(`/tracks/${idMusicPiece}/medias`)} />
                         <VerticalButton label="Modifier une fiche morceau" iconType="blanche" onClick={() => handleOpenModal("updateMusicPiece")} />
                     </>
 
