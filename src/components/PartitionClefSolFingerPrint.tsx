@@ -28,7 +28,7 @@ class Staff {
             line.setAttribute("x2", (width - paddingX).toString());
             line.setAttribute("y1", y.toString());
             line.setAttribute("y2", y.toString());
-            line.setAttribute("stroke", "rgba(117, 84, 28, 0.7)");
+            line.setAttribute("stroke", "#75541C");
             line.setAttribute("stroke-width", "2");
             this.svgGroup.appendChild(line);
         }
@@ -130,7 +130,7 @@ const Partition: React.FC = () => {
                 <g ref={staffRef}></g>
 
                 {/* Clé de sol responsive au dessus */}
-                <ClefSolFingerPrint x={clefX} y={clefY} size={clefSize} color="#75541C" />
+                <ClefSolFingerPrint x={clefX} y={clefY} size={clefSize} color="#e0f7fa" />
 
             </svg>
         </div>

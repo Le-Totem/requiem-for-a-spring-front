@@ -12,6 +12,7 @@ import './styles/Partition.css';
 import './styles/Note.css';
 import MusicPiecePage from "./pages/MusicPiecePage/MusicPiecePage";
 import MainMusicPiece from "./pages/MusicPiecePage/MainMusicPiece";
+import Inscription from "./pages/inscription";
 import MediaPage from "./pages/MediaPage/MediaPage";
 
 function App() {
@@ -20,10 +21,20 @@ function App() {
             <Routes>
                 {/* Page d’accueil (connexion) */}
                 <Route
-                    path="/homepage"
+                    path="/"
                     element={
                         <Layout hideHeader={true}>
                             <HomePage />
+                        </Layout>
+                    }
+                />
+
+                {/* Page inscription */}
+                <Route
+                    path="/inscription"
+                    element={
+                        <Layout>
+                            <Inscription />
                         </Layout>
                     }
                 />

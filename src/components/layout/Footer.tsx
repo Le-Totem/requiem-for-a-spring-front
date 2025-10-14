@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import "../../styles/footer.css";
 import { Note } from "../Note";
 import { deleteJwt } from "../../utils/LocalStorageManager";
@@ -11,7 +11,7 @@ export default function Footer() {
     const handleLogOut = () => {
 
         deleteJwt();
-        navigate("/login");
+        navigate("/");
     }
 
     const handleExit = () => {
@@ -20,11 +20,19 @@ export default function Footer() {
 
     return (
         <footer>
+            <nav>
+                <Link to="/">Accueil</Link> |{" "}
+                <Link to="/inscription">Inscription</Link> |{" "}
+                <Link to="/listeensembles">Liste d'ensembles</Link> |{" "}
+                <Link to="/composants">Composants React</Link>
+            </nav>
             <div className="footer-notes">
-                <Note x={0} y={0} label="Se déconnecter" iconType="fa" onClick={handleLogOut} isOnStaff={false} xtext={0} />
-            </div>
-            <div className="footer-notes">
-                <Note x={0} y={0} label="Exit" iconType="ut" onClick={handleExit} isOnStaff={false} xtext={0} />
+                <div className="footer-note">
+                    <Note x={0} y={0} label="Se déconnecter" iconType="fa" onClick={handleLogOut} isOnStaff={false} xtext={0} />
+                </div>
+                <div className="footer-note">
+                    <Note x={0} y={0} label="Exit" iconType="ut" onClick={handleExit} isOnStaff={false} xtext={20} />
+                </div>
             </div>
         </footer>
     )
