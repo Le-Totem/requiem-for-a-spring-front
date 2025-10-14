@@ -11,6 +11,11 @@ export default function HomePage() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    /**
+     * Fonction qui se déclenche à l'envoi du formulaire.
+     * Permet de s'authentifier et stocke le JWT dans le localStorage (clef "token")
+     * @param e Evènement à traiter
+     */
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
