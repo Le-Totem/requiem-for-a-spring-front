@@ -21,10 +21,10 @@ export default function Footer() {
     return (
         <footer>
             <div className="footer-notes">
-                <Note x={0} y={0} label="Se déconnecter" iconType="fa" onClick={handleLogOut} isOnStaff={false} />
+                <Note x={0} y={0} label="Se déconnecter" iconType="fa" onClick={handleLogOut} isOnStaff={false} xtext={0} />
             </div>
             <div className="footer-notes">
-                <Note x={0} y={0} label="Exit" iconType="ut" onClick={handleExit} isOnStaff={false} />
+                <Note x={0} y={0} label="Exit" iconType="ut" onClick={handleExit} isOnStaff={false} xtext={0} />
             </div>
         </footer>
     )
