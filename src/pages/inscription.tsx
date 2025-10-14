@@ -4,7 +4,7 @@ import TitlePartition from "../components/TitlePartition";
 
 import "../styles/inscription.css";
 
-import { registerUser } from "../api/inscriptionRequest";
+import { registerUser } from "../api/InscriptionApi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -44,7 +44,7 @@ export default function Inscription() {
 
             <div >
                 <div className="partition-wrapper">
-                    <span className="label">Nom : </span>
+                    <span className="labelInscription">Nom : </span>
                     <Partition />
                     <input
                         className="partition-input"
@@ -56,7 +56,7 @@ export default function Inscription() {
 
 
                 <div className="partition-wrapper">
-                    <span className="label">Prénom : </span>
+                    <span className="labelInscription">Prénom : </span>
                     <Partition />
                     <input
                         className="partition-input"
@@ -66,7 +66,7 @@ export default function Inscription() {
                     />
                 </div>
                 <div className="partition-wrapper">
-                    <span className="label">Adresse Mail : </span>
+                    <span className="labelInscription">Adresse Mail : </span>
                     <Partition />
                     <input
                         className="partition-input"
@@ -76,7 +76,7 @@ export default function Inscription() {
                     />
                 </div>
                 <div className="partition-wrapper">
-                    <span className="label">Mot de Passe : </span>
+                    <span className="labelInscription">Mot de Passe : </span>
                     <Partition />
                     <input
                         className="partition-input"
@@ -87,7 +87,7 @@ export default function Inscription() {
                     />
                 </div>
                 <div className="partition-wrapper">
-                    <span className="label">Confirmer Mot de Passe : </span>
+                    <span className="labelInscription">Confirmer Mot de Passe : </span>
                     <Partition />
                     <input
                         className="partition-input"
