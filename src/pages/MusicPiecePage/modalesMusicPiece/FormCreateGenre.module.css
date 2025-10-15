@@ -1,0 +1,16 @@
+.existing_genre_container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.existing_genre_container ul {
+    list-style: none;
+    padding-left: 0;
+    line-height: 1.5;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.existing_genre_container ul li {
+    cursor: pointer;
+}

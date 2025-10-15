@@ -5,7 +5,6 @@
   align-items: center;
   text-align: center;
   gap: 3rem;
-  margin-top: 2rem;
   height: auto;
 }
 
@@ -16,7 +15,7 @@
 
 .verticalbutton text {
   dominant-baseline: hanging;
-  text-anchor:middle;
+  text-anchor: middle;
   transform: translateY(20px);
 }
 

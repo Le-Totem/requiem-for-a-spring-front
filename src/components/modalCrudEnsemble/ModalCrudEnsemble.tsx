@@ -16,11 +16,19 @@ const ModalCrud: React.FC<ModalCrudProps> = ({ typeModal, isOpen, onClose, child
       <div className={crud.modalCrud}>
         <header className={crud.header}>
           <h3>
-            {typeModal === "create" && "Créer"}
-            {typeModal === "update" && "Modifier"}
-            {typeModal === "delete" && "Supprimer"}
-            {typeModal === "listemembre" && "Liste des membres du groups"}
-            {typeModal === "invitmembre" && "Inviter un membre dans se groupe"}
+            {typeModal === "create" && "Créer un ensemble"}
+            {typeModal === "update" && "Modifier un ensemble"}
+            {typeModal === "delete" && "Supprimer un ensemble"}
+
+            {typeModal === "updateMusicPiece" && "Modifier une fiche morceau"}
+            {typeModal === "deleteMusicPiece" && "Supprimer une fiche morceau"}
+
+            {typeModal === "addGenre" && "Ajouter un genre"}
+            {typeModal === "deleteGenre" && "Supprimer un genre"}
+
+            {typeModal === "createMedia" && "Ajouter un média"}
+            {typeModal === "updateMedia" && "Modifier le média"}
+            {typeModal === "deleteMedia" && "Supprimer le média"}
           </h3>
           <button onClick={onClose} className={crud.closeBtn}>✕</button>
         </header>
