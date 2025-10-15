@@ -1,5 +1,5 @@
 const USER_API_URL = "http://localhost:8000/api/users";
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMDA5MTI5LCJleHAiOjE3NjAwNzkxMjl9.ezcY1j8UtHoWYRhIYx0XZEdbNp4EmKKWcveeekxpIX8";
+const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NjA0MjMyODAsImV4cCI6MTc2MDQ5MzI4MH0.LkpkR6uNUMtoYpTFA5zFjcEcTEBkw283SFqV7tffYXs";
 
 export async function fetchCurrentUser() {
     try {

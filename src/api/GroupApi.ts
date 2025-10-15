@@ -15,6 +15,14 @@ export interface UserRoleDto {
   group: GroupDto;
 }
 
+export interface User{
+  id: string;
+  firstname: string;
+  lastname: string;
+  email:string;
+  role:Role;
+}
+
 export interface MusicPieceDto {
   id: number;
   title: string;
@@ -38,7 +46,8 @@ const API_BASE_URL = 'http://localhost:8000/api/groups';
 // Fonction pour obtenir le token JWT 
 const getAuthHeaders = () => {
   //   const token = localStorage.getItem('token'); 
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NjAwMTc4NzQsImV4cCI6MTc2MDAyMTQ3NH0.1B4A7T3MqLQ5I5F1el8y1nZn7DqIfO8DknjgJb4eLIE"; return {
+  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NjA0MjMyODAsImV4cCI6MTc2MDQ5MzI4MH0.LkpkR6uNUMtoYpTFA5zFjcEcTEBkw283SFqV7tffYXs";
+   return {
     'Content-Type': 'application/json',
     ...(token && { 'Authorization': `Bearer ${token}` })
   };
@@ -65,6 +74,17 @@ export const groupService = {
     return response.json();
   },
 
+
+  
+// Récupérer des utilisateurs par rapport à l'ID de l'ensemble
+getUsersByGroupId: async (groupId: number): Promise<User[]> => {
+  const response = await fetch(`http://localhost:8000/api/users/group/${groupId}`, {
+    method: 'GET',
+    headers: getAuthHeaders(),
+  });
+  if (!response.ok) throw new Error("Erreur lors de la récupération des utilisateurs du groupe");
+  return response.json();
+},
 
   // Récupérer un ensemble par ID
   getById: async (id: number): Promise<GroupDto> => {
@@ -118,6 +138,17 @@ export const groupService = {
     if (!response.ok) throw new Error('Erreur lors de l\'invitation');
     return response.json();
   },
+
+    // Mettre a jour un ensemble 
+  update: async (id: number, newName: string): Promise<GroupDto> => {
+    const response = await fetch(`${API_BASE_URL}/${id}/update`, {
+        method: "PUT",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ name: newName }),
+    });
+    if (!response.ok) throw new Error("Erreur lors de la mise à jour de l'ensemble");
+    return response.json();
+},
 
   // Supprimer un ensemble
   delete: async (id: number): Promise<void> => {

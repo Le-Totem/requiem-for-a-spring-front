@@ -4,7 +4,7 @@ import type { Media } from "../types/Media";
 import type { MusicPiece } from "../types/MusicPiece";
 
 const MUSICPIECE_API_URL = "http://localhost:8000/api/tracks";
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMDA5MTI5LCJleHAiOjE3NjAwNzkxMjl9.ezcY1j8UtHoWYRhIYx0XZEdbNp4EmKKWcveeekxpIX8";
+const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NjA0MjMyODAsImV4cCI6MTc2MDQ5MzI4MH0.LkpkR6uNUMtoYpTFA5zFjcEcTEBkw283SFqV7tffYXs";
 
 // fetch pour récupérer toutes les fiches morceaux
 export async function fetchAllMusicPieces(): Promise<MusicPiece[]> {
@@ -121,27 +121,31 @@ export async function fetchAllMedias(id: number): Promise<Media[]> {
 }
 
 // fetch pour créer une fiche morceau
-export async function fetchCreateMusicPiece(musicPiece: Omit<MusicPiece, "id">): Promise<MusicPiece[]> {
-    try {
-        const musicPieceData = await fetch(`${MUSICPIECE_API_URL}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token
-            },
-            body: JSON.stringify(musicPiece)
-        });
+export async function fetchCreateMusicPiece(
+  groupId: number,
+  musicPiece: Omit<MusicPiece, "id">
+): Promise<MusicPiece> {
+  try {
+    const response = await fetch(`${MUSICPIECE_API_URL}/${groupId}/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+      },
+      body: JSON.stringify(musicPiece)
+    });
 
-        if (!musicPieceData.ok) {
-            const errorBody = await musicPieceData.text();
-            throw new Error(`Erreur HTTP ${musicPieceData.status}: ${errorBody}`);
-        };
-
-        return musicPieceData.json();
-    } catch (error) {
-        throw new Error(`Une erreur est survenue sur fetchCreateMusicPiece: ${error}`);
+    if (!response.ok) {
+      const errorBody = await response.text();
+      throw new Error(`Erreur HTTP ${response.status}: ${errorBody}`);
     }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(`Une erreur est survenue sur fetchCreateMusicPiece: ${error}`);
+  }
 }
+
 
 // fetch pour créer un genre
 export async function fetchCreateGenre(genre: Omit<Genre, "id">): Promise<Genre> {

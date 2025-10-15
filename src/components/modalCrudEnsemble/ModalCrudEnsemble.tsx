@@ -16,9 +16,11 @@ const ModalCrud: React.FC<ModalCrudProps> = ({ typeModal, isOpen, onClose, child
       <div className={crud.modalCrud}>
         <header className={crud.header}>
           <h3>
-            {typeModal === "create" && "Créer un ensemble"}
-            {typeModal === "update" && "Modifier un ensemble"}
-            {typeModal === "delete" && "Supprimer un ensemble"}
+            {typeModal === "create" && "Créer"}
+            {typeModal === "update" && "Modifier"}
+            {typeModal === "delete" && "Supprimer"}
+            {typeModal === "listemembre" && "Liste des membres du groups"}
+            {typeModal === "invitmembre" && "Inviter un membre dans se groupe"}
           </h3>
           <button onClick={onClose} className={crud.closeBtn}>✕</button>
         </header>

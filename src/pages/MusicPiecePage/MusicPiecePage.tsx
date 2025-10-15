@@ -5,7 +5,7 @@ import { useNavigate, useSearchParams } from "react-router";
 import { Note } from "../../components/Note";
 import PartitionTitle from "../../components/TitlePartition";
 import VerticalButton from "../../components/verticalButton/VerticalButton";
-import { fetchCurrentUser } from "../../api/UserApi";
+import { fetchCurrentUser } from "../../api/UserApi.ts";
 import { fetchAllMedias, fetchDeleteMusicPiece, fetchOneMusicPiece } from "../../api/MusicPieceApi";
 import type { Media } from "../../types/Media";
 import type { MusicPiece } from "../../types/MusicPiece";
@@ -24,8 +24,8 @@ const MusicPiecePage: React.FC = () => {
 
     const [_error, setError] = useState<string>("");
 
-    let [searchParams] = useSearchParams();
-    let idMusicPiece: number = Number(searchParams.get("id"));
+    const [searchParams] = useSearchParams();
+    const idMusicPiece: number = Number(searchParams.get("id"));
     const navigate = useNavigate();
 
     const loadOneMusicPiece = async () => {

@@ -13,6 +13,8 @@ import './styles/Note.css';
 import MusicPiecePage from "./pages/MusicPiecePage/MusicPiecePage";
 import MainMusicPiece from "./pages/MusicPiecePage/MainMusicPiece";
 
+import EnsemblePage from "./pages/EnsemblePage/ensemble";
+
 function App() {
     return (
         <Router>
@@ -36,6 +38,12 @@ function App() {
                         </Layout>
                     }
                 />
+                 <Route path="/ensemble/:id" element={
+                    <Layout>
+
+                        <EnsemblePage />
+                    </Layout>
+                    } />
 
                 {/* Page composants */}
                 <Route
