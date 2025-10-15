@@ -10,6 +10,7 @@ import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble.tsx"
 import FormCreate from "../../components/modalCrudEnsemble/FormCreate.tsx";
 import FormUpdate from "../../components/modalCrudEnsemble/FormUpdtate.tsx";
 import ConfirmDelete from "../../components/modalCrudEnsemble/ConfirmDelete.tsx";
+import NotificationButton from "../../components/Notification/NotificationButton.tsx";
 
 
 export default function Ensembleliste() {
@@ -96,6 +97,7 @@ export default function Ensembleliste() {
 
       <div className={stylesEns.title}>
         <PartitionTitle text="Liste d'ensembles" textSize={25} showClef={true} />
+        <NotificationButton/>
       </div>
 
      {/* --- Participant --- */}
@@ -110,11 +112,10 @@ export default function Ensembleliste() {
           <Note
             x={0}
             y={0}
-            label={ens.group.name} 
+            label={ens.group.name}
             iconType="blanche"
             isOnStaff={false}
-           onClick={() => navigate(`/ensemble/${ens.group.id}`, { state: { groupName: ens.group.name } })}
-          />
+            onClick={() => navigate(`/ensemble/${ens.group.id}`, { state: { groupName: ens.group.name } })} xtext={0}          />
         </div>
       ))
     )}
@@ -136,8 +137,7 @@ export default function Ensembleliste() {
             label={ens.group.name}
             iconType="blanche"
             isOnStaff={false}
-            onClick={() => navigate(`/ensemble/${ens.group.id}`, { state: { groupName: ens.group.name } })}
-            />
+            onClick={() => navigate(`/ensemble/${ens.group.id}`, { state: { groupName: ens.group.name } })} xtext={15}            />
         </div>
       ))
     )}

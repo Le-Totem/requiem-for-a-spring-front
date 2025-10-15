@@ -1,5 +1,7 @@
 const USER_API_URL = "http://localhost:8000/api/users";
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg";
+// const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg";
+    const token = localStorage.getItem("token"); 
+
 
 export async function fetchCurrentUser() {
     try {
@@ -20,4 +22,16 @@ export async function fetchCurrentUser() {
     } catch (error) {
         throw new Error(`Une erreur est survenue sur fetchCurrentUser: ${error}`);
     }
+}
+
+export async function fetchUserInvitations(email: string) {
+  const res = await fetch(`${USER_API_URL}/email/${email}`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  });
+
+  if (!res.ok) throw new Error(`Erreur ${res.status}`);
+  return res.json();
 }

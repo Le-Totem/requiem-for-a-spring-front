@@ -40,7 +40,7 @@ export default function HomePage() {
         try {
             const data = await loginUser(email, password);
             localStorage.setItem("token", data.token);
-            navigate("/dashboard");
+            navigate("/listeensembles");
         } catch (err: unknown) {
             console.error(err);
             if (err instanceof Error) setError(err.message);

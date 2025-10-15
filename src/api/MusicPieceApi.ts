@@ -5,7 +5,9 @@ import type { MusicPiece } from "../types/MusicPiece";
 
 const MUSICPIECE_API_URL = "http://localhost:8000/api/tracks";
 const GENRE_API_URL = "http://localhost:8000/api/genres";
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg";
+// const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg";
+    const token = localStorage.getItem("token"); 
+
 
 // fetch pour récupérer toutes les fiches morceaux
 export async function fetchAllMusicPieces(): Promise<MusicPiece[]> {

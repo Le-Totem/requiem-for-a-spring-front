@@ -33,7 +33,7 @@ export default function Inscription() {
     // Fonction pour renvoyer sur Liste ensemble une fois l'inscription validée
     const navigate = useNavigate();
 
-    return (
+    return ( 
         <main className="inscription-container">
 
             <div className="title-wrapper">
@@ -113,8 +113,13 @@ export default function Inscription() {
                                 formData
                             );
                             console.log("Utilisateur créé :", newUser);
+                            if (newUser.token) {
+                                localStorage.setItem("jwt", newUser.token);
+                                console.log("Token JWT enregistré :", newUser.token);
+                            }
                             resetForm();
                             navigate("/listeensembles");
+                            
                         } catch (err) {
                             console.error("Erreur inscription :", err);
                         }
