@@ -4,7 +4,7 @@
     flex-grow: 1;
 }
 
-/* Titre + sous-titre */
+/*Titre + sous-titre*/
 .h2Bienvenue,
 .by {
     text-align: center;
@@ -18,7 +18,7 @@
     font-size: 18px;
 }
 
-/* Bloc partitions réparti dans l’espace restant */
+/*Bloc partitions réparti dans l’espace restant*/
 .partition {
     flex-grow: 1;
     display: flex;
@@ -115,4 +115,32 @@
     font-weight: bold;
     text-align: left;
     outline: none;
+}
+
+/* Conteneur des deux éléments */
+.actions {
+    position: absolute;
+    top: 145px;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.btnConnexion,
+.forgotMdp {
+    background: transparent;
+    border: none;
+    color: #75541C;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btnConnexion {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.forgotMdp {
+    font-size: 10px;
 }
