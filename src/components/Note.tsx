@@ -35,10 +35,14 @@ export const Note = ({ x, y, label, xtext, iconType, isOnStaff = false, onClick 
     // référence vers la balise SVG
     let refSVG = useRef<SVGSVGElement>(null);
 
-    const handleClick = () => {
-        setIsActive((prev) => !prev);
+    const handdlePointerDown = () => {
+        setIsActive(true);
+    }
+
+    const handdlePointerUp = () => {
+        setIsActive(false);
         onClick?.();
-    };
+    }
 
     /**
      * Permet de déclencher le redimensionnement de la viewbox pour que le SVG s'adapte
@@ -58,7 +62,12 @@ export const Note = ({ x, y, label, xtext, iconType, isOnStaff = false, onClick 
     // Merci de votre compréhension.
     if (!isOnStaff) {
         return (<svg ref={refSVG} xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: "200px", maxHeight: "40px" }}>
-            <g transform={`translate(${x}, ${y})`} ref={refG} onPointerDown={handleClick} style={{ cursor: "pointer" }}>
+            <g transform={`translate(${x}, ${y})`}
+                ref={refG}
+                onPointerDown={handdlePointerDown}
+                onPointerUp={handdlePointerUp}
+                onPointerLeave={handdlePointerUp}
+                style={{ cursor: "pointer" }}>
                 {icons[iconType].map((d, i) => (
                     <path key={i} d={d} fill={isActive ? "gray" : "black"} />
                 ))}
@@ -67,7 +76,12 @@ export const Note = ({ x, y, label, xtext, iconType, isOnStaff = false, onClick 
             </g>
         </svg>);
     } else {
-        return (<g transform={`translate(${x}, ${y})`} ref={refG} onPointerDown={handleClick} style={{ cursor: "pointer" }}>
+        return (<g transform={`translate(${x}, ${y})`}
+            ref={refG}
+            onPointerDown={handdlePointerDown}
+            onPointerUp={handdlePointerUp}
+            onPointerLeave={handdlePointerUp}
+            style={{ cursor: "pointer" }}>
             {icons[iconType].map((d, i) => (
                 <path key={i} d={d} fill={isActive ? "gray" : "black"} />
             ))}

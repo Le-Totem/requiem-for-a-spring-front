@@ -20,8 +20,17 @@ footer nav a {
     display: flex;
 }
 
-.footer-note {
-    /* box-sizing: border-box; */
+.footer-button {
+    background: transparent;
+    border: none;
     font-size: 13px;
     width: 100%;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.footer-button:hover {
+    background: #d4c5aa;
+    border-radius: 5px;
 }

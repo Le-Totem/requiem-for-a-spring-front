@@ -142,7 +142,7 @@ export default function HomePage() {
                 </div>
             </div>
 
-            {/* 🌙 MODALE Réinitialisation directe */}
+            {/* MODALE Réinitialisation directe */}
             {showModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -196,7 +196,7 @@ export default function HomePage() {
                                 </div>
                             </form>
                         ) : (
-                            // ✅ Message de succès visible après soumission
+                            // Message de succès visible après soumission
                             <div className="reset-success-message">
                                 <p style={{ color: "green", fontWeight: "bold" }}>
                                     {resetSuccess}
