@@ -42,7 +42,7 @@ export default function Inscription() {
                 />
             </div>
 
-            <div >
+            <div>
                 <div className="partition-wrapper">
                     <span className="labelInscription">Nom : </span>
                     <Partition />
