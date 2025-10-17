@@ -50,12 +50,12 @@ function App() {
                         </Layout>
                     }
                 />
-                 <Route path="/ensemble/:id" element={
+                <Route path="/ensemble/:id" element={
                     <Layout>
 
                         <EnsemblePage />
                     </Layout>
-                    } />
+                } />
 
                 {/* Page composants */}
                 <Route

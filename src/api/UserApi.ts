@@ -1,8 +1,6 @@
 const USER_API_URL = "http://localhost:8000/api/users";
 // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg";
 
-
-
 export async function fetchCurrentUser() {
   const token = localStorage.getItem("token");
   try {

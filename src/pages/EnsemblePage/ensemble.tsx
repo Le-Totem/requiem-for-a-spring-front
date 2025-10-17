@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { fetchAllByIdGroup } from "../../api/MusicPieceApi.ts";
 import type { MusicPiece } from "../../types/MusicPiece";
 import PartitionTitle from "../../components/TitlePartition.tsx";
-import { Note } from "../../components/Note.tsx";
 import styles from "./Ensemble.module.css";
 
 import { fetchCurrentUser } from "../../api/UserApi.ts";
@@ -15,7 +14,9 @@ import ListUser from "../../components/modalCrudMusicPiece/ListMember.tsx";
 import InvitMember from "../../components/modalCrudMusicPiece/InvitMember.tsx";
 
 
-import VerticalButton from "../../components/verticalButton/VerticalButton.tsx";
+// import VerticalButton from "../../components/verticalButton/VerticalButton.tsx";
+import { Note } from "../../components/pathButtons/Note.tsx";
+import VerticalButton from "../../components/pathButtons/verticalButton/VerticalButton.tsx";
 
 export default function EnsemblePage() {
   const { id } = useParams<{ id: string }>();
@@ -31,34 +32,34 @@ export default function EnsemblePage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const [openModal, setOpenModal] = useState(false);
-    const [typeModal, setTypeModal] = useState<"createMedia" | "listemembre" | "invitmembre" | "">("");
+  const [typeModal, setTypeModal] = useState<"createMedia" | "listemembre" | "invitmembre" | "">("");
   const [selectedPiece, setSelectedPiece] = useState<MusicPiece | null>(null);
 
 
- const handleOpenModal = (type: "createMedia" | "listemembre" | "invitmembre", piece?: MusicPiece) => {
+  const handleOpenModal = (type: "createMedia" | "listemembre" | "invitmembre", piece?: MusicPiece) => {
     setTypeModal(type);
     setSelectedPiece(piece || null);
     setOpenModal(true);
   };
 
-   const modalContent = {
-  createMedia: (
-    <FormCreate
-      onClose={() => setOpenModal(false)}
-      onCreated={(createdPiece) => {
-        setMusicPieces((prev) => [...prev, createdPiece]);
-      }}
-    />
-  ),
-  listemembre: (
-  <ListUser onClose={() => setOpenModal(false)} />
-),
-  invitmembre:(
-    <InvitMember onClose={() => setOpenModal(false)} />
-  )
+  const modalContent = {
+    createMedia: (
+      <FormCreate
+        onClose={() => setOpenModal(false)}
+        onCreated={(createdPiece) => {
+          setMusicPieces((prev) => [...prev, createdPiece]);
+        }}
+      />
+    ),
+    listemembre: (
+      <ListUser onClose={() => setOpenModal(false)} />
+    ),
+    invitmembre: (
+      <InvitMember onClose={() => setOpenModal(false)} />
+    )
 
 
-};
+  };
 
 
 
@@ -107,16 +108,16 @@ export default function EnsemblePage() {
     <main className={styles.container}>
       <PartitionTitle text={groupName} textSize={25} showClef={true} />
 
-     <div className={styles.ens_crud}>
+      <div className={styles.ens_crud}>
 
-  {(isAdmin(groupId) || isModerator(groupId)) && (
-    <>
-    <VerticalButton label="Créer" iconType="blanche" onClick={() => handleOpenModal("createMedia")} />    
-    <VerticalButton label="inviter un membre" iconType="blanche" onClick={() => handleOpenModal("invitmembre")} />  
-    </>
-  )}
-  <VerticalButton label="liste des membres" iconType="blanche" onClick={() => handleOpenModal("listemembre")} />  
-</div>
+        {(isAdmin(groupId) || isModerator(groupId)) && (
+          <>
+            <VerticalButton label="Créer" iconType="blanche" onClick={() => handleOpenModal("createMedia")} />
+            <VerticalButton label="inviter un membre" iconType="blanche" onClick={() => handleOpenModal("invitmembre")} />
+          </>
+        )}
+        <VerticalButton label="liste des membres" iconType="blanche" onClick={() => handleOpenModal("listemembre")} />
+      </div>
 
 
       {musicPieces.length === 0 ? (
@@ -131,18 +132,18 @@ export default function EnsemblePage() {
               label={piece.title}
               iconType="doubleNoire"
               isOnStaff={false}
-              onClick={() => console.log("Morceau sélectionné :", piece.title)} xtext={15}            />
+              onClick={() => console.log("Morceau sélectionné :", piece.title)} xtext={15} />
           ))}
         </div>
       )}
 
-       <ModalCrud
-  typeModal={typeModal}
-  isOpen={openModal}
-  onClose={() => setOpenModal(false)}
->
-  {typeModal && modalContent[typeModal]} 
-</ModalCrud>
+      <ModalCrud
+        typeModal={typeModal}
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+      >
+        {typeModal && modalContent[typeModal]}
+      </ModalCrud>
 
 
 
