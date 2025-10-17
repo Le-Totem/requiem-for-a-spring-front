@@ -45,8 +45,9 @@ const API_BASE_URL = 'http://localhost:8000/api/groups';
 
 // Fonction pour obtenir le token JWT 
 const getAuthHeaders = () => {
-  //   const token = localStorage.getItem('token'); 
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg"; return {
+    const token = localStorage.getItem("token"); 
+  // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg"; 
+  return {
     'Content-Type': 'application/json',
     ...(token && { 'Authorization': `Bearer ${token}` })
   };
@@ -135,6 +136,22 @@ getUsersByGroupId: async (groupId: number): Promise<User[]> => {
       body: JSON.stringify(invitationDto),
     });
     if (!response.ok) throw new Error('Erreur lors de l\'invitation');
+    return response.json();
+  },
+  // Mettre à jour le statut d'une invitation (ACCEPTED / REFUSED)
+  updateInvitationStatus: async (
+    invitationId: number,
+    status: Status
+  ): Promise<InvitationDto> => {
+    const response = await fetch(
+      `${API_BASE_URL}/invitations/${invitationId}/status?status=${status}`,
+      {
+        method: "PUT",
+        headers: getAuthHeaders(),
+      }
+    );
+    if (!response.ok)
+      throw new Error("Erreur lors de la mise à jour du statut de l'invitation");
     return response.json();
   },
 

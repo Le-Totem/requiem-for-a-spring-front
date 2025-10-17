@@ -36,17 +36,19 @@ const { id } = useParams(); // Récupère l'id du groupe dans l'URL
         title,
         author,
         description,
-        group: { id: 0, name: "" }, // adapter si tu connais le groupe
+        group: { id: id, name: "" }, 
         medias: [],
         musicPieceGenres: [],
       };
 
-      const created = await fetchCreateMusicPiece(groupId, newMusicPiece);
+      const createdArray: MusicPiece[] = await fetchCreateMusicPiece(groupId, newMusicPiece);
+      const created: MusicPiece = createdArray[0]; 
       console.log("Morceau créé :", created);
 
       setSuccess(`Le morceau "${title}" a été créé avec succès !`);
 
-      if (onCreated) onCreated(created); // fetchCreateMusicPiece retourne un tableau
+      if (onCreated) onCreated(created);
+
 
       // Attendre 1,5s puis fermer
       setTimeout(() => {

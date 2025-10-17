@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Note } from "./Note";
+import { Note } from "./pathButtons/Note";
 
 import "../styles/App.css";
 

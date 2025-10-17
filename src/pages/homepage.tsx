@@ -24,7 +24,7 @@ export default function HomePage() {
         try {
             const data = await loginUser(email, password);
             localStorage.setItem("token", data.token);
-            navigate("/dashboard");
+            navigate("/listeensembles");
         } catch (err: unknown) {
             console.error(err);
             if (err instanceof Error) setError(err.message);
@@ -67,7 +67,6 @@ export default function HomePage() {
 
                         {error && <p style={{ color: "red" }}>{error}</p>}
 
-                    </form>
 
                     <div className="partitionConteneur">
                         <PartitionClefSolFingerPrint />
@@ -84,10 +83,11 @@ export default function HomePage() {
                             className="forgotMdp"
                             type="button"
                             onClick={() => setShowModal(true)}
-                        >
+                            >
                             Mot de passe oublié ?
                         </button>
                     </div>
+                            </form>
                 </div>
 
                 <div>

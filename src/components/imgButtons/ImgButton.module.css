@@ -1,0 +1,16 @@
+.imgbutton_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.icon_img {
+    height: 80%;
+}
+
+.icon_label {
+    font-size: 20px;
+}

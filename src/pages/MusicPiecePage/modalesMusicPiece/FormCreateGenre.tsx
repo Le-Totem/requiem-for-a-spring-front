@@ -14,16 +14,18 @@ const FormCreateGenre: React.FC<FormCreateGenreProps> = ({ onConfirm, existingGe
     const [allGenres, setAllGenres] = useState<Genre[]>([]);
     const [filteredGenres, setFilteredGenres] = useState<Genre[]>([]);
 
+    const loadAllGenres = async () => {
+        try {
+            const genres = await fetchAllGenres();
+            setAllGenres(genres);
+            setFilteredGenres(genres);
+        } catch (error) {
+            console.error("Erreur lors du chargement des genres :", error);
+        }
+    };
+
+
     useEffect(() => {
-        const loadAllGenres = async () => {
-            try {
-                const genres = await fetchAllGenres();
-                setAllGenres(genres);
-                setFilteredGenres(genres);
-            } catch (error) {
-                console.error("Erreur lors du chargement des genres :", error);
-            }
-        };
         loadAllGenres();
     }, []);
 

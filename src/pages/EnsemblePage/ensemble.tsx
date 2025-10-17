@@ -12,6 +12,7 @@ import { getUser, isAdmin, isModerator, setUser } from "../../utils/LocalStorage
 import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble.tsx";
 import FormCreate from "../../components/modalCrudMusicPiece/FormCreate.tsx";
 import ListUser from "../../components/modalCrudMusicPiece/ListMember.tsx";
+import InvitMember from "../../components/modalCrudMusicPiece/InvitMember.tsx";
 
 
 import VerticalButton from "../../components/verticalButton/VerticalButton.tsx";
@@ -30,18 +31,18 @@ export default function EnsemblePage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const [openModal, setOpenModal] = useState(false);
-    const [typeModal, setTypeModal] = useState<"create" | "listemembre" | "invitmembre" | "">("");
+    const [typeModal, setTypeModal] = useState<"createMedia" | "listemembre" | "invitmembre" | "">("");
   const [selectedPiece, setSelectedPiece] = useState<MusicPiece | null>(null);
 
 
- const handleOpenModal = (type: "create" | "listemembre" | "invitmembre", piece?: MusicPiece) => {
+ const handleOpenModal = (type: "createMedia" | "listemembre" | "invitmembre", piece?: MusicPiece) => {
     setTypeModal(type);
     setSelectedPiece(piece || null);
     setOpenModal(true);
   };
 
    const modalContent = {
-  create: (
+  createMedia: (
     <FormCreate
       onClose={() => setOpenModal(false)}
       onCreated={(createdPiece) => {
@@ -52,6 +53,9 @@ export default function EnsemblePage() {
   listemembre: (
   <ListUser onClose={() => setOpenModal(false)} />
 ),
+  invitmembre:(
+    <InvitMember onClose={() => setOpenModal(false)} />
+  )
 
 
 };
@@ -107,8 +111,8 @@ export default function EnsemblePage() {
 
   {(isAdmin(groupId) || isModerator(groupId)) && (
     <>
-    <VerticalButton label="Créer" iconType="blanche" onClick={() => handleOpenModal("create")} />    
-    <VerticalButton label="inviter un membre" iconType="blanche" onClick={() => handleOpenModal("listemembre")} />  
+    <VerticalButton label="Créer" iconType="blanche" onClick={() => handleOpenModal("createMedia")} />    
+    <VerticalButton label="inviter un membre" iconType="blanche" onClick={() => handleOpenModal("invitmembre")} />  
     </>
   )}
   <VerticalButton label="liste des membres" iconType="blanche" onClick={() => handleOpenModal("listemembre")} />  
@@ -127,8 +131,7 @@ export default function EnsemblePage() {
               label={piece.title}
               iconType="doubleNoire"
               isOnStaff={false}
-              onClick={() => console.log("Morceau sélectionné :", piece.title)}
-            />
+              onClick={() => console.log("Morceau sélectionné :", piece.title)} xtext={15}            />
           ))}
         </div>
       )}

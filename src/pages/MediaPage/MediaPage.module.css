@@ -1,9 +1,10 @@
 .container {
     display: grid;
-    grid-template-columns: 3fr 1fr 1fr;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
     align-items: center;
     justify-content: center;
-    margin: 10px 20px;
+    margin: 15px 20px;
     gap: 15px;
     font-size: 14px;
 }
@@ -16,7 +17,9 @@
 
 .container button {
     border: none;
-    background: none;
+    border-radius: 10px;
+    background: rgba(117, 84, 28, 0.221);
+    padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;
 }
@@ -28,4 +31,23 @@
     font-size: 18px;
     cursor: pointer;
     margin: 10px 20px;
+}
+
+.media_crud {
+    margin: 0 auto;
+    height: auto;
+    margin: 20px auto;
+    margin-top: 10px;
+}
+
+.instrument_container {
+    grid-column: 1 / -1;
+    margin: 0 auto;
+    width: 370px;
+    text-align: center;
+    background-color: #75541c35;
+    border-radius: 10px;
+    padding: 10px 10px;
+    display: flex;
+    gap: 15px;
 }
