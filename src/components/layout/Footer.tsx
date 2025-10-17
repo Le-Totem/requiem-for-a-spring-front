@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router";
 import "../../styles/footer.css";
 import { Note } from "../pathButtons/Note";
 import { deleteJwt } from "../../utils/LocalStorageManager";
+import ImgButton from "../imgButtons/ImgButton";
 
 export default function Footer() {
 
@@ -29,11 +30,11 @@ export default function Footer() {
                 <Link to="/composants">Composants React</Link>
             </nav>
             <div className="footer-notes">
-                <button className="footer-button" onClick={handleLogOut}>
-                    <Note x={0} y={0} label="Se déconnecter" iconType="fa" isOnStaff={false} xtext={0} />
+                <button className="footer-button">
+                    <Note x={0} y={0} label="Se déconnecter" iconType="fa" isOnStaff={false} xtext={0} onClick={handleLogOut} />
                 </button>
-                <button className="footer-button" onClick={handleExit} >
-                    <Note x={0} y={0} label="Exit" iconType="ut" isOnStaff={false} xtext={20} />
+                <button className="footer-button">
+                    <Note x={0} y={0} label="Exit" iconType="ut" isOnStaff={false} xtext={20} onClick={handleExit} />
                 </button>
             </div>
         </footer>
