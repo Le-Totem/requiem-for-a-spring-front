@@ -1,4 +1,4 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchAllByIdGroup } from "../../api/MusicPieceApi.ts";
 import type { MusicPiece } from "../../types/MusicPiece";
@@ -16,9 +16,10 @@ import InvitMember from "../../components/modalCrudMusicPiece/InvitMember.tsx";
 
 // import VerticalButton from "../../components/verticalButton/VerticalButton.tsx";
 import { Note } from "../../components/pathButtons/Note.tsx";
-import VerticalButton from "../../components/pathButtons/verticalButton/VerticalButton.tsx";
+import VerticalButton from "../../components/verticalButton/VerticalButton.tsx";
 
 export default function EnsemblePage() {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const groupId = id ? Number(id) : -1;
 
@@ -132,7 +133,7 @@ export default function EnsemblePage() {
               label={piece.title}
               iconType="doubleNoire"
               isOnStaff={false}
-              onClick={() => console.log("Morceau sélectionné :", piece.title)} xtext={15} />
+             onClick={() => navigate(`/tracks?id=${piece.id}`)} xtext={15} />
           ))}
         </div>
       )}
