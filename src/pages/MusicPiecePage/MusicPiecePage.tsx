@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from "react-router";
 
 // import { Note } from "../../components/pathButtons/Note";
 import PartitionTitle from "../../components/TitlePartition";
-import VerticalButton from "../../components/pathButtons/verticalButton/VerticalButton";
+import VerticalButton from "../../components/verticalButton/VerticalButton";
 
 import { fetchCurrentUser } from "../../api/UserApi";
 import { fetchAddGenreToMusicPiece, fetchAllGenresByMusicPieceId, fetchAllMedias, fetchCreateGenre, fetchDeleteMusicPiece, fetchOneMusicPiece, fetchUpdateMusicPiece } from "../../api/MusicPieceApi";

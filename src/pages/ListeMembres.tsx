@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Note } from "../components/Note";
+import { Note } from "../components/pathButtons/Note";
 import Partition from "../components/Partition";
 import TitlePartition from "../components/TitlePartition";
 import { getListeMembres, envoyerInvitation, supprimerMembre } from "../api/ListeMembresApi";
