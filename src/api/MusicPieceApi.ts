@@ -148,7 +148,7 @@ export async function fetchAllMedias(id: number): Promise<Media[]> {
 // fetch pour créer une fiche morceau
 export async function fetchCreateMusicPiece(idGroup: number, musicPiece: Omit<MusicPiece, "id" | "group">): Promise<MusicPiece[]> {
     try {
-        const musicPieceData = await fetch(`${MUSICPIECE_API_URL}/${idGroup}/create`, {
+        const response = await fetch(`${MUSICPIECE_API_URL}/${idGroup}/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

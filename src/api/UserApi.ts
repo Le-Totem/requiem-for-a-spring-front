@@ -35,3 +35,25 @@ export async function fetchUserInvitations(email: string) {
   if (!res.ok) throw new Error(`Erreur ${res.status}`);
   return res.json();
 }
+
+export async function sendVerificationCode(email: string, code: number): Promise<string> {
+  try {
+    const response = await fetch(`${USER_API_URL}/send-code`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ email, code: code.toString() })
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      throw new Error(`Erreur HTTP ${response.status}: ${errorBody}`);
+    }
+
+    return response.text(); // retourne le message du serveur ("Code envoyé avec succès")
+  } catch (error) {
+    throw new Error(`Une erreur est survenue lors de l'envoi du code : ${error}`);
+  }
+}

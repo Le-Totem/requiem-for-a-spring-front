@@ -67,7 +67,6 @@ export default function HomePage() {
 
                         {error && <p style={{ color: "red" }}>{error}</p>}
 
-                    </form>
 
                     <div className="partitionConteneur">
                         <PartitionClefSolFingerPrint />
@@ -84,10 +83,11 @@ export default function HomePage() {
                             className="forgotMdp"
                             type="button"
                             onClick={() => setShowModal(true)}
-                        >
+                            >
                             Mot de passe oublié ?
                         </button>
                     </div>
+                            </form>
                 </div>
 
                 <div>

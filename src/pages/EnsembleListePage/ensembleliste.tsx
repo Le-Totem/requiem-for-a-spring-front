@@ -115,7 +115,7 @@ export default function Ensembleliste() {
             label={ens.group.name}
             iconType="blanche"
             isOnStaff={false}
-            onClick={() => navigate(`/ensemble/${ens.group.id}`, { state: { groupName: ens.group.name } })} xtext={0}          />
+            onClick={() => navigate(`/ensemble/${ens.group.id}`, { state: { groupName: ens.group.name } })} xtext={15}          />
         </div>
       ))
     )}

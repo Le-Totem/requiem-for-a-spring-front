@@ -138,6 +138,22 @@ getUsersByGroupId: async (groupId: number): Promise<User[]> => {
     if (!response.ok) throw new Error('Erreur lors de l\'invitation');
     return response.json();
   },
+  // Mettre à jour le statut d'une invitation (ACCEPTED / REFUSED)
+  updateInvitationStatus: async (
+    invitationId: number,
+    status: Status
+  ): Promise<InvitationDto> => {
+    const response = await fetch(
+      `${API_BASE_URL}/invitations/${invitationId}/status?status=${status}`,
+      {
+        method: "PUT",
+        headers: getAuthHeaders(),
+      }
+    );
+    if (!response.ok)
+      throw new Error("Erreur lors de la mise à jour du statut de l'invitation");
+    return response.json();
+  },
 
     // Mettre a jour un ensemble 
   update: async (id: number, newName: string): Promise<GroupDto> => {

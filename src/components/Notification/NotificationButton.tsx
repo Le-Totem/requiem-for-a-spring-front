@@ -13,7 +13,10 @@ const NotificationButton: React.FC = () => {
       try {
         const user = await fetchCurrentUser();
         const invitations = await fetchUserInvitations(user.email);
-        setInvitationCount(invitations.length);
+        const pendingInvitations = invitations.filter(
+        inv => inv.status !== "ACCEPTED" && inv.status !== "REJECTED"
+      );
+      setInvitationCount(pendingInvitations.length);
       } catch (err) {
         console.error("Erreur lors du chargement des invitations", err);
       }

@@ -16,7 +16,6 @@ import InvitMember from "../../components/modalCrudMusicPiece/InvitMember.tsx";
 
 
 import VerticalButton from "../../components/verticalButton/VerticalButton.tsx";
-import InvitUser from "../../components/modalCrudMusicPiece/ListMember.tsx";
 
 export default function EnsemblePage() {
   const { id } = useParams<{ id: string }>();
