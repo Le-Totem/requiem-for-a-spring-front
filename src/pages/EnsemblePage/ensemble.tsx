@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchAllByIdGroup } from "../../api/MusicPieceApi.ts";
 import type { MusicPiece } from "../../types/MusicPiece";
 import PartitionTitle from "../../components/TitlePartition.tsx";
-import { Note } from "../../components/Note.tsx";
+import { Note } from "../../components/pathButtons/Note";
 import styles from "./Ensemble.module.css";
 
 import { fetchCurrentUser } from "../../api/UserApi.ts";

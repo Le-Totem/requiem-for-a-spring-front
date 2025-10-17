@@ -1,4 +1,4 @@
-import { Note } from "../components/Note";
+import { Note } from "../components/pathButtons/Note";
 import Partition from "../components/Partition";
 import TitlePartition from "../components/TitlePartition";
 

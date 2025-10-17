@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Note } from "../Note";
+import { Note } from "../pathButtons/Note";
 import ModalInvitations from "./ModalInvitation";
 import { fetchCurrentUser, fetchUserInvitations } from "../../api/UserApi";
 import styles from "./NotificationButton.module.css";
