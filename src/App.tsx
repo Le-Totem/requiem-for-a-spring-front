@@ -16,6 +16,7 @@ import Inscription from "./pages/inscription";
 import MediaPage from "./pages/MediaPage/MediaPage";
 
 import EnsemblePage from "./pages/EnsemblePage/ensemble";
+import ListeMembres from "./pages/ListeMembres";
 
 function App() {
     return (
@@ -67,10 +68,28 @@ function App() {
                     }
                 />
 
+                {/* Liste des membres */}
+                <Route
+                    path="/listemembres"
+                    element={
+                        <Layout>
+                            <ListeMembres />
+                        </Layout>
+                    }
+                />
+
                 {/* Page Fiche Morceau */}
-                <Route path="/tracks" element={<Layout> <MainMusicPiece /> </Layout>}>
-                    <Route path="" element={<MusicPiecePage />} />
-                    <Route path=":id/medias" element={<MediaPage />} />
+                <Route path="/tracks" element={<Layout> <MainMusicPiece />
+                </Layout>}>
+                    <Route path=""
+                        element={<MusicPiecePage />}
+                    />
+                    <Route path=":id/medias"
+                        element={<MediaPage />}
+                    />
+
+
+
                 </Route>
             </Routes>
         </Router>
