@@ -37,14 +37,20 @@ export const Note = ({ x, y, label, xtext, iconType, onClick, isOnStaff = false 
     // référence vers la balise SVG
     let refSVG = useRef<SVGSVGElement>(null);
 
-    const handdlePointerDown = () => {
-        setIsActive(true);
-    }
 
-    const handdlePointerUp = () => {
-        setIsActive(false);
+    const handleClick = () => {
+        setIsActive((prev) => !prev);
         onClick?.();
-    }
+    };
+
+    /*const handdlePointerDown = () => {
+         setIsActive(true);
+     }
+ 
+     const handdlePointerUp = () => {
+         setIsActive(false);
+         onClick?.();
+     }*/
 
     /**
      * Permet de déclencher le redimensionnement de la viewbox pour que le SVG s'adapte
@@ -64,29 +70,16 @@ export const Note = ({ x, y, label, xtext, iconType, onClick, isOnStaff = false 
     // Merci de votre compréhension.
     if (!isOnStaff) {
         return (<svg ref={refSVG} xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: "200px", maxHeight: "40px" }}>
-            <g transform={`translate(${x}, ${y})`}
-                ref={refG}
-                // onPointerDown={handdlePointerDown}
-                // onPointerUp={handdlePointerUp}
-                // onPointerLeave={handdlePointerUp}
-                onClick={onClick}
-                style={{ cursor: "pointer" }}>
+            <g transform={`translate(${x}, ${y})`} ref={refG} onPointerDown={handleClick} style={{ cursor: "pointer" }}>
                 {icons[iconType].map((d, i) => (
                     <path key={i} d={d} fill={isActive ? "gray" : "black"} />
                 ))}
 
                 <text x={xtext} y={25}>{label}</text>
             </g>
-        </svg>
-        );
+        </svg>);
     } else {
-        return (<g transform={`translate(${x}, ${y})`}
-            ref={refG}
-            // onPointerDown={handdlePointerDown}
-            // onPointerUp={handdlePointerUp}
-            // onPointerLeave={handdlePointerUp}
-            onClick={onClick}
-            style={{ cursor: "pointer" }}>
+        return (<g transform={`translate(${x}, ${y})`} ref={refG} onPointerDown={handleClick} style={{ cursor: "pointer" }}>
             {icons[iconType].map((d, i) => (
                 <path key={i} d={d} fill={isActive ? "gray" : "black"} />
             ))}

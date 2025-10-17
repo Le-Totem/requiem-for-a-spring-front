@@ -1,9 +1,8 @@
 footer {
-    height: 60px;
+    height: fit-content;
     display: grid;
     grid-template-columns: 3fr 1fr;
-    justify-items: end;
-    align-items: end;
+    text-align: end;
     padding: 5px 15px;
     text-align: center;
     padding: 20px 0;

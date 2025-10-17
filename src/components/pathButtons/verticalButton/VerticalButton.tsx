@@ -23,7 +23,8 @@ const VerticalButton: React.FC<VerticalProps> = ({
         label={label}
         iconType={iconType}
         onClick={onClick}
-        isOnStaff={false} xtext={15}      />
+        isOnStaff={false}      
+        />
     </div>
   );
 };
