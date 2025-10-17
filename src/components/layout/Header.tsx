@@ -13,6 +13,7 @@ export default function Header() {
                     <Link to="/">Accueil</Link> |{" "}
                     <Link to="/inscription">Inscription</Link> |{" "}
                     <Link to="/listeensembles">Liste d'ensembles</Link> |{" "}
+                    <Link to="/listemembres">Liste de membres</Link> |{" "}
                     <Link to="/composants">Composants React</Link>
                 </nav>
             </div>

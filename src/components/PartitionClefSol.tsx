@@ -8,7 +8,7 @@ export interface NoteData {
     x: number;
     y: number;
     label: string;
-    iconType: "blanche" | "clef";
+    iconType: "blanche" | "clef" | "doubleSharp";
     onClick: () => void;
 }
 

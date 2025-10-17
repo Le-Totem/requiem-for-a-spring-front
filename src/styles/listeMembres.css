@@ -1,0 +1,71 @@
+/* Conteneur principal de la page ListeMembres */
+.listeMembres-container {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Position du texte du titre */
+.title-wrapper .container-title text {
+  transform: translate(10px, 0px);
+}
+
+/*Crud*/
+.crud {
+  width: 70%;
+}
+
+.partitionCrud {
+  position: relative;
+  min-height: 150px;
+}
+
+.crud-notes {
+  display: flex;
+}
+
+.crud-button {
+  background: transparent;
+  border: none;
+  font-size: 10px;
+  width: 30%;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.crud-button:hover {
+  background: #75541C;
+  border-radius: 5px;
+}
+
+/* Position des listes de membres en colonnes */
+.listeMembres-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.listeMembres-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.labelMembres {
+  position: absolute;
+  top: 30%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #75541C;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.labelMembres.gauche {
+  left: 10%;
+}
+
+.labelMembres.droite {
+  right: 10%;
+}

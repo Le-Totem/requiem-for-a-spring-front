@@ -7,7 +7,7 @@ export interface NoteData {
     x: number;
     y: number;
     label: string;
-    iconType: "blanche" | "clef";
+    iconType: "blanche" | "clef" | "doubleSharp";
     onClick: () => void;
 }
 
@@ -38,7 +38,7 @@ class Staff {
             line.setAttribute("x2", (width - paddingX).toString());
             line.setAttribute("y1", y.toString());
             line.setAttribute("y2", y.toString());
-            line.setAttribute("stroke", "rgba(117, 84, 28, 0.7)");
+            line.setAttribute("stroke", "#75541c44");
             line.setAttribute("stroke-width", "2");
             this.svgGroup.appendChild(line);
         }
@@ -94,7 +94,7 @@ const PartitionNote: React.FC<PartitionNoteProps> = ({ notes }) => {
 
                 {/* Notes  */}
                 {notes.map((note, idx) => (
-                    <Note key={idx} {...note} isOnStaff={true} />  /* Notes au-dessus */
+                    <Note xtext={0} key={idx} {...note} isOnStaff={true} />  /* Notes au-dessus */
                 ))}
             </svg>
         </div>

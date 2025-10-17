@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Note } from "../pathButtons/Note";
 import ModalInvitations from "./ModalInvitation";
 import { fetchCurrentUser, fetchUserInvitations } from "../../api/UserApi";
 import styles from "./NotificationButton.module.css";
+import { Note } from "../pathButtons/Note";
 
 const NotificationButton: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -14,9 +14,9 @@ const NotificationButton: React.FC = () => {
         const user = await fetchCurrentUser();
         const invitations = await fetchUserInvitations(user.email);
         const pendingInvitations = invitations.filter(
-        inv => inv.status !== "ACCEPTED" && inv.status !== "REJECTED"
-      );
-      setInvitationCount(pendingInvitations.length);
+          inv => inv.status !== "ACCEPTED" && inv.status !== "REJECTED"
+        );
+        setInvitationCount(pendingInvitations.length);
       } catch (err) {
         console.error("Erreur lors du chargement des invitations", err);
       }
@@ -37,7 +37,7 @@ const NotificationButton: React.FC = () => {
           isOnStaff={false}
           xtext={0}
         />
-        
+
         {invitationCount > 0 && (
           <span className={styles.NotificationNumber}>{invitationCount}</span>
         )}

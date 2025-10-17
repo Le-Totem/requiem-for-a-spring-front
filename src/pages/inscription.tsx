@@ -1,4 +1,3 @@
-import { Note } from "../components/pathButtons/Note";
 import Partition from "../components/Partition";
 import TitlePartition from "../components/TitlePartition";
 
@@ -7,6 +6,7 @@ import "../styles/inscription.css";
 import { registerUser } from "../api/InscriptionApi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Note } from "../components/pathButtons/Note";
 
 
 export default function Inscription() {
