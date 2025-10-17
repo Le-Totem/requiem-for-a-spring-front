@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { Note } from "../components/pathButtons/Note";
+=======
+>>>>>>> 508a6cc64cbe9bae954e3ed96dc56ace687b6436
 import Partition from "../components/Partition";
 import TitlePartition from "../components/TitlePartition";
 import { getListeMembres, envoyerInvitation, supprimerMembre } from "../api/ListeMembresApi";
+import { Note } from "../components/pathButtons/Note";
 
 
 export default function ListeMembres() {
