@@ -2,9 +2,9 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 
-import { Note } from "../../components/Note";
+// import { Note } from "../../components/pathButtons/Note";
 import PartitionTitle from "../../components/TitlePartition";
-import VerticalButton from "../../components/verticalButton/VerticalButton";
+import VerticalButton from "../../components/pathButtons/verticalButton/VerticalButton";
 
 import { fetchCurrentUser } from "../../api/UserApi";
 import { fetchAddGenreToMusicPiece, fetchAllGenresByMusicPieceId, fetchAllMedias, fetchCreateGenre, fetchDeleteMusicPiece, fetchOneMusicPiece, fetchUpdateMusicPiece } from "../../api/MusicPieceApi";
@@ -20,6 +20,7 @@ import type { Genre } from "../../types/Genre";
 import type { MusicPiece } from "../../types/MusicPiece";
 
 import styles from "./MusicPiece.module.css";
+import ImgButton from "../../components/imgButtons/imgButton";
 // import type { UserGroup } from "../../utils/UserInfo";
 
 const MusicPiecePage: React.FC = () => {
@@ -123,7 +124,7 @@ const MusicPiecePage: React.FC = () => {
     const addGenre = async (data: { id?: number; name: string }) => {
         try {
             if (!idMusicPiece) {
-                console.error("Ajout impossible, la fiche morceau n'existe pas");
+                console.error("Ajout du genre impossible, la fiche morceau n'existe pas");
             }
 
             // si le genre existe déjà en BDD
@@ -192,11 +193,11 @@ const MusicPiecePage: React.FC = () => {
                 <div className={styles.musicpiece_crud}>
                     <>
                         <VerticalButton label="Gérer les médias" iconType="blanche" onClick={() => navigate(`/tracks/${idMusicPiece}/medias`)} />
-                        <VerticalButton label="Modifier une fiche morceau" iconType="blanche" onClick={() => handleOpenModal("updateMusicPiece")} />
+                        <VerticalButton label="Modifier" iconType="blanche" onClick={() => handleOpenModal("updateMusicPiece")} />
                     </>
 
                     {isAdmin(1) && (
-                        <VerticalButton label="Supprimer une fiche morceau" iconType="blanche" onClick={() => handleOpenModal("deleteMusicPiece")} />
+                        <VerticalButton label="Supprimer" iconType="blanche" onClick={() => handleOpenModal("deleteMusicPiece")} />
                     )}
                 </div>
             )}
@@ -205,7 +206,8 @@ const MusicPiecePage: React.FC = () => {
                 {medias?.map((media) =>
                     media.type === 'PDF' ? (
                         <div key={media.id} className={styles.medias_file}>
-                            <Note x={0} y={0} label={media.title} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
+                            <ImgButton iconType="croche" text={media.title} onClick={() => null} />
+                            {/* <Note x={0} y={0} verticalButton={false} label={media.title} xtext={20} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} /> */}
                         </div>
                     ) : null
                 )}
@@ -217,7 +219,8 @@ const MusicPiecePage: React.FC = () => {
                 {medias?.map((media) =>
                     media.type != 'PDF' ? (
                         <div key={media.id} className={styles.medias_file}>
-                            <Note x={0} y={0} label={media.title} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
+                            <ImgButton iconType="croche" text={media.title} onClick={() => null} />
+                            {/* <Note x={0} y={0} label={media.title} xtext={20} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} /> */}
                         </div>
                     ) : null
                 )}

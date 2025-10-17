@@ -16,8 +16,10 @@ const VerticalButton: React.FC<VerticalProps> = ({
   return (
     <div className={styles.verticalbutton}>
       <Note
+        xtext={0}
         x={0}
         y={0}
+        verticalButton={true}
         label={label}
         iconType={iconType}
         onClick={onClick}

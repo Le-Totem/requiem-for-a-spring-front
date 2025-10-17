@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { groupService, type UserRoleDto } from "../../api/GroupApi.ts";
 import PartitionTitle from "../../components/TitlePartition.tsx";
 import stylesEns from "./EnsembleListe.module.css"
-import { Note } from "../../components/Note.tsx";
-import VerticalButton from "../../components/verticalButton/VerticalButton.tsx"
+import { Note } from "../../components/pathButtons/Note.tsx";
+import VerticalButton from "../../components/pathButtons/verticalButton/VerticalButton.tsx"
 import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble.tsx";
 import FormCreate from "../../components/modalCrudEnsemble/FormCreate.tsx";
 import FormUpdate from "../../components/modalCrudEnsemble/FormUpdtate.tsx";
