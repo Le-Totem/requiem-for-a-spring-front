@@ -202,7 +202,7 @@ const MediaPage: React.FC = () => {
             {medias?.map((media) =>
                 <div key={media.id} className={styles.container}>
                     <div className={styles.medias}>
-                        <Note xtext={0} x={0} y={0} label={media.title} iconType="croche" onClick={() => handleOpenFile(media.id)} isOnStaff={false} />
+                        <Note xtext={20} x={0} y={0} label={media.title} iconType="croche" onClick={() => handleOpenFile(media.id)} isOnStaff={false} />
                         {/* <ImgButton iconType="croche" text={media.title} onClick={() => handleOpenFile(media.id)} /> */}
                     </div>
                     <div>

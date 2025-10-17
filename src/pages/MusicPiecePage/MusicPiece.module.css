@@ -1,20 +1,12 @@
 .medias_container {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 25px;
-    margin: 0 auto;
-    justify-items: center; */
-    /* width: 340px; */
     text-align: center;
-    margin: 40px auto;
+    margin: 10px 0px;
 }
 
 .medias_file {
-    /* width: auto; */
     height: 40px;
     box-sizing: border-box;
-    margin: 10px 0px;
+    margin: 20px 0px;
 }
 
 .musicpiece_crud {
