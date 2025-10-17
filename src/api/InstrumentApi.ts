@@ -1,12 +1,11 @@
 import type { Instrument } from "../types/Instrument";
 
 const INSTRUMENT_API_URL = "http://localhost:8000/api/instruments";
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwNjgyMDk2LCJleHAiOjE3NjA3NTIwOTZ9.Dk8YUrKKGLzfSKhqdHjqo1ZWzwzCC2XpgVF5EHRjrVY";
 
 // fetch pour récupérer tous les instruments de la BDD
 export async function fetchAllInstruments(): Promise<Instrument[]> {
     try {
-        // const token = getJwt();
+        const token = localStorage.getItem("token");
 
         const instrumentData = await fetch(`${INSTRUMENT_API_URL}`, {
             method: "GET",
@@ -30,8 +29,7 @@ export async function fetchAllInstruments(): Promise<Instrument[]> {
 // fetch récupérer la liste des instruments d'un média
 export async function fetchAllIntrumentsByIdMedia(id: number): Promise<Instrument[]> {
     try {
-        // const token = getJwt();
-
+        const token = localStorage.getItem("token");
         const instrumentData = await fetch(`${INSTRUMENT_API_URL}/${id}/instruments`, {
             method: "GET",
             headers: {
@@ -54,6 +52,7 @@ export async function fetchAllIntrumentsByIdMedia(id: number): Promise<Instrumen
 // fetch pour créer un instrument
 export async function fetchCreateInstrument(instrument: Omit<Instrument, "id">): Promise<Instrument> {
     try {
+        const token = localStorage.getItem("token");
         const instrumentData = await fetch(`${INSTRUMENT_API_URL}`, {
             method: "POST",
             headers: {

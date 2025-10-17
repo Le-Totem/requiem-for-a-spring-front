@@ -20,7 +20,8 @@ import type { Genre } from "../../types/Genre";
 import type { MusicPiece } from "../../types/MusicPiece";
 
 import styles from "./MusicPiece.module.css";
-import ImgButton from "../../components/imgButtons/imgButton";
+import { Note } from "../../components/pathButtons/Note";
+
 // import type { UserGroup } from "../../utils/UserInfo";
 
 const MusicPiecePage: React.FC = () => {
@@ -206,8 +207,8 @@ const MusicPiecePage: React.FC = () => {
                 {medias?.map((media) =>
                     media.type === 'PDF' ? (
                         <div key={media.id} className={styles.medias_file}>
-                            <ImgButton iconType="croche" text={media.title} onClick={() => null} />
-                            {/* <Note x={0} y={0} verticalButton={false} label={media.title} xtext={20} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} /> */}
+                            {/* <ImgButton iconType="croche" text={media.title} onClick={() => null} /> */}
+                            <Note x={0} y={0} label={media.title} xtext={20} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
                         </div>
                     ) : null
                 )}
@@ -219,8 +220,8 @@ const MusicPiecePage: React.FC = () => {
                 {medias?.map((media) =>
                     media.type != 'PDF' ? (
                         <div key={media.id} className={styles.medias_file}>
-                            <ImgButton iconType="croche" text={media.title} onClick={() => null} />
-                            {/* <Note x={0} y={0} label={media.title} xtext={20} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} /> */}
+                            {/* <ImgButton iconType="croche" text={media.title} onClick={() => null} /> */}
+                            <Note x={0} y={0} label={media.title} xtext={20} iconType="croche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
                         </div>
                     ) : null
                 )}

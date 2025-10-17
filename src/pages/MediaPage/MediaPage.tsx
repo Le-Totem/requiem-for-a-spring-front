@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router";
 import type { Media } from "../../types/Media";
 // import { Note } from "../../components/pathButtons/Note";
 import PartitionTitle from "../../components/TitlePartition";
-import ImgButton from "../../components/imgButtons/imgButton";
 import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble";
 // import VerticalButton from "../../components/pathButtons/verticalButton/VerticalButton";
 import { getUser, setUser } from "../../utils/LocalStorageManager";
@@ -21,6 +20,8 @@ import styles from "./MediaPage.module.css";
 import type { Instrument } from "../../types/Instrument";
 import { fetchAllIntrumentsByIdMedia, fetchCreateInstrument } from "../../api/InstrumentApi";
 import FormCreateInstrument from "./modalesMediaPage/FormCreateInstrument";
+import { Note } from "../../components/pathButtons/Note";
+import ImgButton from "../../components/imgButtons/ImgButton";
 
 const MediaPage: React.FC = () => {
     const [medias, setMedias] = useState<Media[] | undefined>([]);
@@ -201,8 +202,8 @@ const MediaPage: React.FC = () => {
             {medias?.map((media) =>
                 <div key={media.id} className={styles.container}>
                     <div className={styles.medias}>
-                        {/* <Note xtext={0} x={0} y={0} label={media.title} iconType="croche" onClick={() => null} isOnStaff={false} /> */}
-                        <ImgButton iconType="croche" text={media.title} onClick={() => handleOpenFile(media.id)} />
+                        <Note xtext={0} x={0} y={0} label={media.title} iconType="croche" onClick={() => handleOpenFile(media.id)} isOnStaff={false} />
+                        {/* <ImgButton iconType="croche" text={media.title} onClick={() => handleOpenFile(media.id)} /> */}
                     </div>
                     <div>
                         <button onClick={() => handleOpenModal("updateMedia", media)}>Modifier</button>

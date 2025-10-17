@@ -1,12 +1,11 @@
 import type { Media } from "../types/Media";
 
 const MEDIA_API_URL = "http://localhost:8000/api/media";
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwNjgyMDk2LCJleHAiOjE3NjA3NTIwOTZ9.Dk8YUrKKGLzfSKhqdHjqo1ZWzwzCC2XpgVF5EHRjrVY";
 
 // fetch pour récupérer tous les médias de la BDD
 export async function fetchAllMedias(): Promise<Media[]> {
     try {
-        // const token = getJwt();
+        const token = localStorage.getItem("token");
 
         const mediaData = await fetch(`${MEDIA_API_URL}`, {
             method: "GET",
@@ -30,7 +29,7 @@ export async function fetchAllMedias(): Promise<Media[]> {
 // fetch pour récupérer un média en fonction de son id
 export async function fetchOneMedia(id: number): Promise<Media> {
     try {
-        // const token = getJwt();
+        const token = localStorage.getItem("token");
         const mediaData = await fetch(`${MEDIA_API_URL}/${id}`, {
             method: "GET",
             headers: {
@@ -53,6 +52,7 @@ export async function fetchOneMedia(id: number): Promise<Media> {
 // fetch pour créer un média
 export async function fetchCreateMedia(id: number, media: Omit<Media, "id" | "dateModified">): Promise<Media> {
     try {
+        const token = localStorage.getItem("token");
         const mediaData = await fetch(`${MEDIA_API_URL}/${id}`, {
             method: "POST",
             headers: {
@@ -76,6 +76,7 @@ export async function fetchCreateMedia(id: number, media: Omit<Media, "id" | "da
 // fetch pour ajouter un média à un instrument
 export async function fetchAddIntrumentToMedia(idMedia: number, idInstrument: number): Promise<void> {
     try {
+        const token = localStorage.getItem("token");
         const instrumentData = await fetch(`${MEDIA_API_URL}/${idMedia}/instruments/${idInstrument}`, {
             method: "POST",
             headers: {
@@ -103,6 +104,7 @@ export async function fetchAddIntrumentToMedia(idMedia: number, idInstrument: nu
 // fetch pour modifier un media
 export async function fetchUpdateMedia(id: number, media: Partial<Media>): Promise<Media> {
     try {
+        const token = localStorage.getItem("token");
         const mediaData = await fetch(`${MEDIA_API_URL}/${id}`, {
             method: "PUT",
             headers: {
@@ -126,6 +128,7 @@ export async function fetchUpdateMedia(id: number, media: Partial<Media>): Promi
 // fetch pour supprimer un media
 export async function fetchDeleteMedia(id: number): Promise<void> {
     try {
+        const token = localStorage.getItem("token");
         const mediaData = await fetch(`${MEDIA_API_URL}/${id}`, {
             method: "DELETE",
             headers: {
@@ -149,6 +152,7 @@ export async function fetchDeleteMedia(id: number): Promise<void> {
 // fetch pour récupérer/affiche un fichier
 export async function fetchFindFichier(id: number): Promise<Blob> {
     try {
+        const token = localStorage.getItem("token");
         // const token = getJwt();
         const mediaData = await fetch(`${MEDIA_API_URL}/${id}/file`, {
             method: "GET",
@@ -173,6 +177,7 @@ export async function fetchFindFichier(id: number): Promise<Blob> {
 export async function fetchUploadFile(formData: FormData): Promise<string> {
     try {
         // const token = getJwt();
+        const token = localStorage.getItem("token");
 
         const mediaData = await fetch(`${MEDIA_API_URL}/add-file`, {
             method: "POST",
