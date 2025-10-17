@@ -20,7 +20,7 @@ const ModalInvitations: React.FC<ModalInvitationsProps> = ({ onClose }) => {
       try {
       const user = await fetchCurrentUser(); 
       const data = await fetchUserInvitations(user.email); 
-      const pending = data.filter(inv => inv.status !== Status.ACCEPTED && inv.status !== Status.REJECTED);
+      const pending = data.filter((inv: { status: string; }) => inv.status !== Status.ACCEPTED && inv.status !== Status.REJECTED);
       setInvitations(pending);
       } catch (err: any) {
         setError(err.message || "Erreur lors de la récupération des invitations");

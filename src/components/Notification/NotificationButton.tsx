@@ -14,7 +14,7 @@ const NotificationButton: React.FC = () => {
         const user = await fetchCurrentUser();
         const invitations = await fetchUserInvitations(user.email);
         const pendingInvitations = invitations.filter(
-          inv => inv.status !== "ACCEPTED" && inv.status !== "REJECTED"
+          (          inv: { status: string; }) => inv.status !== "ACCEPTED" && inv.status !== "REJECTED"
         );
         setInvitationCount(pendingInvitations.length);
       } catch (err) {
