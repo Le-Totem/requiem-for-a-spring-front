@@ -22,6 +22,8 @@ const ModalCrud: React.FC<ModalCrudProps> = ({ typeModal, isOpen, onClose, child
 
             {typeModal === "updateMusicPiece" && "Modifier une fiche morceau"}
             {typeModal === "deleteMusicPiece" && "Supprimer une fiche morceau"}
+            
+            {typeModal === "invitmembre" && "Inviter un utilisateur"}
 
             {typeModal === "addGenre" && "Ajouter un genre"}
             {typeModal === "deleteGenre" && "Supprimer un genre"}

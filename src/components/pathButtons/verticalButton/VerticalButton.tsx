@@ -5,7 +5,7 @@ import styles from "./vertical.module.css"
 interface VerticalProps {
   label: string;
   onClick?: () => void;
-  iconType: "blanche" | "clef" | "doubleNoire" | "fa" | "ut";
+  iconType: "blanche" | "clef" | "doubleNoire" | "fa" | "ut" |"soupir";
 }
 
 const VerticalButton: React.FC<VerticalProps> = ({
@@ -23,8 +23,7 @@ const VerticalButton: React.FC<VerticalProps> = ({
         label={label}
         iconType={iconType}
         onClick={onClick}
-        isOnStaff={false}
-      />
+        isOnStaff={false} xtext={15}      />
     </div>
   );
 };

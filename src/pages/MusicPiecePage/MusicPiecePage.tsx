@@ -36,8 +36,8 @@ const MusicPiecePage: React.FC = () => {
     const [openModal, setOpenModal] = useState(false);
     const [typeModal, setTypeModal] = useState<"updateMusicPiece" | "deleteMusicPiece" | "addGenre">("updateMusicPiece");
 
-    let [searchParams] = useSearchParams();
-    let idMusicPiece: number = Number(searchParams.get("id"));
+    const [searchParams] = useSearchParams();
+    const idMusicPiece: number = Number(searchParams.get("id"));
     const navigate = useNavigate();
 
     const loadOneMusicPiece = async () => {

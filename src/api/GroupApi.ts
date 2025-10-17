@@ -15,6 +15,14 @@ export interface UserRoleDto {
   group: GroupDto;
 }
 
+export interface User{
+  id: string;
+  firstname: string;
+  lastname: string;
+  email:string;
+  role:Role;
+}
+
 export interface MusicPieceDto {
   id: number;
   title: string;
@@ -37,8 +45,9 @@ const API_BASE_URL = 'http://localhost:8000/api/groups';
 
 // Fonction pour obtenir le token JWT 
 const getAuthHeaders = () => {
-  //   const token = localStorage.getItem('token'); 
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwNjgyMDk2LCJleHAiOjE3NjA3NTIwOTZ9.Dk8YUrKKGLzfSKhqdHjqo1ZWzwzCC2XpgVF5EHRjrVY"; return {
+    const token = localStorage.getItem("token"); 
+  // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg"; 
+  return {
     'Content-Type': 'application/json',
     ...(token && { 'Authorization': `Bearer ${token}` })
   };
@@ -65,6 +74,17 @@ export const groupService = {
     return response.json();
   },
 
+
+  
+// Récupérer des utilisateurs par rapport à l'ID de l'ensemble
+getUsersByGroupId: async (groupId: number): Promise<User[]> => {
+  const response = await fetch(`http://localhost:8000/api/users/group/${groupId}`, {
+    method: 'GET',
+    headers: getAuthHeaders(),
+  });
+  if (!response.ok) throw new Error("Erreur lors de la récupération des utilisateurs du groupe");
+  return response.json();
+},
 
   // Récupérer un ensemble par ID
   getById: async (id: number): Promise<GroupDto> => {
@@ -118,6 +138,33 @@ export const groupService = {
     if (!response.ok) throw new Error('Erreur lors de l\'invitation');
     return response.json();
   },
+  // Mettre à jour le statut d'une invitation (ACCEPTED / REFUSED)
+  updateInvitationStatus: async (
+    invitationId: number,
+    status: Status
+  ): Promise<InvitationDto> => {
+    const response = await fetch(
+      `${API_BASE_URL}/invitations/${invitationId}/status?status=${status}`,
+      {
+        method: "PUT",
+        headers: getAuthHeaders(),
+      }
+    );
+    if (!response.ok)
+      throw new Error("Erreur lors de la mise à jour du statut de l'invitation");
+    return response.json();
+  },
+
+    // Mettre a jour un ensemble 
+  update: async (id: number, newName: string): Promise<GroupDto> => {
+    const response = await fetch(`${API_BASE_URL}/${id}/update`, {
+        method: "PUT",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ name: newName }),
+    });
+    if (!response.ok) throw new Error("Erreur lors de la mise à jour de l'ensemble");
+    return response.json();
+},
 
   // Supprimer un ensemble
   delete: async (id: number): Promise<void> => {

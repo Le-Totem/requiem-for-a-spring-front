@@ -5,9 +5,33 @@ footer {
     justify-items: end;
     align-items: end;
     padding: 5px 15px;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #75541C;
+}
+
+footer nav a {
+    color: #d4c5aa;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
 }
 
 .footer-notes {
-    box-sizing: border-box;
+    display: flex;
+}
+
+.footer-button {
+    background: transparent;
+    border: none;
     font-size: 13px;
+    width: 100%;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.footer-button:hover {
+    background: #d4c5aa;
+    border-radius: 5px;
 }

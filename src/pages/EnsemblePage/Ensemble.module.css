@@ -1,0 +1,28 @@
+.partitionensemble {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 3rem; 
+  justify-items: center; 
+  margin-top: 2rem;
+}
+.partitionensemble svg {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.partitionensemble text{
+   transform: translateX(20px);
+}
+
+.ens_crud{
+    height: 100px;
+    width: 100vw;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.ens_crud text{
+  white-space: normal;
+}

@@ -3,22 +3,24 @@ import { groupService } from "../../api/GroupApi";
 import type { GroupDto } from "../../api/GroupApi";
 
 interface FormCreateProps {
-  onClose: () => void;        
-  onCreated?: (group: GroupDto) => void; 
+  onClose: () => void;
+  onCreated?: (group: GroupDto) => void;
 }
 
-function formatDate(date: Date): string{
-    return date.toISOString().split("T")[0];
+function formatDate(date: Date): string {
+  return date.toISOString().split("T")[0];
 }
 
 const FormCreate: React.FC<FormCreateProps> = ({ onClose, onCreated }) => {
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setSuccess(null);
 
     if (!name.trim()) {
       setError("Le nom de l’ensemble est requis.");
@@ -37,8 +39,15 @@ const FormCreate: React.FC<FormCreateProps> = ({ onClose, onCreated }) => {
       const created = await groupService.create(newGroup);
       console.log("✅ Ensemble créé :", created);
 
+      setSuccess(`✅ L'ensemble "${created.name}" a été créé avec succès !`);
+
       if (onCreated) onCreated(created);
-      onClose(); // ferme la modale après succès
+
+      // Attendre 1,5s, puis fermer et rafraîchir
+      setTimeout(() => {
+        onClose();
+        window.location.reload();
+      }, 1500);
     } catch (err) {
       console.error(err);
       setError("Erreur lors de la création de l’ensemble.");
@@ -56,7 +65,10 @@ const FormCreate: React.FC<FormCreateProps> = ({ onClose, onCreated }) => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
+
       {error && <p style={{ color: "red" }}>{error}</p>}
+      {success && <p style={{ color: "green" }}>{success}</p>}
+
       <div style={{ marginTop: "10px" }}>
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Création..." : "Créer"}

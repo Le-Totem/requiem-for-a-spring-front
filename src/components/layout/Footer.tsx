@@ -1,8 +1,7 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import "../../styles/footer.css";
 import { Note } from "../pathButtons/Note";
 import { deleteJwt } from "../../utils/LocalStorageManager";
-import ImgButton from "../imgButtons/imgButton";
 
 export default function Footer() {
 
@@ -12,7 +11,7 @@ export default function Footer() {
     const handleLogOut = () => {
 
         deleteJwt();
-        navigate("/login");
+        navigate("/");
     }
 
     const handleExit = () => {
@@ -21,13 +20,19 @@ export default function Footer() {
 
     return (
         <footer>
+            <nav>
+                <Link to="/">Accueil</Link> |{" "}
+                <Link to="/inscription">Inscription</Link> |{" "}
+                <Link to="/listeensembles">Liste d'ensembles</Link> |{" "}
+                <Link to="/composants">Composants React</Link>
+            </nav>
             <div className="footer-notes">
-                {/* <Note x={0} y={0} label="Se déconnecter" iconType="fa" onClick={handleLogOut} isOnStaff={false} xtext={0} /> */}
-                <ImgButton iconType="fa" text="Se déconnecter" onClick={handleLogOut} />
-            </div>
-            <div className="footer-notes">
-                {/* <Note x={0} y={0} label="Exit" iconType="ut" onClick={handleExit} isOnStaff={false} xtext={0} /> */}
-                <ImgButton iconType="ut" text="Exit" onClick={handleExit} />
+                <button className="footer-button" onClick={handleLogOut}>
+                    <Note x={0} y={0} label="Se déconnecter" iconType="fa" isOnStaff={false} xtext={0} />
+                </button>
+                <button className="footer-button" onClick={handleExit} >
+                    <Note x={0} y={0} label="Exit" iconType="ut" isOnStaff={false} xtext={20} />
+                </button>
             </div>
         </footer>
     )

@@ -24,8 +24,8 @@ export default function Composants() {
 
             <h2>Notes libres</h2>
             <div style={{ width: "600px", height: "100px" }}>
-                <Note x={0} y={0} label="noteSansPartition1" iconType="blanche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} />
-                <Note x={0} y={0} label="noteSansPartition2" iconType="blanche" onClick={() => console.log("noteSansPartition2")} isOnStaff={false} />
+                <Note x={0} y={0} label="noteSansPartition1" iconType="blanche" onClick={() => console.log("noteSansPartition1")} isOnStaff={false} xtext={0} />
+                <Note x={0} y={0} label="noteSansPartition2" iconType="blanche" onClick={() => console.log("noteSansPartition2")} isOnStaff={false} xtext={0} />
             </div>
 
             <h2>Portée avec clef de sol</h2>

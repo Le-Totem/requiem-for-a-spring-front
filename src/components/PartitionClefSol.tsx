@@ -136,7 +136,7 @@ const Partition: React.FC<PartitionProps> = ({ notes = [] }) => {
 
                 {/* Notes */}
                 {notes.map((note, idx) => (
-                    <Note key={idx} {...note} isOnStaff={true} />
+                    <Note xtext={0} key={idx} {...note} isOnStaff={true} />
                 ))}
             </svg>
         </div>

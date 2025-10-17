@@ -1,33 +1,30 @@
 header {
     text-align: center;
-    /* centre tout le contenu du header */
     padding: 20px 0;
-    /* espace autour du header */
+    background-color: #75541C;
 }
 
 header h1 {
-    color: #75541C;
+    color: #d4c5aa;
     margin: 0;
     font-size: 24px;
     font-weight: bold;
 }
 
 header p {
-    color: #75541C;
+    color: #d4c5aa;
     margin: 5px 0 15px 0;
     font-size: 18px;
     font-weight: bold;
 }
 
 header nav a {
-    color: #75541C;
+    color: #d4c5aa;
     text-decoration: none;
-    /* enlève le souligné par défaut */
     margin: 0 10px;
     font-weight: 500;
 }
 
 header nav a:hover {
     text-decoration: underline;
-    /* petit effet au survol */
 }
