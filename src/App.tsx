@@ -58,7 +58,7 @@ function App() {
                     </Layout>
                 } />
 
-                {/* Page composants */}
+                {/* Page composants 
                 <Route
                     path="/composants"
                     element={
@@ -66,7 +66,7 @@ function App() {
                             <Composants />
                         </Layout>
                     }
-                />
+                /> */}
 
                 {/* Liste des membres */}
                 <Route
