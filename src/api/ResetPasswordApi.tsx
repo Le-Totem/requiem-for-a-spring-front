@@ -1,5 +1,5 @@
 // src/api/ResetPasswordApi.tsx
-const API_URL = "http://localhost:8080/api/users/reset-password"; 
+const API_URL = "http://localhost:8000/api/users/reset-password"; 
 
 // Étape 1 — Envoi de l'email de réinitialisation
 export async function sendResetEmail(email: string) {
