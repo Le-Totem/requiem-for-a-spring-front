@@ -37,7 +37,6 @@ export default function ListeMembres() {
         <TitlePartition text="Liste des Membres" />
       </div>
 
-      {/* 🔹 Boutons d’action */}
       <div className="crud">
         <div className="partition-wrapper">
           <div className="notes-on-staff">
@@ -85,7 +84,7 @@ export default function ListeMembres() {
           <p>Aucun membre trouvé.</p>
         ) : (
           users.reduce<User[][]>((rows, user, index) => {
-            // Regroupe les membres par ligne de 2 (gauche/droite)
+            // Regroupe les membres par ligne
             if (index % 2 === 0) rows.push([user]);
             else rows[rows.length - 1].push(user);
             return rows;
