@@ -25,8 +25,8 @@ export default function Footer() {
                 <Link to="/">Accueil</Link> |{" "}
                 <Link to="/inscription">Inscription</Link> |{" "}
                 <Link to="/listeMembres">Liste des Membres</Link> |{" "}
-                <Link to="/listeensembles">Liste d'ensembles</Link> |{" "}
-                <Link to="/composants">Composants React</Link>
+                <Link to="/listeensembles">Liste d'ensembles</Link> {" "}
+                {/*<Link to="/composants">Composants React</Link>*/}
             </nav>
             <div className="footer-notes">
                 <button className="footer-button">

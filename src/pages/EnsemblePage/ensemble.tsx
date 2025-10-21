@@ -10,7 +10,6 @@ import { getUser, isAdmin, isModerator, setUser } from "../../utils/LocalStorage
 
 import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble.tsx";
 import FormCreate from "../../components/modalCrudMusicPiece/FormCreate.tsx";
-import ListUser from "../../components/modalCrudMusicPiece/ListMember.tsx";
 import InvitMember from "../../components/modalCrudMusicPiece/InvitMember.tsx";
 
 
@@ -51,9 +50,6 @@ export default function EnsemblePage() {
           setMusicPieces((prev) => [...prev, createdPiece]);
         }}
       />
-    ),
-    listemembre: (
-      <ListUser onClose={() => setOpenModal(false)} />
     ),
     invitmembre: (
       <InvitMember onClose={() => setOpenModal(false)} />
@@ -117,7 +113,7 @@ export default function EnsemblePage() {
             <VerticalButton label="inviter un membre" iconType="blanche" onClick={() => handleOpenModal("invitmembre")} />
           </>
         )}
-        <VerticalButton label="liste des membres" iconType="blanche" onClick={() => handleOpenModal("listemembre")} />
+        <VerticalButton label="liste des membres" iconType="blanche" onClick={() => navigate(`/listemembres/${groupId}`)} />
       </div>
 
 

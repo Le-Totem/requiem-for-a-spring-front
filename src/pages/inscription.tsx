@@ -109,8 +109,6 @@ export default function Inscription() {
                     isOnStaff={false}
                     onClick={async () => {
                         try {
-                          // Déconnexion forcée de tout ancien compte
-                          localStorage.removeItem("jwt");
                           
                             const newUser = await registerUser(
                                 formData
