@@ -98,7 +98,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/*Modale Mot de passe oublié */}
+      {/* Modale mot de passe oublié */}
       {showModal && <ModaleForgotMdp onClose={() => setShowModal(false)} />}
     </main>
   );

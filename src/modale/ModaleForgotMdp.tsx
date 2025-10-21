@@ -1,65 +1,108 @@
-import React, { useState } from "react";
-import { resetPassword } from "../api/ResetPasswordApi";
+import React, { useEffect, useState } from "react";
+import { sendResetEmail, resetPassword } from "../api/ResetPasswordApi";
+import "../styles/Homepage.css";
 
 interface ModaleForgotMdpProps {
     onClose: () => void;
 }
 
-export default function ModalForgotMdp({ onClose }: ModaleForgotMdpProps) {
-    const [loginReset, setLoginReset] = useState("");
+export default function ModaleForgotMdp({ onClose }: ModaleForgotMdpProps) {
+    const [email, setEmail] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [resetError, setResetError] = useState("");
-    const [resetSuccess, setResetSuccess] = useState("");
+    const [message, setMessage] = useState("");
+    const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [token, setToken] = useState<string | null>(null);
 
-    const handlePasswordReset = async (e: React.FormEvent) => {
+    // Vérifie le token dans l'URL
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const tokenFromUrl = params.get("token");
+        if (tokenFromUrl) {
+            setToken(tokenFromUrl);
+        }
+    }, []);
+
+    // Envoi du mail de réinitialisation
+    const handleSendEmail = async (e: React.FormEvent) => {
         e.preventDefault();
-        setResetError("");
-        setResetSuccess("");
+        setError("");
+        setMessage("");
+        setLoading(true);
+
+        try {
+            const result = await sendResetEmail(email);
+            setMessage(result.message || "Un email de réinitialisation a été envoyé !");
+        } catch (err: any) {
+            setError(err.message || "Erreur lors de l'envoi de l'email");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Réinitialisation du mot de passe via le token
+    const handleResetPassword = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        setMessage("");
 
         if (newPassword !== confirmPassword) {
-            setResetError("Les mots de passe ne correspondent pas");
+            setError("Les mots de passe ne correspondent pas");
             return;
         }
 
         try {
-            setLoading(true);
-            console.log("📨 Envoi requête reset password :", { loginReset, newPassword });
-
-            await resetPassword(loginReset, newPassword);
-            setResetSuccess("Votre mot de passe a bien été réinitialisé !");
-
-            setTimeout(() => {
-                onClose();
-            }, 2000);
+            const result = await resetPassword(token!, newPassword);
+            setMessage(result.message || "Mot de passe réinitialisé !");
+            setTimeout(onClose, 2000);
         } catch (err: any) {
-            console.error("Erreur reset :", err);
-            setResetError(err.message || "Erreur lors de la réinitialisation du mot de passe");
-        } finally {
-            setLoading(false);
+            // Gestion spécifique des tokens expirés ou invalides
+            if (err.message.includes("expiré") || err.message.includes("invalide")) {
+                setError("Le lien de réinitialisation est invalide ou a expiré. Veuillez demander un nouveau lien.");
+            } else {
+                setError(err.message || "Erreur lors de la réinitialisation du mot de passe");
+            }
         }
     };
 
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <h3>Réinitialiser votre mot de passe</h3>
+                <h3>Réinitialisation du mot de passe</h3>
 
-                {!resetSuccess && (
-                    <p>Veuillez entrer votre identifiant (ou email) et votre nouveau mot de passe.</p>
-                )}
+                {/* Étape 1 : Demande du lien */}
+                {!token && (
+                    <form onSubmit={handleSendEmail}>
+                        <p>Entrez votre email pour recevoir un lien de réinitialisation :</p>
 
-                {!resetSuccess ? (
-                    <form onSubmit={handlePasswordReset}>
                         <input
-                            type="text"
+                            type="email"
                             className="modal-input"
-                            placeholder="Identifiant ou email"
-                            value={loginReset}
-                            onChange={(e) => setLoginReset(e.target.value)}
+                            placeholder="Votre email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
+
+                        {error && <p className="modal-error">{error}</p>}
+                        {message && <p className="modal-success">{message}</p>}
+
+                        <div className="modal-actions">
+                            <button type="submit" className="modal-btn" disabled={loading}>
+                                {loading ? "Envoi..." : "Envoyer"}
+                            </button>
+                            <button type="button" className="modal-close" onClick={onClose}>
+                                Annuler
+                            </button>
+                        </div>
+                    </form>
+                )}
+
+                {/* Étape 2 : Changement du mot de passe */}
+                {token && (
+                    <form onSubmit={handleResetPassword}>
+                        <p>Définissez votre nouveau mot de passe :</p>
 
                         <input
                             type="password"
@@ -79,25 +122,18 @@ export default function ModalForgotMdp({ onClose }: ModaleForgotMdpProps) {
                             required
                         />
 
-                        {resetError && <p style={{ color: "red" }}>{resetError}</p>}
+                        {error && <p className="modal-error">{error}</p>}
+                        {message && <p className="modal-success">{message}</p>}
 
                         <div className="modal-actions">
                             <button type="submit" className="modal-btn" disabled={loading}>
                                 {loading ? "En cours..." : "Valider"}
                             </button>
-                            <button
-                                type="button"
-                                className="modal-close"
-                                onClick={onClose}
-                            >
+                            <button type="button" className="modal-close" onClick={onClose}>
                                 Annuler
                             </button>
                         </div>
                     </form>
-                ) : (
-                    <div className="reset-success-message">
-                        <p style={{ color: "green", fontWeight: "bold" }}>{resetSuccess}</p>
-                    </div>
                 )}
             </div>
         </div>

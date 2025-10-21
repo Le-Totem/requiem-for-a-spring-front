@@ -34,5 +34,5 @@ export async function loginUser(email: string, password: string) {
         throw new Error(`Erreur HTTP ${response.status}`);
     }
 
-    return response.json(); // retourne token + expiresIn
+    return response.json(); 
 }
