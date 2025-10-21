@@ -4,7 +4,6 @@ import Layout from "./components/layout/Layout";
 
 import HomePage from "./pages/homepage";
 import Ensembleliste from "./pages/EnsembleListePage/ensembleliste";
-import Composants from "./pages/composants";
 
 import './styles/App.css';
 import './styles/Layout.css';
@@ -17,6 +16,7 @@ import MediaPage from "./pages/MediaPage/MediaPage";
 
 import EnsemblePage from "./pages/EnsemblePage/ensemble";
 import ListeMembres from "./pages/ListeMembres";
+import Homepage from "./pages/homepage";
 
 function App() {
     return (
@@ -26,12 +26,20 @@ function App() {
                 <Route
                     path="/"
                     element={
-                        <Layout hideHeader={true}>
-                            <HomePage />
+                        <Layout showHeader={false} >
+                            <Homepage showModale={false} children={undefined} />
                         </Layout>
                     }
                 />
 
+                <Route
+                    path="/reset-password"
+                    element={
+                        <Layout showHeader={false}>
+                            <Homepage showModale={true} children={undefined} />
+                        </Layout>
+                    }
+                />
                 {/* Page inscription */}
                 <Route
                     path="/inscription"
@@ -53,7 +61,6 @@ function App() {
                 />
                 <Route path="/ensemble/:id" element={
                     <Layout>
-
                         <EnsemblePage />
                     </Layout>
                 } />
@@ -87,8 +94,6 @@ function App() {
                     <Route path=":id/medias"
                         element={<MediaPage />}
                     />
-
-
 
                 </Route>
             </Routes>

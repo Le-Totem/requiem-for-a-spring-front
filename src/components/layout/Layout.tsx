@@ -5,17 +5,14 @@ import Footer from "./Footer";
 
 interface LayoutProps {
     children: ReactNode;
-    hideHeader?: boolean;
+    showHeader?: boolean;
 }
 
-export default function Layout({ children, hideHeader }: LayoutProps) {
+export default function Layout({ children, showHeader=true }: LayoutProps) {
     return (
         <div className="layout">
-            {/* Affiche le Header seulement si hideHeader n'est pas true */}
-            {!hideHeader && <Header />}
-
+            {showHeader && <Header />}
             <main className="main">{children}</main>
-
             <Footer />
         </div>
     );
