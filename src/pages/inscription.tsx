@@ -109,6 +109,7 @@ export default function Inscription() {
                     isOnStaff={false}
                     onClick={async () => {
                         try {
+                          
                             const newUser = await registerUser(
                                 formData
                             );

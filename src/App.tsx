@@ -70,7 +70,7 @@ function App() {
 
                 {/* Liste des membres */}
                 <Route
-                    path="/listemembres"
+                    path="/listemembres/:id"
                     element={
                         <Layout>
                             <ListeMembres />
