@@ -14,7 +14,7 @@ interface HomepageProps {
 }
 
 
-export default function HomePage({ children, showModale = true }: HomepageProps) {
+export default function HomePage({ showModale = true }: HomepageProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
