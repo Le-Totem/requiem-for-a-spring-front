@@ -11,32 +11,46 @@
   transform: translate(10px, 0px);
 }
 
-/*Crud*/
-.crud {
-  width: 70%;
-}
-
-.partitionCrud {
-  position: relative;
-  min-height: 150px;
-}
-
-.crud-notes {
+/* Conteneur 3 boutons */
+.notes-on-staff {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin: 40px auto;
 }
 
-.crud-button {
-  background: transparent;
+/* Bouton contenant la note */
+.bouton-note {
+  background: none;
   border: none;
-  font-size: 10px;
-  width: 30%;
-  justify-content: space-evenly;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
+  /* label sous le SVG */
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
 }
 
-.crud-button:hover {
-  background: #75541C;
-  border-radius: 5px;
+/* Effet au survol */
+.bouton-note:hover {
+  transform: scale(1.1);
+}
+
+/* Note visible */
+.bouton-note svg {
+  width: 120px;
+  height: 100px;
+  display: block;
+}
+
+/* Le label généré par Note */
+.bouton-note text {
+  font-size: 0.8rem;
+  fill: #75541C;
+  font-weight: bold;
 }
 
 /* Position des listes de membres en colonnes */

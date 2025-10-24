@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Partition from "../components/Partition";
@@ -8,7 +8,13 @@ import ModaleForgotMdp from "../modale/ModaleForgotMdp";
 
 import "../styles/Homepage.css";
 
-export default function HomePage() {
+interface HomepageProps {
+  children: ReactNode;
+  showModale?: boolean;
+}
+
+
+export default function HomePage({ showModale = true }: HomepageProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -30,7 +36,7 @@ export default function HomePage() {
     }
   };
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(showModale);
 
   return (
     <main className="homepage">
@@ -98,8 +104,9 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/*Modale Mot de passe oublié */}
+      {/* Modale mot de passe oublié */}
       {showModal && <ModaleForgotMdp onClose={() => setShowModal(false)} />}
+      {/* if token => modal mpd*/}
     </main>
   );
 }

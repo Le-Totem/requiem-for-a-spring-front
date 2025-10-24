@@ -190,7 +190,7 @@ const MusicPiecePage: React.FC = () => {
                 <button onClick={() => handleOpenModal("addGenre")}>+</button>
             </div>
 
-            {(isAdmin(1) || isModerator(1)) && (
+            {(isAdmin(3) || isModerator(3)) && (
                 <div className={styles.musicpiece_crud}>
                     <>
                         <VerticalButton label="Gérer les médias" iconType="blanche" onClick={() => navigate(`/tracks/${idMusicPiece}/medias`)} />

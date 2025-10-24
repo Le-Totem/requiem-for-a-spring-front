@@ -1,100 +1,135 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { groupService } from "../api/GroupApi";
+import type { User } from "../api/GroupApi";
 import { Note } from "../components/pathButtons/Note";
 import Partition from "../components/Partition";
 import TitlePartition from "../components/TitlePartition";
-import { getListeMembres, envoyerInvitation, supprimerMembre } from "../api/ListeMembresApi";
-
+import "../styles/listemembres.css";
 
 export default function ListeMembres() {
-    const [membres, setMembres] = useState<{ id: string; nom: string; email: string }[]>([]);
-    const [loading, setLoading] = useState(true);
-    const groupId = 1; // Id de l'ensemble à passer pour l'invitation
+  const { id } = useParams();
+  const groupId = Number(id);
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        async function fetchMembres() {
-            try {
-                const data = await getListeMembres();
-                setMembres(data);
-            } catch (err) {
-                console.error("Erreur chargement membres :", err);
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchMembres();
-    }, []);
+  useEffect(() => {
+    if (!groupId) return;
 
-    const handleInvitation = async () => {
-        const email = prompt("Adresse email à inviter :");
-        if (!email) return;
-        try {
-            await envoyerInvitation(email, groupId);
-            alert(`Invitation envoyée à ${email}`);
-        } catch (err) {
-            console.error(err);
-            alert("Erreur lors de l’envoi de l’invitation");
-        }
+    const fetchUsers = async () => {
+      try {
+        const data = await groupService.getUsersByGroupId(groupId);
+        setUsers(data);
+      } catch (err) {
+        setError("Impossible de récupérer les utilisateurs du groupe");
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const handleRefresh = async () => {
-        try {
-            const data = await getListeMembres();
-            setMembres(data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    fetchUsers();
+  }, [groupId]);
 
-    const handleDelete = async (id: string) => {
-        const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer ce membre ?");
-        if (!confirmDelete) return;
+  return (
+    <main className="inscription-container">
+      <div className="title-wrapper">
+        <TitlePartition text="Liste des Membres" />
+      </div>
 
-        try {
-            await supprimerMembre(id);
-            setMembres((prev) => prev.filter((m) => m.id !== id));
-        } catch (err) {
-            console.error(err);
-            alert("Erreur lors de la suppression");
-        }
-    };
+      <div className="crud">
+        <div className="partition-wrapper">
+          <div className="notes-on-staff">
+            <button className="bouton-note" onClick={() => console.log("Invitation envoyée")}>
+              <Note
+                x={0}
+                y={0}
+                xtext={15}
+                label="Inviter"
+                iconType="blanche"
+                isOnStaff={false}
+                size={5}
+              />
+            </button>
 
-    if (loading) return <p>Chargement...</p>;
+            <button className="bouton-note" onClick={() => console.log("Mise à jour ok")}>
+              <Note
+                x={0}
+                y={0}
+                xtext={15}
+                label="Mettre à jour"
+                iconType="blanche"
+                isOnStaff={false}
+                size={5}
+              />
+            </button>
 
-    return (
-        <main className="listeMembres-container">
-            <div className="title-wrapper">
-                <TitlePartition text="Liste des Membres" />
+            <button className="bouton-note" onClick={() => console.log("Suppression ok")}>
+              <Note
+                x={0}
+                y={0}
+                xtext={20}
+                label="Supprimer"
+                iconType="doubleSharp"
+                isOnStaff={false}
+                size={5}
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="partitions-container">
+        {users.length === 0 ? (
+          <p>Aucun membre trouvé.</p>
+        ) : (
+          users.reduce<User[][]>((rows, user, index) => {
+            // Regroupe les membres par ligne
+            if (index % 2 === 0) rows.push([user]);
+            else rows[rows.length - 1].push(user);
+            return rows;
+          }, []).map((pair, rowIndex) => (
+            <div className="partition-wrapper" key={rowIndex}>
+              <span className="labelMembres gauche">
+                {pair[0] && (
+                  <>
+                    <Note
+                      x={0}
+                      y={0}
+                      xtext={0}
+                      label=""
+                      iconType="croche"
+                      isOnStaff={false}
+                      size={10}
+                    />
+                    {pair[0].firstname} {pair[0].lastname}
+                  </>
+                )}
+              </span>
+      
+              <span className="labelMembres droite">
+                {pair[1] && (
+                  <>
+                    <Note
+                      x={0}
+                      y={0}
+                      xtext={0}
+                      label=""
+                      iconType="croche"
+                      isOnStaff={false}
+                      size={10}
+                    />
+                    {pair[1].firstname} {pair[1].lastname}
+                  </>
+                )}
+              </span>
+      
+              <Partition />
             </div>
+          ))
+        )}
+      </div>
 
-            <div className="crud">
-                <div className="partitionCrud">
-                    <Partition />
-
-                    <button className="crud-button" onClick={handleInvitation}>
-                        <Note x={0} y={0} xtext={15} label="Inviter" iconType="blanche" isOnStaff={false} />
-                    </button>
-
-                    <button className="crud-button" onClick={handleRefresh}>
-                        <Note x={0} y={0} xtext={15} label="Mettre à jour" iconType="blanche" isOnStaff={false} />
-                    </button>
-                </div>
-            </div>
-
-            <div className="listeMembres-container">
-                {membres.map((membre) => (
-                    <div key={membre.id} className="partition-wrapper">
-                        <span className="labelMembres gauche">
-                            <Note x={0} y={0} xtext={0} label="" iconType="croche" isOnStaff={false} />
-                            {membre.nom}
-                        </span>
-                        <button className="labelMembres droite" onClick={() => handleDelete(membre.id)}>
-                            <Note x={0} y={0} xtext={0} label="" iconType="croche" isOnStaff={false} />
-                            Supprimer
-                        </button>
-                        <Partition />
-                    </div>
-                ))}
-            </div>
-        </main>
-    );
+    </main>
+  );
 }
