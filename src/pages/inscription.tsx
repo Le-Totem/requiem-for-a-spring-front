@@ -119,7 +119,7 @@ export default function Inscription() {
                                 console.log("Token JWT enregistré :", newUser.token);
                             }
                             resetForm();
-                            navigate("/listeensembles");
+                            navigate("/");
                             
                         } catch (err) {
                             console.error("Erreur inscription :", err);
