@@ -5,7 +5,6 @@
   min-height: 100vh;
   /* toujours hauteur totale */
 }
-
 .main {
   flex-grow: 1;
   /* prend tout l’espace restant entre Header et Footer */
