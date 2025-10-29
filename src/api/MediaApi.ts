@@ -1,6 +1,6 @@
 import type { Media } from "../types/Media";
 
-const MEDIA_API_URL = "https://127.0.0.1/api/media";
+const MEDIA_API_URL = "https://51.210.4.227/api/media";
 
 // fetch pour récupérer tous les médias de la BDD
 export async function fetchAllMedias(): Promise<Media[]> {

@@ -7,7 +7,7 @@ export interface RegisterUser {
     lastname: string;
 }
 
-const API_URL = "https://127.0.0.1/api/auth";
+const API_URL = "https://51.210.4.227/api/auth";
 
 export async function registerUser(user: RegisterUser) {
     const response = await fetch(`${API_URL}/signup`, {

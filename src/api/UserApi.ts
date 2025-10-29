@@ -1,4 +1,4 @@
-const USER_API_URL = "https://127.0.0.1/api/users";
+const USER_API_URL = "https://51.210.4.227/api/users";
 // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg";
 
 export async function fetchCurrentUser() {

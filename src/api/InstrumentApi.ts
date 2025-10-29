@@ -1,6 +1,6 @@
 import type { Instrument } from "../types/Instrument";
 
-const INSTRUMENT_API_URL = "https://127.0.0.1/api/instruments";
+const INSTRUMENT_API_URL = "https://51.210.4.227/api/instruments";
 
 // fetch pour récupérer tous les instruments de la BDD
 export async function fetchAllInstruments(): Promise<Instrument[]> {

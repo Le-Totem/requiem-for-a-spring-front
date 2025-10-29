@@ -41,7 +41,7 @@ export interface InvitationDto {
 }
 
 // services/groupService.ts
-const API_BASE_URL = 'https://127.0.0.1/api/groups';
+const API_BASE_URL = 'https://51.210.4.227/api/groups';
 
 // Fonction pour obtenir le token JWT 
 const getAuthHeaders = () => {
@@ -78,7 +78,7 @@ export const groupService = {
   
 // Récupérer des utilisateurs par rapport à l'ID de l'ensemble
 getUsersByGroupId: async (groupId: number): Promise<User[]> => {
-  const response = await fetch(`https://127.0.0.1/api/users/group/${groupId}`, {
+  const response = await fetch(`https://51.210.4.227/api/users/group/${groupId}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });

@@ -3,8 +3,8 @@ import type { Genre } from "../types/Genre";
 import type { Media } from "../types/Media";
 import type { MusicPiece } from "../types/MusicPiece";
 
-const MUSICPIECE_API_URL = "https://127.0.0.1/api/tracks";
-const GENRE_API_URL = "https://127.0.0.1/api/genres";
+const MUSICPIECE_API_URL = "https://51.210.4.227/api/tracks";
+const GENRE_API_URL = "https://51.210.4.227/api/genres";
 // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXVsQG1haWwuY29tIiwiaWF0IjoxNzYwMzM5MzkxLCJleHAiOjE3NjA0MDkzOTF9.-wELrSTNgtMgDkJLmAWeT4xTM0BmMBjEtiQcivJEQkg";
 
 
