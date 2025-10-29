@@ -1,4 +1,4 @@
-import "../../styles/ensembleliste.css";
+import "../../styles/styleEnsembleliste.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { groupService, type UserRoleDto } from "../../api/GroupApi.ts";

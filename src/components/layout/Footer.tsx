@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router";
-import "../../styles/footer.css";
+import "../../styles/styleFooter.css";
 import { Note } from "../pathButtons/Note";
 import { deleteJwt } from "../../utils/LocalStorageManager";
 

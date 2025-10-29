@@ -5,7 +5,7 @@ import type { User } from "../api/GroupApi";
 import { Note } from "../components/pathButtons/Note";
 import Partition from "../components/Partition";
 import TitlePartition from "../components/TitlePartition";
-import "../styles/listeMembres.css";
+import "../styles/styleListeMembres.css";
 
 export default function ListeMembres() {
   const { id } = useParams();

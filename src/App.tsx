@@ -4,10 +4,10 @@ import Layout from "./components/layout/Layout";
 
 import Ensembleliste from "./pages/EnsembleListePage/ensembleliste";
 
-import './styles/app.css';
-import './styles/layout.css';
-import './styles/partition.css';
-import './styles/note.css';
+import './styles/styleApp.css';
+import './styles/styleLayout.css';
+import './styles/stylePartition.css';
+import './styles/styleNote.css';
 import MusicPiecePage from "./pages/MusicPiecePage/MusicPiecePage";
 import MainMusicPiece from "./pages/MusicPiecePage/MainMusicPiece";
 import Inscription from "./pages/inscription";

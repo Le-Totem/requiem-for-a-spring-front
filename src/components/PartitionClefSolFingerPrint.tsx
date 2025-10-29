@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import "../styles/app.css";
+import "../styles/styleApp.css";
 
 class Staff {
     public svgGroup: SVGGElement;

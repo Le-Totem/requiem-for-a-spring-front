@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { Note } from "./pathButtons/Note";
 
-import "../styles/PartitionNote.css";
+import "../styles/stylePartitionNote.css";
 
 export interface NoteData {
     x: number;

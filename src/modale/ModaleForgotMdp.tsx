@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { sendResetEmail, resetPassword } from "../api/ResetPasswordApi";
-import "../styles/homepage.css";
+import "../styles/styleHomepage.css";
 
 interface ModaleForgotMdpProps {
     onClose: () => void;

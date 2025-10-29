@@ -1,7 +1,7 @@
 import Partition from "../components/Partition";
 import TitlePartition from "../components/TitlePartition";
 
-import "../styles/inscription.css";
+import "../styles/styleInscription.css";
 
 import { registerUser } from "../api/InscriptionApi";
 import { useState } from "react";
