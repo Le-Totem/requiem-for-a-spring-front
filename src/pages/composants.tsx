@@ -4,7 +4,7 @@ import Partition from "../components/Partition";
 import { Note } from "../components/pathButtons/Note";
 import PartitionNote, { type NoteData } from "../components/PartitionNote";
 
-import "../styles/Homepage.css";
+import "../styles/homepage.css";
 
 export default function Composants() {
 

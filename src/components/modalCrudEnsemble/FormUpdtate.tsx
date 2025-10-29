@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { groupService, type GroupDto } from "../../api/GroupApi";
+import { groupService } from "../../api/GroupApi";
 
 interface FormUpdateProps {
   items: { id: number; name: string }[];
@@ -25,12 +25,6 @@ const FormUpdate: React.FC<FormUpdateProps> = ({ items, onCancel, onUpdated }) =
     setError(null);
 
     try {
-      const updatedGroup: GroupDto = {
-        id: editingId,
-        name: newName,
-        creation_date: new Date().toISOString().split("T")[0],
-        is_everyone_admin: false,
-      };
       await groupService.update(editingId, newName);
       if (onUpdated) onUpdated();
       setEditingId(null);

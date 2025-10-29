@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import { fetchCurrentUser, fetchUserInvitations } from "../../api/UserApi";
 import { groupService } from "../../api/GroupApi"; 
@@ -20,7 +21,7 @@ const ModalInvitations: React.FC<ModalInvitationsProps> = ({ onClose }) => {
       try {
       const user = await fetchCurrentUser(); 
       const data = await fetchUserInvitations(user.email); 
-      const pending = data.filter((inv: { status: string; }) => inv.status !== Status.ACCEPTED && inv.status !== Status.REJECTED);
+      const pending = data.filter((inv: { status: string; }) => inv.status !== 'ACCEPTED' && inv.status !== 'REJECTED');
       setInvitations(pending);
       } catch (err: any) {
         setError(err.message || "Erreur lors de la récupération des invitations");
@@ -32,8 +33,8 @@ const ModalInvitations: React.FC<ModalInvitationsProps> = ({ onClose }) => {
     fetchInvitationsData();
   }, []);
 
-  
-  const handleStatusChange = async (invitationId: number, status: Status.ACCEPTED | Status.REJECTED) => {
+
+  const handleStatusChange = async (invitationId: number, status: Status) => {
     try {
       await groupService.updateInvitationStatus(invitationId, status); 
       setInvitations(prev => prev.filter(inv => inv.id !== invitationId)); // enlève celle traitée
@@ -63,10 +64,16 @@ const ModalInvitations: React.FC<ModalInvitationsProps> = ({ onClose }) => {
                   Date : {new Date(inv.created_at).toLocaleDateString()}
                 </p>
                 <div className={styles.actions}>
-                  <button onClick={() => handleStatusChange(inv.id, Status.ACCEPTED)}>
+                  <button
+                    onClick={() => inv.id !== undefined && handleStatusChange(inv.id, Status.ACCEPTED)}
+                    disabled={inv.id === undefined}
+                  >
                     Accepter
                   </button>
-                  <button onClick={() => handleStatusChange(inv.id, Status.REJECTED)}>
+                  <button
+                    onClick={() => inv.id !== undefined && handleStatusChange(inv.id, Status.REJECTED)}
+                    disabled={inv.id === undefined}
+                  >
                     Refuser
                   </button>
                 </div>

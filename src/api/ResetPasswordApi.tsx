@@ -1,5 +1,5 @@
 // src/api/ResetPasswordApi.tsx
-const API_URL = "http://localhost:8000/api/users/reset-password"; // Modification du port
+const API_URL = "https://127.0.0.1/api/users/reset-password"; // Modification du port
 
 // Étape 1 — Envoi de l'email de réinitialisation
 export async function sendResetEmail(email: string) {

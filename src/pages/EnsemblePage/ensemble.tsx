@@ -6,7 +6,7 @@ import PartitionTitle from "../../components/TitlePartition.tsx";
 import styles from "./Ensemble.module.css";
 
 import { fetchCurrentUser } from "../../api/UserApi.ts";
-import { getUser, isAdmin, isModerator, setUser } from "../../utils/LocalStorageManager";
+import { isAdmin, isModerator, setUser } from "../../utils/LocalStorageManager";
 
 import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble.tsx";
 import FormCreate from "../../components/modalCrudMusicPiece/FormCreate.tsx";
@@ -33,7 +33,7 @@ export default function EnsemblePage() {
 
   const [openModal, setOpenModal] = useState(false);
   const [typeModal, setTypeModal] = useState<"createMedia" | "listemembre" | "invitmembre" | "">("");
-  const [selectedPiece, setSelectedPiece] = useState<MusicPiece | null>(null);
+  const [, setSelectedPiece] = useState<MusicPiece | null>(null);
 
 
   const handleOpenModal = (type: "createMedia" | "listemembre" | "invitmembre", piece?: MusicPiece) => {
@@ -53,9 +53,13 @@ export default function EnsemblePage() {
     ),
     invitmembre: (
       <InvitMember onClose={() => setOpenModal(false)} />
+    ),
+    listemembre: (
+      <div>
+        {/* Remplacez ceci par le composant réel pour la liste des membres si disponible */}
+        <p>Liste des membres (à implémenter)</p>
+      </div>
     )
-
-
   };
 
 

@@ -1,6 +1,6 @@
 // src/api/loginRequest.ts
 
-const API_URL = "http://localhost:8000/api/auth"; // 
+const API_URL = "https://127.0.0.1/api/auth"; // 
 
 /**
  * Envoie une requête de connexion à l'API Spring Boot

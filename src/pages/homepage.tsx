@@ -6,7 +6,7 @@ import PartitionClefSolFingerPrint from "../components/PartitionClefSolFingerPri
 import { loginUser } from "../api/ConnectionApi";
 import ModaleForgotMdp from "../modale/ModaleForgotMdp";
 
-import "../styles/Homepage.css";
+import "../styles/homepage.css";
 
 interface HomepageProps {
   children: ReactNode;

@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { groupService } from "../api/GroupApi";
 import type { User } from "../api/GroupApi";
 import { Note } from "../components/pathButtons/Note";
 import Partition from "../components/Partition";
 import TitlePartition from "../components/TitlePartition";
-import "../styles/listemembres.css";
+import "../styles/listeMembres.css";
 
 export default function ListeMembres() {
   const { id } = useParams();
   const groupId = Number(id);
   const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setLoading] = useState(true);
+  const [, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!groupId) return;
@@ -21,6 +21,7 @@ export default function ListeMembres() {
       try {
         const data = await groupService.getUsersByGroupId(groupId);
         setUsers(data);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         setError("Impossible de récupérer les utilisateurs du groupe");
       } finally {

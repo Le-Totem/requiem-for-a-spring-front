@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router";
 import "../../styles/footer.css";
 import { Note } from "../pathButtons/Note";
 import { deleteJwt } from "../../utils/LocalStorageManager";
-import ImgButton from "../imgButtons/ImgButton";
 
 export default function Footer() {
 
