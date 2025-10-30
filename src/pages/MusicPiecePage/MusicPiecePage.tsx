@@ -25,10 +25,6 @@ import { Note } from "../../components/pathButtons/Note";
 import type { UserGroup } from "../../utils/UserInfo";
 
 const MusicPiecePage: React.FC = () => {
-  const location = useLocation() as { state?: { groupId?: number } };
-const groupId = location.state?.groupId;
-
-  
     const [musicPiece, setMusicPiece] = useState<MusicPiece>();
     const [medias, setMedias] = useState<Media[] | undefined>([]);
     const [genres, setGenres] = useState<Genre[] | undefined>([]);
