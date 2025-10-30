@@ -16,6 +16,7 @@ import MediaPage from "./pages/MediaPage/MediaPage";
 import EnsemblePage from "./pages/EnsemblePage/ensemble";
 import ListeMembres from "./pages/ListeMembres";
 import Homepage from "./pages/homepage";
+import ProtectedRoute from "./components/errorPages/ProtectedRoute";
 
 function App() {
     return (
@@ -53,15 +54,19 @@ function App() {
                 <Route
                     path="/listeensembles"
                     element={
+                        <ProtectedRoute>
                         <Layout>
                             <Ensembleliste />
                         </Layout>
+                        </ProtectedRoute>
                     }
                 />
                 <Route path="/ensemble/:id" element={
+                    <ProtectedRoute>
                     <Layout>
                         <EnsemblePage />
                     </Layout>
+                    </ProtectedRoute>
                 } />
 
                 {/* Page composants 
@@ -78,20 +83,28 @@ function App() {
                 <Route
                     path="/listemembres/:id"
                     element={
+                        <ProtectedRoute>
                         <Layout>
                             <ListeMembres />
                         </Layout>
+                        </ProtectedRoute>
                     } />
 
                 {/* Page Fiche Morceau */}
-                <Route path="/tracks" element={<Layout> <MainMusicPiece />
-                </Layout>}>
+                <Route path="/tracks" element={
+                    <ProtectedRoute>
+                        <Layout> 
+                            <MainMusicPiece />
+                        </Layout>
+                        </ProtectedRoute>
+                        }>
                     <Route path=""
-                        element={<MusicPiecePage />}
-                    />
+                        element={
+                        <MusicPiecePage />}
+                        />
                     <Route path=":id/medias"
                         element={<MediaPage />}
-                    />
+                        />
                 </Route>
             </Routes>
         </Router>
