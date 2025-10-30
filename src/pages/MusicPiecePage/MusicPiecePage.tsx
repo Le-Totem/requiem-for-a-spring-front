@@ -30,7 +30,7 @@ const MusicPiecePage: React.FC = () => {
     const [medias, setMedias] = useState<Media[] | undefined>([]);
     const [genres, setGenres] = useState<Genre[] | undefined>([]);
 
-    const [roles, setRoles] = useState<UserGroup[]>([]);
+    const [, setRoles] = useState<UserGroup[]>([]);
 
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
