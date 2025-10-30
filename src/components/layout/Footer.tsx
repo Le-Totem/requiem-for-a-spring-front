@@ -23,7 +23,6 @@ export default function Footer() {
             <nav>
                 <Link to="/">Accueil</Link> |{" "}
                 <Link to="/inscription">Inscription</Link> |{" "}
-                <Link to="/listeMembres">Liste des Membres</Link> |{" "}
                 <Link to="/listeensembles">Liste d'ensembles</Link> {" "}
                 {/*<Link to="/composants">Composants React</Link>*/}
             </nav>

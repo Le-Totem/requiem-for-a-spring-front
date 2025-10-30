@@ -38,6 +38,7 @@ export interface InvitationDto {
   status: Status;
   created_at: Date;
   groupId: number;
+  groupName?: string;
 }
 
 // services/groupService.ts

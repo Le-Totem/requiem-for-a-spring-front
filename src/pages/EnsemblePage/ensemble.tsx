@@ -12,7 +12,6 @@ import ModalCrud from "../../components/modalCrudEnsemble/ModalCrudEnsemble.tsx"
 import FormCreate from "../../components/modalCrudMusicPiece/FormCreate.tsx";
 import InvitMember from "../../components/modalCrudMusicPiece/InvitMember.tsx";
 
-
 // import VerticalButton from "../../components/verticalButton/VerticalButton.tsx";
 import { Note } from "../../components/pathButtons/Note.tsx";
 import VerticalButton from "../../components/verticalButton/VerticalButton.tsx";
@@ -32,11 +31,15 @@ export default function EnsemblePage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const [openModal, setOpenModal] = useState(false);
-  const [typeModal, setTypeModal] = useState<"createMedia" | "listemembre" | "invitmembre" | "">("");
+  const [typeModal, setTypeModal] = useState<
+    "createMedia" | "listemembre" | "invitmembre" | ""
+  >("");
   const [, setSelectedPiece] = useState<MusicPiece | null>(null);
 
-
-  const handleOpenModal = (type: "createMedia" | "listemembre" | "invitmembre", piece?: MusicPiece) => {
+  const handleOpenModal = (
+    type: "createMedia" | "listemembre" | "invitmembre",
+    piece?: MusicPiece,
+  ) => {
     setTypeModal(type);
     setSelectedPiece(piece || null);
     setOpenModal(true);
@@ -51,18 +54,14 @@ export default function EnsemblePage() {
         }}
       />
     ),
-    invitmembre: (
-      <InvitMember onClose={() => setOpenModal(false)} />
-    ),
+    invitmembre: <InvitMember onClose={() => setOpenModal(false)} />,
     listemembre: (
       <div>
         {/* Remplacez ceci par le composant réel pour la liste des membres si disponible */}
         <p>Liste des membres (à implémenter)</p>
       </div>
-    )
+    ),
   };
-
-
 
   // Charger l’utilisateur actuel
   const loadUser = async () => {
@@ -110,16 +109,26 @@ export default function EnsemblePage() {
       <PartitionTitle text={groupName} textSize={25} showClef={true} />
 
       <div className={styles.ens_crud}>
-
         {(isAdmin(groupId) || isModerator(groupId)) && (
           <>
-            <VerticalButton label="Créer" iconType="blanche" onClick={() => handleOpenModal("createMedia")} />
-            <VerticalButton label="inviter un membre" iconType="blanche" onClick={() => handleOpenModal("invitmembre")} />
+            <VerticalButton
+              label="Créer"
+              iconType="blanche"
+              onClick={() => handleOpenModal("createMedia")}
+            />
+            <VerticalButton
+              label="inviter un membre"
+              iconType="blanche"
+              onClick={() => handleOpenModal("invitmembre")}
+            />
           </>
         )}
-        <VerticalButton label="liste des membres" iconType="blanche" onClick={() => navigate(`/listemembres/${groupId}`)} />
+        <VerticalButton
+          label="liste des membres"
+          iconType="blanche"
+          onClick={() => navigate(`/listemembres/${groupId}`)}
+        />
       </div>
-
 
       {musicPieces.length === 0 ? (
         <p>Aucun morceau trouvé pour cet ensemble.</p>
@@ -133,7 +142,11 @@ export default function EnsemblePage() {
               label={piece.title}
               iconType="doubleNoire"
               isOnStaff={false}
-             onClick={() => navigate(`/tracks?id=${piece.id}`)} xtext={15} />
+              onClick={() =>
+                navigate(`/tracks?id=${piece.id}`, { state: { groupId } })
+              }
+              xtext={15}
+            />
           ))}
         </div>
       )}
@@ -145,9 +158,6 @@ export default function EnsemblePage() {
       >
         {typeModal && modalContent[typeModal]}
       </ModalCrud>
-
-
-
     </main>
   );
 }

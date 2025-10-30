@@ -12,7 +12,6 @@ export default function Header() {
                 <nav>
                     <Link to="/">Accueil</Link> |{" "}
                     <Link to="/inscription">Inscription</Link> |{" "}
-                    <Link to="/listemembres">Liste de membres</Link> |{" "}
                     <Link to="/listeensembles">Liste d'ensembles</Link> {" "}
 
                     {/*<Link to="/composants">Composants React</Link>*/}

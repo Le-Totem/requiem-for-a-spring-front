@@ -1,6 +1,6 @@
 import type React from "react";
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useLocation, useNavigate, useSearchParams } from "react-router";
 
 // import { Note } from "../../components/pathButtons/Note";
 import PartitionTitle from "../../components/TitlePartition";
@@ -25,6 +25,10 @@ import { Note } from "../../components/pathButtons/Note";
 // import type { UserGroup } from "../../utils/UserInfo";
 
 const MusicPiecePage: React.FC = () => {
+  const location = useLocation() as { state?: { groupId?: number } };
+const groupId = location.state?.groupId;
+
+  
     const [musicPiece, setMusicPiece] = useState<MusicPiece>();
     const [medias, setMedias] = useState<Media[] | undefined>([]);
     const [genres, setGenres] = useState<Genre[] | undefined>([]);
@@ -190,7 +194,7 @@ const MusicPiecePage: React.FC = () => {
                 <button onClick={() => handleOpenModal("addGenre")}>+</button>
             </div>
 
-            {(isAdmin(3) || isModerator(3)) && (
+            {(isAdmin(groupId) || isModerator(groupId)) && (
                 <div className={styles.musicpiece_crud}>
                     <>
                         <VerticalButton label="Gérer les médias" iconType="blanche" onClick={() => navigate(`/tracks/${idMusicPiece}/medias`)} />
