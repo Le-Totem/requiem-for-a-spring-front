@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import "../../styles/styleFooter.css";
 import { Note } from "../pathButtons/Note";
 import { deleteJwt } from "../../utils/LocalStorageManager";

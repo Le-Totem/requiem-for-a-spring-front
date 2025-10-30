@@ -9,7 +9,7 @@ interface FormCreateProps {
 }
 
 const FormCreate: React.FC<FormCreateProps> = ({ onClose, onCreated }) => {
-const { id } = useParams(); // Récupère l'id du groupe dans l'URL
+const { id } = useParams<{ id: string }>();
   const groupId = Number(id);
 
   const [title, setTitle] = useState("");
@@ -36,7 +36,11 @@ const { id } = useParams(); // Récupère l'id du groupe dans l'URL
         title,
         author,
         description,
-        group: { id: id, name: "" }, 
+        group: {
+          id: groupId, name: "",
+          creation_date: "",
+          is_everyone_admin: false
+        }, 
         medias: [],
         musicPieceGenres: [],
       };

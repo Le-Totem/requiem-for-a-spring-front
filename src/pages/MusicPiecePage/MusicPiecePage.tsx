@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type React from "react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router";
@@ -80,10 +81,10 @@ const MusicPiecePage: React.FC = () => {
 
         } catch (error) {
             console.error("Erreur lors du chargement de l'utilisateur :", error);
-        }
     }
+}
 
-    const loadGenres = async () => {
+const loadGenres = async () => {
         try {
             if (!idMusicPiece) {
                 setGenres(undefined)
