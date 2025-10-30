@@ -8,10 +8,10 @@ interface ProtectedRouteProps {
 }
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const user = getUser();
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
-  if (!user) {
+  if (!token) {
     return (
       <div className={styles.container}>
         <div className={styles.card}>

@@ -21,10 +21,6 @@ export default function Footer() {
     return (
         <footer>
             <nav>
-                <Link to="/">Accueil</Link> |{" "}
-                <Link to="/inscription">Inscription</Link> |{" "}
-                <Link to="/listeensembles">Liste d'ensembles</Link> {" "}
-                {/*<Link to="/composants">Composants React</Link>*/}
             </nav>
             <div className="footer-notes">
                 <button className="footer-button">

@@ -17,6 +17,7 @@ import EnsemblePage from "./pages/EnsemblePage/ensemble";
 import ListeMembres from "./pages/ListeMembres";
 import Homepage from "./pages/homepage";
 import ProtectedRoute from "./components/errorPages/ProtectedRoute";
+import PublicRoute from "./components/errorPages/PublicRoute";
 
 function App() {
     return (
@@ -26,9 +27,11 @@ function App() {
                 <Route
                     path="/"
                     element={
+                        <PublicRoute>
                         <Layout showHeader={false} >
                             <Homepage showModale={false} children={undefined} />
                         </Layout>
+                        </PublicRoute>
                     }
                 />
 
