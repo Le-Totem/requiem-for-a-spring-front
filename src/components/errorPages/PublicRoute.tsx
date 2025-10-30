@@ -1,6 +1,5 @@
 // src/components/PublicRoute.tsx
 import { Navigate } from "react-router-dom";
-import { getUser } from "../../utils/LocalStorageManager";
 
 interface PublicRouteProps {
   children: React.ReactNode;
@@ -11,10 +10,10 @@ interface PublicRouteProps {
  * (ex: login, home, register...)
  */
 export default function PublicRoute({ children }: PublicRouteProps) {
-  const user = getUser();
+  const token = localStorage.getItem("token");
 
-  if (user) {
-    return <Navigate to="/listensemble" replace />;
+  if (token) {
+    return <Navigate to="/listeensembles" replace />;
   }
 
   return <>{children}</>;

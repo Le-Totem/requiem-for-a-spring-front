@@ -1,6 +1,5 @@
 // src/components/ProtectedRoute.tsx
 import { useNavigate } from "react-router-dom";
-import { getUser } from "../../utils/LocalStorageManager";
 import styles from "./protectedRoute.module.css";
 
 interface ProtectedRouteProps {
