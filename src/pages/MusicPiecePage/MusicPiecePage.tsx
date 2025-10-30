@@ -1,6 +1,6 @@
 import type React from "react";
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useLocation, useNavigate, useSearchParams } from "react-router";
 
 // import { Note } from "../../components/pathButtons/Note";
 import PartitionTitle from "../../components/TitlePartition";
@@ -22,14 +22,14 @@ import type { MusicPiece } from "../../types/MusicPiece";
 import styles from "./MusicPiece.module.css";
 import { Note } from "../../components/pathButtons/Note";
 
-// import type { UserGroup } from "../../utils/UserInfo";
+import type { UserGroup } from "../../utils/UserInfo";
 
 const MusicPiecePage: React.FC = () => {
     const [musicPiece, setMusicPiece] = useState<MusicPiece>();
     const [medias, setMedias] = useState<Media[] | undefined>([]);
     const [genres, setGenres] = useState<Genre[] | undefined>([]);
 
-    // const [roles, setRoles] = useState<UserGroup[]>([]);
+    const [roles, setRoles] = useState<UserGroup[]>([]);
 
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
@@ -40,6 +40,8 @@ const MusicPiecePage: React.FC = () => {
     const [searchParams] = useSearchParams();
     const idMusicPiece: number = Number(searchParams.get("id"));
     const navigate = useNavigate();
+    const location = useLocation() as { state?: { groupId?: number } };
+    const groupId = location.state?.groupId;
 
     const loadOneMusicPiece = async () => {
         try {
@@ -74,9 +76,7 @@ const MusicPiecePage: React.FC = () => {
             setUser(user);
             setIsAuthenticated(true);
 
-            // setRoles(user.groupsRole);
-            // On sauvegarde les info utilisateur
-
+            setRoles(user.groupsRole);
 
         } catch (error) {
             console.error("Erreur lors du chargement de l'utilisateur :", error);
@@ -190,7 +190,7 @@ const MusicPiecePage: React.FC = () => {
                 <button onClick={() => handleOpenModal("addGenre")}>+</button>
             </div>
 
-            {(isAdmin(3) || isModerator(3)) && (
+            {(isAdmin(groupId) || isModerator(groupId)) && (
                 <div className={styles.musicpiece_crud}>
                     <>
                         <VerticalButton label="Gérer les médias" iconType="blanche" onClick={() => navigate(`/tracks/${idMusicPiece}/medias`)} />

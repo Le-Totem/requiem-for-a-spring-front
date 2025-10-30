@@ -1,4 +1,5 @@
-import type { Group } from "./Group"
+import type { GroupDto } from "../api/GroupApi"
+// import type { Group } from "./Group"
 import type { Media } from "./Media"
 import type { MusicPieceGenre } from "./MusicPieceGenre"
 
@@ -7,7 +8,7 @@ export interface MusicPiece {
     title: string,
     author: string,
     description: string,
-    group: Group,
+    group: GroupDto,
     medias: Media[]
     musicPieceGenres: MusicPieceGenre[]
 }
