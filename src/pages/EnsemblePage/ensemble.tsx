@@ -142,11 +142,7 @@ export default function EnsemblePage() {
               label={piece.title}
               iconType="doubleNoire"
               isOnStaff={false}
-              onClick={() =>
-                navigate(`/tracks?id=${piece.id}`, { state: { groupId } })
-              }
-              xtext={15}
-            />
+              onClick={() => navigate(`/tracks?id=${piece.id}`, { state: { groupId } })} xtext={15} />
           ))}
         </div>
       )}

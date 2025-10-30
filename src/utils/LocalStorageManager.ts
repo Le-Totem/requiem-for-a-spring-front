@@ -10,8 +10,8 @@ export function getJwt(): string | null {
 }
 
 export function deleteJwt() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
 }
 
 export function setUser(user: User) {
@@ -30,16 +30,16 @@ export function getUser(): User | null {
   }
 }
 
-export function isAdmin(groupId: number): boolean {
-  let user = getUser();
-  let userGroup = user?.groupsRole.find((e) => e.groupId === groupId);
+export function isAdmin(groupId: number | undefined): boolean {
+    let user = getUser();
+    let userGroup = user?.groupsRole.find((e) => e.groupId === groupId);
 
   return userGroup?.role === "ADMIN";
 }
 
-export function isModerator(groupId: number): boolean {
-  let user = getUser();
-  let userGroup = user?.groupsRole.find((e) => e.groupId === groupId);
+export function isModerator(groupId: number | undefined): boolean {
+    let user = getUser();
+    let userGroup = user?.groupsRole.find((e) => e.groupId === groupId);
 
   return userGroup?.role === "MODERATEUR";
 }

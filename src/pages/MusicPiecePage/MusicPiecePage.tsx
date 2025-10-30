@@ -22,7 +22,7 @@ import type { MusicPiece } from "../../types/MusicPiece";
 import styles from "./MusicPiece.module.css";
 import { Note } from "../../components/pathButtons/Note";
 
-// import type { UserGroup } from "../../utils/UserInfo";
+import type { UserGroup } from "../../utils/UserInfo";
 
 const MusicPiecePage: React.FC = () => {
   const location = useLocation() as { state?: { groupId?: number } };
@@ -33,7 +33,7 @@ const groupId = location.state?.groupId;
     const [medias, setMedias] = useState<Media[] | undefined>([]);
     const [genres, setGenres] = useState<Genre[] | undefined>([]);
 
-    // const [roles, setRoles] = useState<UserGroup[]>([]);
+    const [roles, setRoles] = useState<UserGroup[]>([]);
 
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
@@ -44,6 +44,8 @@ const groupId = location.state?.groupId;
     const [searchParams] = useSearchParams();
     const idMusicPiece: number = Number(searchParams.get("id"));
     const navigate = useNavigate();
+    const location = useLocation() as { state?: { groupId?: number } };
+    const groupId = location.state?.groupId;
 
     const loadOneMusicPiece = async () => {
         try {
@@ -78,9 +80,7 @@ const groupId = location.state?.groupId;
             setUser(user);
             setIsAuthenticated(true);
 
-            // setRoles(user.groupsRole);
-            // On sauvegarde les info utilisateur
-
+            setRoles(user.groupsRole);
 
         } catch (error) {
             console.error("Erreur lors du chargement de l'utilisateur :", error);

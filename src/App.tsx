@@ -81,8 +81,7 @@ function App() {
                         <Layout>
                             <ListeMembres />
                         </Layout>
-                    }
-                />
+                    } />
 
                 {/* Page Fiche Morceau */}
                 <Route path="/tracks" element={<Layout> <MainMusicPiece />
@@ -93,7 +92,6 @@ function App() {
                     <Route path=":id/medias"
                         element={<MediaPage />}
                     />
-
                 </Route>
             </Routes>
         </Router>
